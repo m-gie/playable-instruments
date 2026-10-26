@@ -10,7 +10,7 @@ local CHANCE_EVERY_MS = 2000
 
 function ISPlayItAction:holdsInstrument()
     local item = self.character:getPrimaryHandItem()
-    return item ~= nil and item:getFullType() == self.controller:instrument()
+    return item ~= nil and item:getFullType() == self.song.fullType
 end
 
 function ISPlayItAction:interrupted()
@@ -20,8 +20,9 @@ function ISPlayItAction:interrupted()
         or not self:holdsInstrument()
 end
 
+-- checked when the action begins (after any equip action queued before it) and every tick
 function ISPlayItAction:isValid()
-    return self.controller:isPlaying() and self:holdsInstrument() and self.character:getVehicle() == nil
+    return self:holdsInstrument() and self.character:getVehicle() == nil
 end
 
 function ISPlayItAction:update()
@@ -41,7 +42,10 @@ function ISPlayItAction:update()
     end
 end
 
+-- the song starts only now, with the instrument in hand
 function ISPlayItAction:start()
+    local s = self.song
+    self.controller:play(s.text, s.bpm, s.volume, s.fullType)
     self.nextChance = getTimestampMs() + CHANCE_EVERY_MS
 end
 
@@ -54,9 +58,11 @@ function ISPlayItAction:perform()
     ISBaseTimedAction.perform(self)
 end
 
-function ISPlayItAction:new(character, controller)
+-- song: { text, bpm, volume, fullType }
+function ISPlayItAction:new(character, controller, song)
     local o = ISBaseTimedAction.new(self, character)
     o.controller = controller
+    o.song = song
     o.maxTime = -1
     o.stopOnWalk = false
     o.stopOnRun = true

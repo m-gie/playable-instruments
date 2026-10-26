@@ -36,13 +36,11 @@ function Controls.get(player)
     return c
 end
 
--- play (or resume) and make sure the play action is running
+-- queue the play action; it starts (or resumes) the song once the instrument is in hand
 function Controls.play(player, text, bpm, volume, fullType)
-    local c = Controls.get(player)
-    c:play(text, bpm, volume, fullType)
-    if not ISTimedActionQueue.hasActionType(player, "ISPlayItAction") then
-        ISTimedActionQueue.add(ISPlayItAction:new(player, c))
-    end
+    if ISTimedActionQueue.hasActionType(player, "ISPlayItAction") then return end
+    local song = { text = text, bpm = bpm, volume = volume, fullType = fullType }
+    ISTimedActionQueue.add(ISPlayItAction:new(player, Controls.get(player), song))
 end
 
 function Controls.pause(player)

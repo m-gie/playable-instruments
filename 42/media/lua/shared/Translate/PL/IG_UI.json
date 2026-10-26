@@ -1,4 +1,21 @@
 {
   "IGUI_perks_PlayItMusic": "Muzyka",
-  "IGUI_perks_PlayItMusic_Description": "Rośnie podczas gry na instrumencie. Im wyższy poziom, tym mniej fałszywych nut i tym bardziej Twoja gra poprawia nastrój słuchaczy."
+  "IGUI_perks_PlayItMusic_Description": "Rośnie podczas gry na instrumencie. Im wyższy poziom, tym mniej fałszywych nut i tym bardziej Twoja gra poprawia nastrój słuchaczy.",
+  "IGUI_PlayIt_Title": "Play it! - %1",
+  "IGUI_PlayIt_BPM": "BPM",
+  "IGUI_PlayIt_Volume": "Głośność",
+  "IGUI_PlayIt_Play": "Graj",
+  "IGUI_PlayIt_Pause": "Pauza",
+  "IGUI_PlayIt_Resume": "Wznów",
+  "IGUI_PlayIt_Stop": "Stop",
+  "IGUI_PlayIt_Save": "Zapisz",
+  "IGUI_PlayIt_Load": "Wczytaj",
+  "IGUI_PlayIt_Open": "Otwórz",
+  "IGUI_PlayIt_SaveAs": "Nazwa utworu:",
+  "IGUI_PlayIt_Saved": "Zapisano jako „%1”.",
+  "IGUI_PlayIt_BadName": "W nazwie użyj liter, cyfr, spacji, - lub _.",
+  "IGUI_PlayIt_NoSongs": "Brak zapisanych utworów",
+  "IGUI_PlayIt_NotHolding": "Weź instrument do głównej ręki, żeby zagrać.",
+  "IGUI_PlayIt_Warn_LineTooLong": "Linia %1 ma ponad 300 znaków i została pominięta.",
+  "IGUI_PlayIt_Warn_TooManyLines": "Grane jest tylko pierwsze %1 linii."
 }

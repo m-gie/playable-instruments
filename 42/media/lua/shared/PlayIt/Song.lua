@@ -99,7 +99,7 @@ function Song.parse(text, bpm)
         if #line > Song.MAX_LINE_CHARS then
             table.insert(song.warnings, { key = "LineTooLong", line = n })
         else
-            local clean = line:lower():gsub("[^a-g0-9#n,/%-]", "")
+            local clean = line:lower():gsub("[^a-g0-9#n,/%-%.]", "")
             if clean ~= "" then
                 for _, piece in ipairs(split(clean, ",")) do
                     table.insert(song.chords, parseChord(piece, state))
