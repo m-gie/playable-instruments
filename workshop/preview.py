@@ -16,6 +16,7 @@ GAME = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "E:/SteamLibrary/steam
 OUT = pathlib.Path(__file__).with_name("preview.png")
 FONT = "C:/Windows/Fonts/seguibl.ttf"
 S = 256
+MOODLES = ("Moodle_Icon_Bored", "Moodle_Icon_Stressed", "Moodle_Icon_Unhappy", "Moodle_Icon_Angry", "Moodle_Icon_Panic")
 
 
 def icons(*names):
@@ -52,7 +53,7 @@ def note(d, x, y, col):
 
 
 def main():
-    ic = icons("Item_GuitarAcoustic", "Item_Violin", "Item_Trumpet", "Item_Harmonica")
+    ic = icons("Item_GuitarAcoustic", "Item_Violin", "Item_Trumpet", "Item_Harmonica", "Moodle_Bkg_Bad_4", *MOODLES)
     random.seed(5)
     img = Image.new("RGBA", (S, S))
     d = ImageDraw.Draw(img)
@@ -70,13 +71,19 @@ def main():
     place(img, scaled(ic["Item_Trumpet"], 3), 210, 250)
     place(img, scaled(ic["Item_Harmonica"], 3), 40, 248)
 
-    for x, y in [(40, 70), (72, 96), (118, 64), (160, 92), (204, 70), (226, 110), (24, 120)]:
+    # what a level-0 player's audience looks like: maxed-out bad moodles down the right edge, as in the game
+    for i, name in enumerate(MOODLES):
+        y = 6 + i * 34
+        img.alpha_composite(ic["Moodle_Bkg_Bad_4"], (S - 38, y))
+        img.alpha_composite(ic[name], (S - 38, y))
+
+    for x, y in [(40, 70), (72, 96), (118, 64), (160, 92), (196, 70), (24, 120)]:
         note(d, x, y, (250, 236, 200, 255))
 
     font = ImageFont.truetype(FONT, 40)
     text = "PLAY IT!"
     w = d.textlength(text, font=font)
-    d.text(((S - w) / 2, 8), text, font=font, fill=(255, 244, 220, 255), stroke_width=3, stroke_fill=(40, 20, 30, 255))
+    d.text(((S - 44 - w) / 2, 8), text, font=font, fill=(255, 244, 220, 255), stroke_width=3, stroke_fill=(40, 20, 30, 255))
     img.convert("RGB").save(OUT, optimize=True)
     print(OUT, OUT.stat().st_size, "bytes")
 
