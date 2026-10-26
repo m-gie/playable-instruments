@@ -26,7 +26,9 @@ end
 
 function Voices:noteOn(sound, ratio, durMs, nowMs, gain)
     local emitter = self.newEmitter(self.getPos())
-    local ref = emitter:playSound(sound)
+    -- playSoundImpl, not playSound: on an MP client playSound also sends an unpitched copy to other players,
+    -- who already play the song themselves
+    local ref = emitter:playSoundImpl(sound, false, nil)
     if ref == nil or ref == 0 then return end
     emitter:setPitch(ref, ratio)
     emitter:setVolume(ref, gain)

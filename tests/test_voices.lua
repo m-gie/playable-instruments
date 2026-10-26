@@ -6,7 +6,12 @@ local made = {}
 local nextRef = 0
 local function newEmitter(x, y, z)
     local em = { pos = { x, y, z }, vol = {}, pitch = {}, stopped = {}, playing = {} }
-    function em:playSound(name) nextRef = nextRef + 1; self.playing[nextRef] = name; return nextRef end
+    -- playSound(name) on an MP client also broadcasts an unpitched copy to other players: must not be used
+    function em:playSound() error("networked playSound used") end
+    function em:playSoundImpl(name, loop, parent)
+        assert(loop == false and parent == nil, "local one-shot")
+        nextRef = nextRef + 1; self.playing[nextRef] = name; return nextRef
+    end
     function em:setPitch(ref, p) self.pitch[ref] = p end
     function em:setVolume(ref, v) self.vol[ref] = v end
     function em:stopSound(ref) self.stopped[ref] = true end
@@ -46,7 +51,7 @@ a:stopAll()
 check(next(made[1].stopped) ~= nil and next(made[2].stopped) == nil, "voices are per musician")
 
 local failing = V.new(function() return 0, 0, 0 end, 12, function()
-    return { playSound = function() return 0 end, setPitch = function() error("pitched a failed sound") end }
+    return { playSoundImpl = function() return 0 end, setPitch = function() error("pitched a failed sound") end }
 end)
 failing:noteOn("X", 1, 100, 0, 1); failing:update(1000)
 check(true, "a sound that fails to start is ignored")
