@@ -54,3 +54,5 @@ local n = #calls; c:updateChance(); check(#calls == n, "no update when the chanc
 
 -- the song ends by itself
 livePos = nil; c:tick(); check(not c:isPlaying() and not c:isPaused(), "song end stops the controller")
+
+c:play("c,d", 120, 0.4, "Base.Trumpet"); check(c:volume() == 0.4, "controller remembers the volume")

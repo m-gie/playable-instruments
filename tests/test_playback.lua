@@ -71,3 +71,8 @@ P.start("G", source(false), "Base.Trumpet", perf("c,d,e"), 0, 0)
 check(P.currentChord("G") == 0, "no chord played yet")
 P.update(0); P.update(500); check(P.currentChord("G") == 2, "current chord after two")
 check(P.currentChord("nobody") == 0, "unknown musician: 0")
+
+local gotDef
+P.onEvent = function(id, e, pf, def) gotDef = def end
+P.start("H", source(false), "Base.Violin", perf("c"), 0, 0)
+P.update(0); check(gotDef and gotDef.key == "Violin", "onEvent gets the instrument")

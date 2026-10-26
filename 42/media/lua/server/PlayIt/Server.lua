@@ -5,6 +5,9 @@ if not isServer() then return end -- clients run lua/server too in B42
 
 require "PlayIt/Session"
 require "PlayIt/Instruments"
+require "PlayIt/Effects"
+require "PlayIt/Herd"
+require "PlayIt/Config"
 
 local RELAY_RANGE = 80
 local CATCH_UP_MS = 2000
@@ -92,9 +95,23 @@ Events.OnClientCommand.Add(function(module, command, player, args)
     handlers[command](player, args or {})
 end)
 
+-- while a musician plays: Music XP, and tame animals that trust them come over (server-simulated in MP)
+local function playingTick(musician, s, now)
+    local cfg = PlayIt.Config.get()
+    if cfg.skillOn and Perks.PlayItMusic then
+        addXp(musician, Perks.PlayItMusic, PlayIt.Effects.XP_PER_SECOND * CATCH_UP_MS / 1000)
+    end
+    local def = PlayIt.Instruments.defs[s.fullType]
+    if def and not musician:isInvisible() then
+        local r = PlayIt.Effects.noiseRadius(def, s.perf.volume, cfg.noiseMult)
+        if r > 0 then PlayIt.Herd.call(musician, r, now) end
+    end
+end
+
 -- late joiners get the song at its current place; sessions of departed or dead musicians end
 Events.OnTick.Add(function()
     local now = getTimestampMs()
+    PlayIt.Herd.update(now)
     if now < nextCatchUp then return end
     nextCatchUp = now + CATCH_UP_MS
     for id, s in pairs(sessions.list) do
@@ -106,6 +123,7 @@ Events.OnTick.Add(function()
             local pos = sessions:positionAt(id, now)
             if pos then
                 sendPlay(id, musician, s.perf, s.fullType, pos)
+                playingTick(musician, s, now)
             elseif not sessions:pausedAt(id) then
                 sessions:stop(id) -- song over
             end

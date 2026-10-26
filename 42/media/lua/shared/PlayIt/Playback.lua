@@ -11,7 +11,7 @@ PlayIt.Playback = PlayIt.Playback or {}
 local Playback = PlayIt.Playback
 
 Playback.TAIL_MS = 1000 -- keep updating voices this long after the last note so releases finish
-Playback.onEvent = nil -- function(musicianId, event, perf), for every chord played audibly
+Playback.onEvent = nil -- function(musicianId, event, perf, def), for every chord played audibly
 
 local active = {}
 
@@ -44,7 +44,7 @@ local function play(id, p, event, nowMs)
         local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents)
         p.voices:noteOn(sound, ratio, event.dur, nowMs, p.perf.volume)
     end
-    if Playback.onEvent then Playback.onEvent(id, event, p.perf) end
+    if Playback.onEvent then Playback.onEvent(id, event, p.perf, p.def) end
 end
 
 function Playback.update(nowMs)

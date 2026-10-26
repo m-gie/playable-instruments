@@ -40,7 +40,7 @@ function Controller:play(text, bpm, volume, fullType)
         length = PlayIt.Timeline.build(song, self.seed, self.segments).length, level = self.deps.level(),
     }
     self.deps.net.start(self.player, fullType, perf, resume and self.pausedAt or 0)
-    self.pausedAt, self.playing = nil, true
+    self.pausedAt, self.playing, self.vol = nil, true, volume
 end
 
 function Controller:pause()
@@ -57,6 +57,7 @@ end
 function Controller:isPlaying() return self.playing end
 function Controller:isPaused() return not self.playing and self.pausedAt ~= nil end
 function Controller:instrument() return self.fullType end
+function Controller:volume() return self.vol end
 
 function Controller:positionMs()
     if self.playing then return self.deps.position() end
