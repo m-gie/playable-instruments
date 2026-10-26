@@ -1,0 +1,13 @@
+version=1
+title=Play it! Playable musical instruments
+description=[i](Description to be written.)[/i]
+description=
+description=[h2]Credits[/h2]
+description=[b]Instrument recordings[/b]
+description=[list]
+description=[*][b]Acoustic guitar, trumpet, violin:[/b] University of Iowa Electronic Music Studios, Musical Instrument Samples (Lawrence Fritts). Guitar played by Brian Penkrot, trumpet by Aren Van Houzen, violin by Leonid Iogansen. [url=https://theremin.music.uiowa.edu/MIS.html]theremin.music.uiowa.edu/MIS.html[/url]
+description=[*][b]Harmonica:[/b] Versilian Studios Community Sample Library (VCSL) by Sam Gossner, CC0. [url=https://github.com/sgossner/VCSL]github.com/sgossner/VCSL[/url]
+description=[/list]
+description=The song format comes from Space Station 13's instruments (/tg/station).
+tags=Build 42;Multiplayer
+visibility=unlisted
