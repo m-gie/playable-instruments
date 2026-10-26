@@ -1,0 +1,13 @@
+{
+  "Sandbox_PlayIt": "Play it!",
+  "Sandbox_PlayIt_SkillEnabled": "Umiejętność Muzyka",
+  "Sandbox_PlayIt_SkillEnabled_tooltip": "Wyłączona: nikt nie myli się przez niską umiejętność i nie zdobywa się doświadczenia w Muzyce. Upicie i panika nadal powodują pomyłki.",
+  "Sandbox_PlayIt_BlunderLevel0": "Szansa na pomyłkę przy Muzyce 0 (%)",
+  "Sandbox_PlayIt_BlunderLevel0_tooltip": "Szansa, że całkowity początkujący zagra nutę źle.",
+  "Sandbox_PlayIt_BlunderLevel10": "Szansa na pomyłkę przy Muzyce 10 (%)",
+  "Sandbox_PlayIt_BlunderLevel10_tooltip": "Szansa, że mistrz zagra nutę źle. Na poziomach pośrednich szansa płynnie spada od wartości dla poziomu 0 do tej.",
+  "Sandbox_PlayIt_BlundersAnnoy": "Pomyłki irytują słuchaczy",
+  "Sandbox_PlayIt_BlundersAnnoy_tooltip": "Każda fałszywa nuta podnosi stres i przygnębienie wszystkich w zasięgu słuchu, także muzyka.",
+  "Sandbox_PlayIt_NoiseMultiplier": "Zasięg hałasu muzyki",
+  "Sandbox_PlayIt_NoiseMultiplier_tooltip": "Mnoży odległość, z jakiej zombie i zwierzęta słyszą muzykę. 0 = nigdy jej nie słyszą."
+}

@@ -1,0 +1,13 @@
+{
+  "Sandbox_PlayIt": "Play it!",
+  "Sandbox_PlayIt_SkillEnabled": "Music skill",
+  "Sandbox_PlayIt_SkillEnabled_tooltip": "Off: nobody blunders because of low skill and no Music XP is gained. Being drunk or panicked still causes blunders.",
+  "Sandbox_PlayIt_BlunderLevel0": "Blunder chance at Music 0 (%)",
+  "Sandbox_PlayIt_BlunderLevel0_tooltip": "Chance that a note goes wrong for a complete beginner.",
+  "Sandbox_PlayIt_BlunderLevel10": "Blunder chance at Music 10 (%)",
+  "Sandbox_PlayIt_BlunderLevel10_tooltip": "Chance that a note goes wrong for a master. Levels in between fall smoothly from the level 0 chance to this one.",
+  "Sandbox_PlayIt_BlundersAnnoy": "Blunders annoy listeners",
+  "Sandbox_PlayIt_BlundersAnnoy_tooltip": "Each wrong note raises the stress and unhappiness of everyone in earshot, the musician included.",
+  "Sandbox_PlayIt_NoiseMultiplier": "Music noise radius",
+  "Sandbox_PlayIt_NoiseMultiplier_tooltip": "Multiplies how far zombies and animals notice the music. 0 = they never do."
+}

@@ -1,0 +1,47 @@
+VERSION = 1,
+
+option PlayIt.SkillEnabled
+{
+	type = boolean,
+	default = true,
+	page = PlayIt,
+	translation = PlayIt_SkillEnabled,
+}
+
+option PlayIt.BlunderLevel0
+{
+	type = double,
+	min = 0,
+	max = 100,
+	default = 50,
+	page = PlayIt,
+	translation = PlayIt_BlunderLevel0,
+}
+
+option PlayIt.BlunderLevel10
+{
+	type = double,
+	min = 0,
+	max = 100,
+	default = 0.01,
+	page = PlayIt,
+	translation = PlayIt_BlunderLevel10,
+}
+
+option PlayIt.BlundersAnnoy
+{
+	type = boolean,
+	default = true,
+	page = PlayIt,
+	translation = PlayIt_BlundersAnnoy,
+}
+
+option PlayIt.NoiseMultiplier
+{
+	type = double,
+	min = 0,
+	max = 3,
+	default = 1.0,
+	page = PlayIt,
+	translation = PlayIt_NoiseMultiplier,
+}
