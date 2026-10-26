@@ -68,7 +68,8 @@ PlayIt.Playback.onEvent = function(id, event, perf, def)
     local cfg = PlayIt.Config.get()
     local earshot = PlayIt.Effects.earshot(def, perf.volume)
     for _, player in ipairs(localPlayers()) do
-        local fx = PlayIt.Effects.forListener(event, player:DistTo(musician), earshot, perf.level or 0, cfg.annoy)
+        local fx = PlayIt.Effects.forListener(event, player:DistTo(musician), earshot, perf.level or 0, cfg.annoy,
+            player == musician)
         if fx then
             local stats = player:getStats()
             stats:remove(CharacterStat.BOREDOM, -fx.boredom)

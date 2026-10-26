@@ -36,10 +36,11 @@ function Effects.window(timeline, fromMs, toMs)
     return dur, blunders
 end
 
--- stat changes for a stretch of music (durMs of chords, with `blunders` wrong notes); nil when out of earshot
-function Effects.forWindow(durMs, blunders, distance, earshot, musicianLevel, annoy)
+-- stat changes for a stretch of music (durMs of chords, with `blunders` wrong notes); nil when out of earshot.
+-- The musician enjoys their own playing but isn't annoyed by their own wrong notes.
+function Effects.forWindow(durMs, blunders, distance, earshot, musicianLevel, annoy, isMusician)
     if distance > earshot then return nil end
-    local n = annoy and blunders or 0
+    local n = (annoy and not isMusician) and blunders or 0
     return {
         boredom = -Effects.boredomPerSecond(musicianLevel) * durMs / 1000,
         stress = n * Effects.ANNOY_STRESS,
@@ -48,9 +49,9 @@ function Effects.forWindow(durMs, blunders, distance, earshot, musicianLevel, an
 end
 
 -- stat changes for one played chord on a listener at `distance`; nil when out of earshot
-function Effects.forListener(event, distance, earshot, musicianLevel, annoy)
+function Effects.forListener(event, distance, earshot, musicianLevel, annoy, isMusician)
     if distance > earshot then return nil end
-    local blunder = event.blunder ~= nil and annoy
+    local blunder = event.blunder ~= nil and annoy and not isMusician
     return {
         boredom = -Effects.boredomPerSecond(musicianLevel) * event.dur / 1000,
         stress = blunder and Effects.ANNOY_STRESS or 0,

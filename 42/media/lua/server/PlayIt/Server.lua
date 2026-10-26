@@ -114,7 +114,8 @@ local function moodTick(musician, s, pos, cfg, def)
     for i = 0, players:size() - 1 do
         local p = players:get(i)
         if not p:isDead() then
-            local fx = PlayIt.Effects.forWindow(dur, blunders, p:DistTo(musician), earshot, s.perf.level, cfg.annoy)
+            local fx = PlayIt.Effects.forWindow(dur, blunders, p:DistTo(musician), earshot, s.perf.level, cfg.annoy,
+                p == musician)
             if fx then
                 local stats = p:getStats()
                 stats:remove(CharacterStat.BOREDOM, -fx.boredom)
