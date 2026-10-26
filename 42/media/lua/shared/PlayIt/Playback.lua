@@ -31,7 +31,7 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
     local def = PlayIt.Instruments.defs[fullType]
     if def == nil then return end
     local timeline = build(perf)
-    PlayIt.trace("playback start id=%s pos=%d length=%d chords=%d next=%s", tostring(id), posMs, timeline.length,
+    PlayIt.trace("playback start id=%s pos=%.0f length=%.0f chords=%d next=%s", tostring(id), posMs, timeline.length,
         #timeline.events, tostring(PlayIt.Timeline.firstEventAt(timeline, posMs)))
     active[id] = {
         source = source, def = def, perf = perf, timeline = timeline,
