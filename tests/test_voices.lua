@@ -31,6 +31,12 @@ for i = 1, 13 do voices:noteOn("S", 1, 5000, 0, 1) end
 check(#made == 13 and next(made[1].stopped) ~= nil, "13th voice stops the oldest")
 check(next(made[2].stopped) == nil, "second voice still playing")
 
+made = {}
+local short = V.new(function() return 0, 0, 0 end, 12, newEmitter, 100)
+short:noteOn("S", 1, 1000, 0, 1)
+short:update(1050); check(math.abs(made[1].vol[next(made[1].vol)] - 0.5) < 1e-9, "custom release: half gain 50 ms into a 100 ms release")
+short:update(1100); check(next(made[1].stopped) ~= nil, "custom release: stopped after 100 ms")
+
 -- Review Focus 5: voices are per musician
 made = {}
 local a = V.new(function() return 0, 0, 0 end, 12, newEmitter)

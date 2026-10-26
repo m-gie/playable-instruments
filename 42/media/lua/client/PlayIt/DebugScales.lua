@@ -20,13 +20,13 @@ local MAJOR = { 0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24 }
 
 local function playScale(player, fullType)
     local def = PlayIt.Instruments.defs[fullType]
-    local voices = PlayIt.Voices.new(function() return player:getX(), player:getY(), player:getZ() end)
+    local voices = PlayIt.Voices.new(function() return player:getX(), player:getY(), player:getZ() end, nil, nil, def.release)
     table.insert(active, voices)
     local root = def.low + (12 - def.low % 12) % 12 -- first C in range
     for i, step in ipairs(MAJOR) do
         at((i - 1) * 300, function(now)
             local sound, ratio = PlayIt.Instruments.resolve(def, root + step, 0)
-            voices:noteOn(sound, ratio, 450, now, 1)
+            voices:noteOn(sound, ratio, 300, now, 1)
             print(string.format("[PlayIt] %s midi=%d %s x%.3f", def.key, root + step, sound, ratio))
         end)
     end

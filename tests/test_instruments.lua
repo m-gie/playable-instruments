@@ -22,3 +22,7 @@ for fullType, key in pairs(keys) do
     check(inside, fullType .. " has samples around its range")
 end
 check(I.defs["Base.Trumpet"].maxRadius == 45 and I.defs["Base.Harmonica"].maxRadius == 20, "radii")
+check(I.defs["Base.GuitarAcoustic"].release == 400, "guitar strings ring on")
+for _, ft in ipairs({ "Base.Violin", "Base.Trumpet", "Base.Harmonica" }) do
+    check(I.defs[ft].release == 100, ft .. " stops quickly")
+end

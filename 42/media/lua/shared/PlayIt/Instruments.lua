@@ -6,15 +6,16 @@ PlayIt = PlayIt or {}
 PlayIt.Instruments = PlayIt.Instruments or {}
 local Instruments = PlayIt.Instruments
 
-local function def(key, low, high, maxRadius)
-    return { key = key, low = low, high = high, maxRadius = maxRadius, samples = PlayIt.Samples[key] }
+-- release: fade-out (ms) after a note's length; strings ring on, bowed and blown notes stop when the player stops
+local function def(key, low, high, maxRadius, release)
+    return { key = key, low = low, high = high, maxRadius = maxRadius, release = release, samples = PlayIt.Samples[key] }
 end
 
 Instruments.defs = {
-    ["Base.GuitarAcoustic"] = def("Guitar", 40, 76, 30),
-    ["Base.Violin"] = def("Violin", 55, 93, 25),
-    ["Base.Trumpet"] = def("Trumpet", 54, 82, 45),
-    ["Base.Harmonica"] = def("Harmonica", 48, 84, 20),
+    ["Base.GuitarAcoustic"] = def("Guitar", 40, 76, 30, 400),
+    ["Base.Violin"] = def("Violin", 55, 93, 25, 100),
+    ["Base.Trumpet"] = def("Trumpet", 54, 82, 45, 100),
+    ["Base.Harmonica"] = def("Harmonica", 48, 84, 20, 100),
 }
 
 -- sound name and pitch ratio for a note; notes outside the range move by whole octaves into it,
