@@ -119,6 +119,35 @@ local function chordCheck(player)
     at(5300, function() for _, s in ipairs({ 0, 1, 2 }) do note(emitter, s, "cluster") end end)
 end
 
+-- v2: one pooled world emitter per note. FMODSoundEmitter.setPitch(ref, p) sets the pitch of EVERY
+-- sound on that emitter (game bug: the ref check only guards a log line), so notes can't share one.
+local function soloNote(player, semis, label)
+    local em = getWorld():getFreeEmitter(player:getX(), player:getY(), player:getZ())
+    local ref = em:playSound("PlayIt_TestPluck")
+    em:setPitch(ref, 2 ^ (semis / 12))
+    print(string.format("[PlayIt] v2 %s ref=%s semis=%d", label, tostring(ref), semis))
+    return em, ref
+end
+
+local function testV2(player)
+    local scale = { 0, 2, 4, 5, 7, 9, 11, 12 }
+    for i, s in ipairs(scale) do
+        at((i - 1) * 500, function() soloNote(player, s, "scale") end)
+    end
+    at(4500, function() for _, s in ipairs({ 0, 4, 7 }) do soloNote(player, s, "major") end end)
+    at(6500, function() for _, s in ipairs({ 0, 1, 2 }) do soloNote(player, s, "cluster") end end)
+    -- fade A: setVolume on the ref; fade B: setVolumeAll on the emitter
+    at(8500, function()
+        local em, ref = soloNote(player, 7, "fadeA setVolume")
+        for k = 1, 10 do at(k * 150, function() em:setVolume(ref, 1 - k / 10) end) end
+    end)
+    at(11000, function()
+        local em = soloNote(player, 7, "fadeB setVolumeAll")
+        for k = 1, 10 do at(k * 150, function() em:setVolumeAll(1 - k / 10) end) end
+    end)
+    at(13500, function() soloNote(player, 7, "no fade (compare)") end)
+end
+
 local SOUND_VARIANTS = { "PlayIt_TestPluck", "PlayIt_TestPluckRoot", "PlayIt_TestPluckCommon" }
 
 -- Why does playSound return 0? Print what the engine knows about each variant, then try each.
@@ -160,6 +189,7 @@ local function onFill(playerNum, context, items)
     sub:addOption("Sound diagnostics", player, soundDiag)
     sub:addOption("Scale, chord, fade, noise", player, musicTest)
     sub:addOption("Chord check", player, chordCheck)
+    sub:addOption("V2: one emitter per note", player, testV2)
     sub:addOption("Paste test", player, pasteTest)
     sub:addOption("Animals: trust nearest tame", player, trustNearest)
     sub:addOption("Animals: noise + call trusting", player, animalTest)
