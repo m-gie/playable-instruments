@@ -1,0 +1,333 @@
+module Base
+{
+    sound PlayIt_Guitar_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Guitar_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Guitar_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Guitar_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Guitar_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Guitar_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Guitar_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Guitar_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitar_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Trumpet_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpet_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_Trumpet_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpet_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_Trumpet_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpet_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_Trumpet_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpet_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_Trumpet_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpet_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_Trumpet_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpet_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_Violin_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violin_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Violin_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violin_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Violin_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violin_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Violin_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violin_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Violin_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violin_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Violin_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violin_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Harmonica_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_Harmonica_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonica_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+}
