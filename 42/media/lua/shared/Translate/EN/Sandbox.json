@@ -5,7 +5,7 @@
   "Sandbox_PlayIt_BlunderLevel0": "Blunder chance at Music 0 (%)",
   "Sandbox_PlayIt_BlunderLevel0_tooltip": "Chance that a note goes wrong for a complete beginner.",
   "Sandbox_PlayIt_BlunderLevel10": "Blunder chance at Music 10 (%)",
-  "Sandbox_PlayIt_BlunderLevel10_tooltip": "Chance that a note goes wrong for a master. Levels in between fall smoothly from the level 0 chance to this one.",
+  "Sandbox_PlayIt_BlunderLevel10_tooltip": "Chance that a note goes wrong for a master. Levels in between fall slowly at first and faster near the top (about 6% at level 5 with the default values).",
   "Sandbox_PlayIt_BlundersAnnoy": "Blunders annoy listeners",
   "Sandbox_PlayIt_BlundersAnnoy_tooltip": "Each wrong note raises the stress and unhappiness of everyone in earshot, the musician included.",
   "Sandbox_PlayIt_NoiseMultiplier": "Music noise radius",

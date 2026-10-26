@@ -5,7 +5,7 @@ PlayIt.Effects = PlayIt.Effects or {}
 local Effects = PlayIt.Effects
 
 Effects.NOISE_INTERVAL_MS = 2000
-Effects.XP_PER_SECOND = 0.1
+Effects.XP_PER_SECOND = 0.2 -- the engine x1.5s perks.txt: level 5 after ~3.9 h of playing, level 10 after ~45.5 h
 Effects.BOREDOM_BASE = 0.1 -- boredom (0-100) per real second at Music 0; a TV has no fixed rate to copy
 Effects.ANNOY_STRESS = 0.01 -- stress is 0-1
 Effects.ANNOY_UNHAPPY = 0.5 -- unhappiness is 0-100

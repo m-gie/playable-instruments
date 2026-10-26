@@ -25,7 +25,7 @@ c:play("c,d,e,f", 120, 0.7, "Base.Violin")
 local s1 = last()
 check(s1[1] == "start" and s1.pos == 0 and s1.perf.seed == 101 and s1.perf.length == 2000, "fresh start at 0 with a new seed and the song length")
 check(s1.perf.level == 3 and s1.perf.volume == 0.7 and s1.perf.bpm == 120, "perf carries level, volume, bpm")
-check(math.abs(s1.perf.segments[1].chance - 0.5 * (0.0001 / 0.5) ^ 0.3) < 1e-9 and s1.perf.segments[1].fromChord == 1, "first segment = current chance")
+check(math.abs(s1.perf.segments[1].chance - 0.5 * (0.0001 / 0.5) ^ 0.09) < 1e-9 and s1.perf.segments[1].fromChord == 1, "first segment = current chance")
 check(c:isPlaying() and not c:isPaused() and c:instrument() == "Base.Violin", "playing")
 
 c:pause()

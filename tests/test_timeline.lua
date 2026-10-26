@@ -3,7 +3,10 @@ local T, S = PlayIt.Timeline, PlayIt.Song
 local function near(a, b, e) return math.abs(a - b) < (e or 1e-6) end
 check(near(T.chance(0, 0.5, 0.0001, 0, 0, true), 0.5), "level 0 = p0")
 check(near(T.chance(10, 0.5, 0.0001, 0, 0, true), 0.0001), "level 10 = p10")
-check(near(T.chance(5, 0.5, 0.0001, 0, 0, true), math.sqrt(0.5 * 0.0001)), "level 5 geometric")
+-- falls slowly at first, fast at the end: p0 * (p10/p0)^((level/10)^2) (user, 2026-10-26: about 5% at level 5)
+check(near(T.chance(5, 0.5, 0.0001, 0, 0, true), 0.5 * (0.0002 ^ 0.25)), "level 5 about 6%")
+check(math.abs(T.chance(3, 0.5, 0.0001, 0, 0, true) - 0.232) < 0.001, "level 3 about 23%")
+check(math.abs(T.chance(7, 0.5, 0.0001, 0, 0, true) - 0.0077) < 0.0002, "level 7 under 1%")
 check(T.chance(10, 0.5, 0.0001, 0, 0, false) == 0, "skill off, sober: no blunders")
 check(near(T.chance(10, 0.5, 0.0001, 100, 0, false), 0.3), "drunk blunders with skill off")
 check(T.chance(0, 0.5, 0.0001, 100, 100, true) == 0.6, "capped at 0.6")

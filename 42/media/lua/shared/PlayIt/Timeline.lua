@@ -12,11 +12,12 @@ Timeline.PAUSE_MAX_MS = 400
 
 local MODULUS = 2147483647
 
--- p0/p10 are fractions (0.5 = 50%); intox and panic are 0-100
+-- p0/p10 are fractions (0.5 = 50%); intox and panic are 0-100. Between the two ends the chance falls slowly
+-- at first and fast at the end (exponent (level/10)^2): about 6% at level 5 with the default ends.
 function Timeline.chance(level, p0, p10, intox, panic, skillOn)
     local base = 0
     if skillOn and p0 > 0 then
-        base = p0 * (p10 / p0) ^ (level / 10)
+        base = p0 * (p10 / p0) ^ ((level / 10) ^ 2)
     end
     local total = base + Timeline.DRUNK_WEIGHT * intox / 100 + Timeline.PANIC_WEIGHT * panic / 100
     return math.min(total, Timeline.MAX_CHANCE)

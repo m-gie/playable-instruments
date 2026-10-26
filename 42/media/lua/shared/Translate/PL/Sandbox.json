@@ -5,7 +5,7 @@
   "Sandbox_PlayIt_BlunderLevel0": "Szansa na pomyłkę przy Muzyce 0 (%)",
   "Sandbox_PlayIt_BlunderLevel0_tooltip": "Szansa, że całkowity początkujący zagra nutę źle.",
   "Sandbox_PlayIt_BlunderLevel10": "Szansa na pomyłkę przy Muzyce 10 (%)",
-  "Sandbox_PlayIt_BlunderLevel10_tooltip": "Szansa, że mistrz zagra nutę źle. Na poziomach pośrednich szansa płynnie spada od wartości dla poziomu 0 do tej.",
+  "Sandbox_PlayIt_BlunderLevel10_tooltip": "Szansa, że mistrz zagra nutę źle. Na poziomach pośrednich szansa spada najpierw powoli, a pod koniec szybciej (ok. 6% na poziomie 5 przy domyślnych wartościach).",
   "Sandbox_PlayIt_BlundersAnnoy": "Pomyłki irytują słuchaczy",
   "Sandbox_PlayIt_BlundersAnnoy_tooltip": "Każda fałszywa nuta podnosi stres i przygnębienie wszystkich w zasięgu słuchu, także muzyka.",
   "Sandbox_PlayIt_NoiseMultiplier": "Zasięg hałasu muzyki",
