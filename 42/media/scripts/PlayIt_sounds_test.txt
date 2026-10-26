@@ -10,3 +10,32 @@ module Base
         }
     }
 }
+
+module PlayIt
+{
+    sound PlayIt_TestPluckRoot
+    {
+        category = Object,
+        loop = false,
+        is3D = true,
+        clip
+        {
+            file = media/sound/playit_test_pluck_root.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+
+    sound PlayIt_TestPluckCommon
+    {
+        category = Object,
+        loop = false,
+        is3D = true,
+        clip
+        {
+            file = media/sound/playit_test_pluck_common.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+}
