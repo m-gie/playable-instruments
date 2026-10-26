@@ -113,6 +113,16 @@ local SOUND_VARIANTS = { "PlayIt_TestPluck", "PlayIt_TestPluckRoot", "PlayIt_Tes
 
 -- Why does playSound return 0? Print what the engine knows about each variant, then try each.
 local function soundDiag(player)
+    -- the character emitter refuses to play (returns 0) while the character is invisible
+    print("[PlayIt] diag invisible=" .. tostring(player:isInvisible()))
+    local world = getWorld():getFreeEmitter(player:getX(), player:getY(), player:getZ())
+    at(5000, function()
+        local ref = world:playSound("PlayIt_TestPluck")
+        print("[PlayIt] diag world emitter ref=" .. tostring(ref))
+    end)
+    at(6500, function()
+        print("[PlayIt] diag UI sound ref=" .. tostring(getSoundManager():playUISound("PlayIt_TestPluck")))
+    end)
     local emitter = player:getEmitter()
     for i, name in ipairs(SOUND_VARIANTS) do
         local gs = GameSounds.getSound(name)
