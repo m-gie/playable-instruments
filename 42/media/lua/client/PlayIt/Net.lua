@@ -71,7 +71,6 @@ end
 
 -- the relay reaches further than a client loads players: start waiting songs once their musician appears
 Events.OnTick.Add(function()
-    if next(waiting) == nil then return end
     local now = getTimestampMs()
     for id, w in pairs(waiting) do
         local pos = PlayIt.Session.lateStart(w.args.posMs, w.received, now, w.args.perf.length)

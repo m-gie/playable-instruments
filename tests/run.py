@@ -12,6 +12,10 @@ for test in sorted((ROOT / "tests").glob("test_*.lua")):
     lua = lua51.LuaRuntime()
     lua.execute(f'package.path = "{SHARED}/?.lua;" .. package.path')
     lua.execute(f'ROOT = "{ROOT.as_posix()}"')
+    shipped = sorted(f.relative_to(ROOT).as_posix() for f in (ROOT / "42").rglob("*") if f.is_file())
+    lua.execute("SHIPPED = {}")
+    for f in shipped:
+        lua.globals().SHIPPED[len(lua.globals().SHIPPED) + 1] = f
     lua.execute("""
         PASSED, FAILED = 0, 0
         function check(ok, what)
