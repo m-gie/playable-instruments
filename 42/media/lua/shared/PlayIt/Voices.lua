@@ -1,6 +1,8 @@
 -- The sounding notes of one musician. Every note gets its own pooled world emitter: the game's
 -- FMODSoundEmitter.setPitch(ref, p) re-pitches every sound on an emitter, so notes can't share one.
 
+require "PlayIt/Trace"
+
 PlayIt = PlayIt or {}
 PlayIt.Voices = PlayIt.Voices or {}
 local Voices = PlayIt.Voices
@@ -29,7 +31,10 @@ function Voices:noteOn(sound, ratio, durMs, nowMs, gain)
     -- playSoundImpl, not playSound: on an MP client playSound also sends an unpitched copy to other players,
     -- who already play the song themselves
     local ref = emitter:playSoundImpl(sound, false, nil)
-    if ref == nil or ref == 0 then return end
+    if ref == nil or ref == 0 then
+        PlayIt.trace("note %s failed to start (ref %s)", sound, tostring(ref))
+        return
+    end
     emitter:setPitch(ref, ratio)
     emitter:setVolume(ref, gain)
     if #self.list >= self.max then stop(table.remove(self.list, 1)) end

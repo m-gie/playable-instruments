@@ -3,6 +3,7 @@
 -- interrupt it, and an interruption pauses the song so Play resumes it.
 
 require "TimedActions/ISBaseTimedAction"
+require "PlayIt/Trace"
 
 ISPlayItAction = ISBaseTimedAction:derive("ISPlayItAction")
 
@@ -45,6 +46,9 @@ end
 -- the song starts only now, with the instrument in hand
 function ISPlayItAction:start()
     local s = self.song
+    PlayIt.trace("action start: %s, holding %s, invisible %s", s.fullType,
+        tostring(self.character:getPrimaryHandItem() and self.character:getPrimaryHandItem():getFullType()),
+        tostring(self.character:isInvisible()))
     if not self.controller:play(s.text, s.bpm, s.volume, s.fullType) then
         self:forceStop() -- too long to send; the window already said so
         return
@@ -53,6 +57,7 @@ function ISPlayItAction:start()
 end
 
 function ISPlayItAction:stop()
+    PlayIt.trace("action stop (interrupted or cancelled)")
     self.controller:pause()
     ISBaseTimedAction.stop(self)
 end

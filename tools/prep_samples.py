@@ -53,6 +53,30 @@ INSTRUMENTS = {
         ("violin/Violin.arco.mf.sulE.C6B6.aif", 84),
         ("violin/Violin.arco.mf.sulE.C6B6.aif", 91),
     ]),
+    "Flute": (25, [
+        ("flute/Flute.vib.mf.B3B4.aiff", 62),
+        ("flute/Flute.vib.mf.B3B4.aiff", 67),
+        ("flute/Flute.vib.mf.B3B4.aiff", 71),
+        ("flute/Flute.vib.mf.C5B5.aiff", 76),
+        ("flute/Flute.vib.mf.C5B5.aiff", 81),
+        ("flute/Flute.vib.mf.C6B6.aiff", 86),
+        ("flute/Flute.vib.mf.C6B6.aiff", 91),
+    ]),
+    "Saxophone": (40, [
+        ("sax/AltoSax.Vib.mf.Db3B3.aiff", 50),
+        ("sax/AltoSax.Vib.mf.Db3B3.aiff", 55),
+        ("sax/AltoSax.Vib.mf.C4B4.aiff", 60),
+        ("sax/AltoSax.Vib.mf.C4B4.aiff", 65),
+        ("sax/AltoSax.Vib.mf.C4B4.aiff", 70),
+        ("sax/AltoSax.Vib.mf.C5Ab5.aiff", 75),
+        ("sax/AltoSax.Vib.mf.C5Ab5.aiff", 80),
+    ]),
+    # VCSL Clavisynth file names are two octaves low (file "C1" sounds C3, measured); files above G#4 are left out
+    "Keytar": (35, [
+        (f"keytar/Clavisynth_{n}.wav", m)
+        for n, m in [("C1", 48), ("E1", 52), ("G#1", 56), ("C2", 60), ("E2", 64), ("G#2", 68),
+                     ("C3", 72), ("E3", 76), ("G#3", 80), ("C4", 84), ("E4", 88), ("G#4", 92)]
+    ]),
     # VCSL file names are one octave low (file "C2" sounds C3, measured); the "C6" file is left out
     "Harmonica": (20, [
         (f"harmonica/Super64_{n}.wav", m)

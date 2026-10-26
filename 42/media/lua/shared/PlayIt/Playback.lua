@@ -5,6 +5,7 @@ require "PlayIt/Song"
 require "PlayIt/Timeline"
 require "PlayIt/Instruments"
 require "PlayIt/Voices"
+require "PlayIt/Trace"
 
 PlayIt = PlayIt or {}
 PlayIt.Playback = PlayIt.Playback or {}
@@ -30,6 +31,8 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
     local def = PlayIt.Instruments.defs[fullType]
     if def == nil then return end
     local timeline = build(perf)
+    PlayIt.trace("playback start id=%s pos=%d length=%d chords=%d next=%s", tostring(id), posMs, timeline.length,
+        #timeline.events, tostring(PlayIt.Timeline.firstEventAt(timeline, posMs)))
     active[id] = {
         source = source, def = def, perf = perf, timeline = timeline,
         origin = nowMs - posMs, lastChord = 0,
@@ -39,7 +42,10 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
 end
 
 local function play(id, p, event, nowMs)
-    if p.source.isSilent() then return end
+    if p.source.isSilent() then
+        PlayIt.trace("chord %d silent (musician invisible)", event.chord)
+        return
+    end
     for _, note in ipairs(event.notes) do
         local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents)
         p.voices:noteOn(sound, ratio, event.dur, nowMs, p.perf.volume)

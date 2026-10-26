@@ -16,6 +16,9 @@ Instruments.defs = {
     ["Base.Violin"] = def("Violin", 55, 93, 25, 100),
     ["Base.Trumpet"] = def("Trumpet", 54, 82, 45, 100),
     ["Base.Harmonica"] = def("Harmonica", 48, 84, 20, 100),
+    ["Base.Flute"] = def("Flute", 60, 93, 25, 100),
+    ["Base.Saxophone"] = def("Saxophone", 49, 80, 40, 100),
+    ["Base.Keytar"] = def("Keytar", 48, 91, 35, 80),
 }
 
 -- sound name and pitch ratio for a note; notes outside the range move by whole octaves into it,

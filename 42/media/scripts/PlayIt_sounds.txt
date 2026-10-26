@@ -220,6 +220,292 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_Flute_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flute_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Flute_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flute_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Flute_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flute_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Flute_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flute_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Flute_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flute_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Flute_D6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flute_d6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Flute_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flute_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_Saxophone_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophone_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_Saxophone_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophone_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_Saxophone_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophone_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_Saxophone_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophone_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_Saxophone_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophone_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_Saxophone_Eb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophone_eb5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_Saxophone_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophone_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_Keytar_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_Keytar_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytar_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Harmonica_C3
     {
         category = Item,
