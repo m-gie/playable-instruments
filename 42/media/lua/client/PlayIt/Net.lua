@@ -2,6 +2,7 @@
 -- players nearby. In single player there is no server: everything stays local.
 
 require "PlayIt/Playback"
+require "PlayIt/Session"
 
 PlayIt = PlayIt or {}
 PlayIt.Net = PlayIt.Net or {}
@@ -46,20 +47,43 @@ function Net.segments(player, segments)
 end
 
 local handlers = {}
+local waiting = {} -- songs whose musician isn't loaded on this client yet, by musician id
 
 function handlers.play(args)
     local musician = getPlayerByOnlineID(args.id)
-    if musician == nil then return end -- not loaded on this client
+    if musician == nil then
+        waiting[args.id] = { args = args, received = getTimestampMs() }
+        return
+    end
+    if musician:isLocalPlayer() then return end -- split screen: the musician's own playback is already running
+    waiting[args.id] = nil
     PlayIt.Playback.start(args.id, Net.sourceOf(musician), args.fullType, args.perf, args.posMs, getTimestampMs())
 end
 
 function handlers.stop(args)
+    waiting[args.id] = nil
     PlayIt.Playback.stop(args.id)
 end
 
 function handlers.segments(args)
     PlayIt.Playback.setSegments(args.id, args.segments)
 end
+
+-- the relay reaches further than a client loads players: start waiting songs once their musician appears
+Events.OnTick.Add(function()
+    if next(waiting) == nil then return end
+    local now = getTimestampMs()
+    for id, w in pairs(waiting) do
+        local pos = PlayIt.Session.lateStart(w.args.posMs, w.received, now, w.args.perf.length)
+        local musician = getPlayerByOnlineID(id)
+        if pos == nil then
+            waiting[id] = nil
+        elseif musician then
+            waiting[id] = nil
+            PlayIt.Playback.start(id, Net.sourceOf(musician), w.args.fullType, w.args.perf, pos, now)
+        end
+    end
+end)
 
 Events.OnServerCommand.Add(function(module, command, args)
     if module ~= "PlayIt" or handlers[command] == nil then return end

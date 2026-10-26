@@ -16,6 +16,7 @@ local function newEmitter(x, y, z)
     function em:setVolume(ref, v) self.vol[ref] = v end
     function em:stopSound(ref) self.stopped[ref] = true end
     function em:setPos(a, b, c) self.pos = { a, b, c } end
+    function em:isPlaying() return true end
     table.insert(made, em)
     return em
 end
@@ -51,7 +52,18 @@ a:stopAll()
 check(next(made[1].stopped) ~= nil and next(made[2].stopped) == nil, "voices are per musician")
 
 local failing = V.new(function() return 0, 0, 0 end, 12, function()
-    return { playSoundImpl = function() return 0 end, setPitch = function() error("pitched a failed sound") end }
+    return { playSoundImpl = function() return 0 end, isPlaying = function() return false end, setPitch = function() error("pitched a failed sound") end }
 end)
 failing:noteOn("X", 1, 100, 0, 1); failing:update(1000)
 check(true, "a sound that fails to start is ignored")
+
+-- Final review #6: a voice whose sample ended releases its emitter to the pool at once
+made = {}
+local ended = V.new(function() return 0, 0, 0 end, 12, newEmitter)
+ended:noteOn("S", 1, 10000, 0, 1)
+local e1 = made[1]
+e1.isPlaying = function() return false end
+ended:update(4000)
+e1.pos = "untouched"
+ended:update(5000)
+check(e1.pos == "untouched" and #ended.list == 0, "finished sample: emitter no longer moved")

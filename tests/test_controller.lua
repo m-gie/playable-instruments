@@ -56,3 +56,10 @@ local n = #calls; c:updateChance(); check(#calls == n, "no update when the chanc
 livePos = nil; c:tick(); check(not c:isPlaying() and not c:isPaused(), "song end stops the controller")
 
 c:play("c,d", 120, 0.4, "Base.Trumpet"); check(c:volume() == 0.4, "controller remembers the volume")
+
+-- Final review #1: the compact song is what gets sent; too long refuses
+c:stop()
+c:play("BPM: 90\nC-E,\tD\r\n", 90, 0.5, "Base.Violin"); check(last().perf.text == "BPM: 90\nc-e,d", "compact text sent")
+local before = #calls
+local ok, why = c:play(string.rep("c-e-g/2,", 30) .. "\n" .. string.rep(string.rep("c-e-g/2,", 30) .. "\n", 160), 90, 0.5, "Base.Violin")
+check(ok == false and why == "TooLong" and #calls == before, "a song too long to send is refused, nothing sent")

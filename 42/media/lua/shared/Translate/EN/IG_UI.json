@@ -17,5 +17,6 @@
   "IGUI_PlayIt_NoSongs": "No saved songs",
   "IGUI_PlayIt_NotHolding": "Hold the instrument in your main hand to play.",
   "IGUI_PlayIt_Warn_LineTooLong": "Line %1 is longer than 300 characters and was skipped.",
-  "IGUI_PlayIt_Warn_TooManyLines": "Only the first %1 lines are played."
+  "IGUI_PlayIt_Warn_TooManyLines": "Only the first %1 lines are played.",
+  "IGUI_PlayIt_TooLong": "This song is too long to share with other players. Remove some lines."
 }

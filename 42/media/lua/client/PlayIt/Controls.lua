@@ -15,23 +15,27 @@ local function musicLevel(player)
     return Perks.PlayItMusic and player:getPerkLevel(Perks.PlayItMusic) or 0
 end
 
+-- one controller per player slot; after a respawn it moves to the new character (never back to a dead one),
+-- and its hooks always use its current character
 function Controls.get(player)
     local key = player:getPlayerNum()
     local c = controllers[key]
-    if c == nil or c.player ~= player then
+    if c == nil then
         c = PlayIt.Controller.new(player, {
             net = PlayIt.Net,
             newSeed = function() return ZombRand(1, 2000000000) end,
-            position = function() return PlayIt.Playback.position(PlayIt.Net.idOf(player), getTimestampMs()) end,
-            currentChord = function() return PlayIt.Playback.currentChord(PlayIt.Net.idOf(player)) end,
-            level = function() return musicLevel(player) end,
+            position = function() return PlayIt.Playback.position(PlayIt.Net.idOf(c.player), getTimestampMs()) end,
+            currentChord = function() return PlayIt.Playback.currentChord(PlayIt.Net.idOf(c.player)) end,
+            level = function() return musicLevel(c.player) end,
             config = PlayIt.Config.get,
             mood = function()
-                local stats = player:getStats()
+                local stats = c.player:getStats()
                 return stats:get(CharacterStat.INTOXICATION), stats:get(CharacterStat.PANIC)
             end,
         })
         controllers[key] = c
+    elseif c.player ~= player and not player:isDead() then
+        c.player = player
     end
     return c
 end

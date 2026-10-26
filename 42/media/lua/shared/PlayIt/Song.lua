@@ -11,8 +11,9 @@ Song.MAX_LINE_CHARS = 300
 Song.BPM_MIN = 12
 Song.BPM_MAX = 600
 Song.BPM_DEFAULT = 120
+Song.DIVISOR_MIN = 1 / 16 -- "/n" is clamped so a chord lasts between 16 beats and 1/64 of a beat
+Song.DIVISOR_MAX = 64
 
-local HEADER = "BPM: "
 local OFFSET = { c = 0, d = 2, e = 4, f = 5, g = 7, a = 9, b = 11 }
 local ACCIDENTAL = { ["#"] = 1, b = -1, n = 0 }
 
@@ -34,15 +35,22 @@ local function split(s, sep)
     return parts
 end
 
-local function hasHeader(line)
-    return line ~= nil and line:sub(1, #HEADER) == HEADER
+-- what follows "BPM:" on a header line, or nil; tolerant of a BOM, spaces and letter case (pasted text)
+local function headerValue(line)
+    if line == nil then return nil end
+    -- the BOM is written as the literal character: Kahlua strings hold it as one char (U+FEFF)
+    return (line:gsub("^﻿", "")):match("^%s*[Bb][Pp][Mm]:(.*)$")
 end
 
--- nil when the first line is not a "BPM: " header (case-sensitive, as in SS13)
+local function hasHeader(line)
+    return headerValue(line) ~= nil
+end
+
+-- nil when the first line is not a "BPM:" header
 function Song.readBpmHeader(text)
-    local first = splitLines(text or "")[1]
-    if not hasHeader(first) then return nil end
-    return clampBpm(tonumber(first:sub(#HEADER + 1):match("^%s*(%-?[%d%.]+)")) or Song.BPM_DEFAULT)
+    local value = headerValue(splitLines(text or "")[1])
+    if value == nil then return nil end
+    return clampBpm(tonumber(value:match("^%s*(%-?[%d%.]+)")) or Song.BPM_DEFAULT)
 end
 
 local function parseNote(note, state)
@@ -67,12 +75,36 @@ local function parseChord(piece, state)
     local parts = split(piece, "/")
     local divisor = tonumber(parts[2] or "")
     if divisor == nil or divisor <= 0 then divisor = 1 end
+    divisor = math.max(Song.DIVISOR_MIN, math.min(Song.DIVISOR_MAX, divisor))
     local notes = {}
     for _, note in ipairs(split(parts[1], "-")) do
         local midi = note ~= "" and parseNote(note, state) or nil
         if midi then notes[#notes + 1] = midi end
     end
     return { notes = notes, beats = 1 / divisor }
+end
+
+function Song.cleanLine(line)
+    return (line:lower():gsub("[^a-g0-9#n,/%-%.]", ""))
+end
+
+-- the song reduced to what plays (ASCII only, no blank or skipped lines): what goes over the network
+function Song.compact(text)
+    local lines = splitLines(text or "")
+    local out = {}
+    local header = Song.readBpmHeader(text or "")
+    if hasHeader(lines[1]) then
+        table.remove(lines, 1)
+        out[1] = "BPM: " .. tostring(header)
+    end
+    for n = 1, math.min(#lines, Song.MAX_LINES) do
+        local line = lines[n]
+        if #line <= Song.MAX_LINE_CHARS then
+            local clean = Song.cleanLine(line)
+            if clean ~= "" then out[#out + 1] = clean end
+        end
+    end
+    return table.concat(out, "\n")
 end
 
 -- bpm: the menu field; wins over the header. Returns { bpm, chords = { {notes, beats} }, warnings = { {key, line} } }
@@ -99,7 +131,7 @@ function Song.parse(text, bpm)
         if #line > Song.MAX_LINE_CHARS then
             table.insert(song.warnings, { key = "LineTooLong", line = n })
         else
-            local clean = line:lower():gsub("[^a-g0-9#n,/%-%.]", "")
+            local clean = Song.cleanLine(line)
             if clean ~= "" then
                 for _, piece in ipairs(split(clean, ",")) do
                     table.insert(song.chords, parseChord(piece, state))

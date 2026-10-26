@@ -45,7 +45,10 @@ end
 -- the song starts only now, with the instrument in hand
 function ISPlayItAction:start()
     local s = self.song
-    self.controller:play(s.text, s.bpm, s.volume, s.fullType)
+    if not self.controller:play(s.text, s.bpm, s.volume, s.fullType) then
+        self:forceStop() -- too long to send; the window already said so
+        return
+    end
     self.nextChance = getTimestampMs() + CHANCE_EVERY_MS
 end
 

@@ -18,3 +18,7 @@ check(text == "c,d" and bpm == nil, "no header: bpm nil")
 
 check(F.addToIndex({ "a", "b" }, "b")[3] == nil, "index has no duplicates")
 check(F.addToIndex({ "b" }, "a")[1] == "a", "index sorted")
+
+-- Final review #8
+check(F.INDEX:find(F.DIR, 1, true) == nil, "index lives outside the songs folder")
+local idx = F.addToIndex({ "Song" }, "song"); check(#idx == 1, "names are case-insensitive")

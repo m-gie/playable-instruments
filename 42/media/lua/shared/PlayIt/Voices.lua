@@ -42,7 +42,10 @@ function Voices:update(nowMs)
     for i = #self.list, 1, -1 do
         local v = self.list[i]
         local past = nowMs - v.start - v.dur
-        if past >= self.release then
+        if not v.emitter:isPlaying(v.ref) then
+            -- the sample ended: the game pools the emitter again, so stop touching it
+            table.remove(self.list, i)
+        elseif past >= self.release then
             stop(v)
             table.remove(self.list, i)
         else

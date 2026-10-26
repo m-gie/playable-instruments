@@ -25,8 +25,11 @@ function Controller:chance()
     return PlayIt.Timeline.chance(self.deps.level(), cfg.p0, cfg.p10, intox, panic, cfg.skillOn)
 end
 
--- starts the song, or resumes it where it was paused if text, tempo and instrument are unchanged
+-- starts the song, or resumes it where it was paused if text, tempo and instrument are unchanged.
+-- The compacted song is what plays and travels; false, "TooLong" if even that is too big to send.
 function Controller:play(text, bpm, volume, fullType)
+    text = PlayIt.Song.compact(text)
+    if #text > PlayIt.Session.MAX_TEXT then return false, "TooLong" end
     local resume = self.pausedAt ~= nil and text == self.text and bpm == self.bpm and fullType == self.fullType
     if not resume then
         self.text, self.bpm, self.fullType = text, bpm, fullType
@@ -41,6 +44,7 @@ function Controller:play(text, bpm, volume, fullType)
     }
     self.deps.net.start(self.player, fullType, perf, resume and self.pausedAt or 0)
     self.pausedAt, self.playing, self.vol = nil, true, volume
+    return true
 end
 
 function Controller:pause()

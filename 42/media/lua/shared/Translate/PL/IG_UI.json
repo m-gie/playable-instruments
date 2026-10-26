@@ -17,5 +17,6 @@
   "IGUI_PlayIt_NoSongs": "Brak zapisanych utworów",
   "IGUI_PlayIt_NotHolding": "Weź instrument do głównej ręki, żeby zagrać.",
   "IGUI_PlayIt_Warn_LineTooLong": "Linia %1 ma ponad 300 znaków i została pominięta.",
-  "IGUI_PlayIt_Warn_TooManyLines": "Grane jest tylko pierwsze %1 linii."
+  "IGUI_PlayIt_Warn_TooManyLines": "Grane jest tylko pierwsze %1 linii.",
+  "IGUI_PlayIt_TooLong": "Ten utwór jest za długi, żeby inni gracze go usłyszeli. Usuń kilka linii."
 }

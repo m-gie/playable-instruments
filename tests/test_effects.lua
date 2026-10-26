@@ -21,3 +21,15 @@ fx = E.forListener(blunder, 1, 15, 0, true)
 check(fx.stress == E.ANNOY_STRESS and fx.unhappy == E.ANNOY_UNHAPPY, "a blunder annoys")
 fx = E.forListener(blunder, 1, 15, 0, false)
 check(fx.stress == 0 and fx.unhappy == 0, "annoyance off: blunders don't annoy")
+
+-- Final review #2: what a 2 s server window of a song does
+require "PlayIt/Timeline"; require "PlayIt/Song"
+local tl = PlayIt.Timeline.build(PlayIt.Song.parse("c,d,e,f", 120), 1, { { fromChord = 1, chance = 0 } })
+local dur, blunders = E.window(tl, 0, 1000)
+check(dur == 1000 and blunders == 0, "chords starting in [0, 1000) counted")
+dur = E.window(tl, 1000, 2000); check(dur == 1000, "next window")
+local bad = PlayIt.Timeline.build(PlayIt.Song.parse("c,d", 120), 1, { { fromChord = 1, chance = 1 } })
+local _, nb = E.window(bad, 0, 2000); check(nb == 2, "blunders counted")
+local fx2 = E.forWindow(2000, 3, 4, 10, 0, true)
+check(math.abs(fx2.boredom + E.boredomPerSecond(0) * 2) < 1e-9 and math.abs(fx2.stress - 3 * E.ANNOY_STRESS) < 1e-9 and fx2.unhappy == 3 * E.ANNOY_UNHAPPY, "a window of 2 s with 3 blunders")
+check(E.forWindow(2000, 3, 11, 10, 0, true) == nil, "window: out of earshot")

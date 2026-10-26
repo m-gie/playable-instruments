@@ -1,5 +1,5 @@
--- What music does to the world, client side: zombie noise from the local musician, and mood for every local
--- player in earshot of any musician. In single player also the animals and Music XP (the server does those in MP).
+-- What music does to the world, client side: zombie noise from the local musician. In single player also mood,
+-- animals and Music XP (the server does those in MP).
 -- An invisible musician does none of it (Playback doesn't report their notes either).
 
 require "PlayIt/Effects"
@@ -59,8 +59,10 @@ Events.OnTick.Add(function()
     if not isClient() then PlayIt.Herd.update(now) end
 end)
 
--- each played chord cheers up (or, if botched, annoys) local players within earshot of its musician
+-- single player: each played chord cheers up (or, if botched, annoys) local players within earshot of its
+-- musician. In MP these stats belong to the server, which applies the same effects (server/PlayIt/Server.lua).
 PlayIt.Playback.onEvent = function(id, event, perf, def)
+    if isClient() then return end
     local musician = musicianOf(id)
     if musician == nil then return end
     local cfg = PlayIt.Config.get()

@@ -7,7 +7,8 @@ PlayIt.Session = PlayIt.Session or {}
 local Session = PlayIt.Session
 Session.__index = Session
 
-Session.MAX_TEXT = PlayIt.Song.MAX_LINES * (PlayIt.Song.MAX_LINE_CHARS + 1)
+-- network strings carry a 16-bit byte length; songs travel compacted (PlayIt.Song.compact, ASCII) below this
+Session.MAX_TEXT = 32000
 Session.MAX_SEGMENTS = 64
 
 function Session.new()
@@ -34,6 +35,13 @@ function Session.validate(perf)
         end
     end
     return true
+end
+
+-- where to begin a song received at receivedAt but only started at nowMs (its musician loaded late); nil if over
+function Session.lateStart(posMs, receivedAt, nowMs, length)
+    local pos = posMs + (nowMs - receivedAt)
+    if pos >= length then return nil end
+    return pos
 end
 
 function Session:start(id, perf, posMs, nowMs)

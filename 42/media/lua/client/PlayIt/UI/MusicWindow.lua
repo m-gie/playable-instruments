@@ -5,6 +5,7 @@ require "ISUI/ISCollapsableWindow"
 require "RadioCom/ISUIRadio/ISSliderPanel"
 require "PlayIt/Song"
 require "PlayIt/SongFiles"
+require "PlayIt/Session"
 require "PlayIt/Controls"
 
 PlayIt = PlayIt or {}
@@ -26,6 +27,7 @@ function MusicWindow.open(player, fullType)
         w:addToUIManager()
         windows[player:getPlayerNum()] = w
     end
+    w.player = player -- the slot's character may have died and respawned since the window was made
     w.fullType = fullType
     w:setTitle(getText("IGUI_PlayIt_Title", getItemNameFromFullType(fullType)))
     w:setVisible(true)
@@ -155,6 +157,10 @@ function MusicWindow:onPlay()
     local queued = ISTimedActionQueue.hasActionType(self.player, "ISEquipWeaponAction")
     if not queued and (item == nil or item:getFullType() ~= self.fullType) then
         self:setStatus(getText("IGUI_PlayIt_NotHolding"))
+        return
+    end
+    if #PlayIt.Song.compact(text) > PlayIt.Session.MAX_TEXT then
+        self:setStatus(getText("IGUI_PlayIt_TooLong"))
         return
     end
     self:setStatus(self:warningsFor(text, bpm))

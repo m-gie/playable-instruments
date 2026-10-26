@@ -8,7 +8,7 @@ PlayIt.SongFiles = PlayIt.SongFiles or {}
 local SongFiles = PlayIt.SongFiles
 
 SongFiles.DIR = "PlayIt/songs/"
-SongFiles.INDEX = SongFiles.DIR .. "index.txt"
+SongFiles.INDEX = "PlayIt/songs_index.txt" -- outside DIR, so no song name can overwrite it
 SongFiles.MAX_NAME = 40
 
 function SongFiles.sanitizeName(name)
@@ -33,11 +33,12 @@ function SongFiles.decode(content)
 end
 
 function SongFiles.addToIndex(names, name)
+    -- case-insensitive: "Song" and "song" are the same file on Windows
     local out, seen = {}, {}
     for _, n in ipairs(names) do
-        if not seen[n] then out[#out + 1] = n; seen[n] = true end
+        if not seen[n:lower()] then out[#out + 1] = n; seen[n:lower()] = true end
     end
-    if not seen[name] then out[#out + 1] = name end
+    if not seen[name:lower()] then out[#out + 1] = name end
     table.sort(out, function(a, b) return a:lower() < b:lower() end)
     return out
 end

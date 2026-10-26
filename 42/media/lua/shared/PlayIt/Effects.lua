@@ -24,6 +24,29 @@ function Effects.boredomPerSecond(level)
     return Effects.BOREDOM_BASE * (1 + 0.2 * level)
 end
 
+-- total length (ms) and blunder count of the chords starting in [fromMs, toMs): what a listener heard
+function Effects.window(timeline, fromMs, toMs)
+    local dur, blunders = 0, 0
+    for _, e in ipairs(timeline.events) do
+        if e.t >= fromMs and e.t < toMs and #e.notes > 0 then
+            dur = dur + e.dur
+            if e.blunder then blunders = blunders + 1 end
+        end
+    end
+    return dur, blunders
+end
+
+-- stat changes for a stretch of music (durMs of chords, with `blunders` wrong notes); nil when out of earshot
+function Effects.forWindow(durMs, blunders, distance, earshot, musicianLevel, annoy)
+    if distance > earshot then return nil end
+    local n = annoy and blunders or 0
+    return {
+        boredom = -Effects.boredomPerSecond(musicianLevel) * durMs / 1000,
+        stress = n * Effects.ANNOY_STRESS,
+        unhappy = n * Effects.ANNOY_UNHAPPY,
+    }
+end
+
 -- stat changes for one played chord on a listener at `distance`; nil when out of earshot
 function Effects.forListener(event, distance, earshot, musicianLevel, annoy)
     if distance > earshot then return nil end

@@ -43,3 +43,10 @@ bad({ length = -1 }, "negative length rejected")
 local many = {}; for i = 1, 65 do many[i] = { fromChord = i, chance = 0 } end
 bad({ segments = many }, "more than 64 segments rejected")
 bad({ segments = { { fromChord = 1, chance = 2 } } }, "chance above 1 rejected")
+
+-- Final review #1: network strings are limited to 32767 bytes
+bad({ text = string.rep("c,", 16001) }, "text over 32000 bytes rejected")
+check(S.validate(perf({ text = string.rep("c,", 15999) })), "text under 32000 bytes accepted")
+-- Final review #3: a song received before its musician loaded starts late, at the right place
+check(S.lateStart(1000, 5000, 6500, 10000) == 2500, "late start catches up by the wait")
+check(S.lateStart(1000, 5000, 20000, 10000) == nil, "too late: song already over")

@@ -22,6 +22,7 @@ function MiniWidget.show(player, fullType)
         w:addToUIManager()
         widgets[player:getPlayerNum()] = w
     end
+    w.player = player
     w.fullType = fullType
     w.label:setName(getItemNameFromFullType(fullType))
     w:setVisible(true)
