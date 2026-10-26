@@ -66,3 +66,8 @@ P.start("F", source(true), "Base.Trumpet", perf("c,d"), 0, 0)
 P.update(0); P.update(500)
 check(#log[#log].notes == 0 and #events == 0, "invisible musician makes no sound and no events")
 check(P.position("F", 500) == 500, "but the song keeps its place")
+
+P.start("G", source(false), "Base.Trumpet", perf("c,d,e"), 0, 0)
+check(P.currentChord("G") == 0, "no chord played yet")
+P.update(0); P.update(500); check(P.currentChord("G") == 2, "current chord after two")
+check(P.currentChord("nobody") == 0, "unknown musician: 0")

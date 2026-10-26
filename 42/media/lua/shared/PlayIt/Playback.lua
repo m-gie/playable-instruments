@@ -74,6 +74,12 @@ function Playback.position(id, nowMs)
     return pos
 end
 
+-- index of the last chord played (0 before the first)
+function Playback.currentChord(id)
+    local p = active[id]
+    return p and p.lastChord or 0
+end
+
 function Playback.pause(id, nowMs)
     local pos = Playback.position(id, nowMs)
     Playback.stop(id)
