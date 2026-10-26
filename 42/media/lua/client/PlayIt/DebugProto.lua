@@ -109,6 +109,16 @@ local function animalTest(player)
     end)
 end
 
+-- C, E, G one at a time, then together (major chord), then C-C#-D together (should sound clashing)
+local function chordCheck(player)
+    local emitter = player:getEmitter()
+    for i, s in ipairs({ 0, 4, 7 }) do
+        at((i - 1) * 700, function() note(emitter, s, "arpeggio") end)
+    end
+    at(2800, function() for _, s in ipairs({ 0, 4, 7 }) do note(emitter, s, "major") end end)
+    at(5300, function() for _, s in ipairs({ 0, 1, 2 }) do note(emitter, s, "cluster") end end)
+end
+
 local SOUND_VARIANTS = { "PlayIt_TestPluck", "PlayIt_TestPluckRoot", "PlayIt_TestPluckCommon" }
 
 -- Why does playSound return 0? Print what the engine knows about each variant, then try each.
@@ -149,6 +159,7 @@ local function onFill(playerNum, context, items)
     context:addSubMenu(context:addOption("PlayIt test"), sub)
     sub:addOption("Sound diagnostics", player, soundDiag)
     sub:addOption("Scale, chord, fade, noise", player, musicTest)
+    sub:addOption("Chord check", player, chordCheck)
     sub:addOption("Paste test", player, pasteTest)
     sub:addOption("Animals: trust nearest tame", player, trustNearest)
     sub:addOption("Animals: noise + call trusting", player, animalTest)
