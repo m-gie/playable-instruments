@@ -120,7 +120,8 @@ local function soundDiag(player)
             print("[PlayIt] diag " .. name .. ": GameSounds.getSound = nil")
         else
             local clip = gs:getRandomClip()
-            print(string.format("[PlayIt] diag %s: clips=%d file=%s event=%s", name, gs.clips:size(),
+            -- Java fields (gs.clips) aren't readable from Kahlua; getters only
+            print(string.format("[PlayIt] diag %s: file=%s event=%s", name,
                 tostring(clip and clip:getFile()), tostring(clip and clip:getEvent())))
         end
         at((i - 1) * 1500, function()
