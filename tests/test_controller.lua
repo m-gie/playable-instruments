@@ -63,3 +63,13 @@ c:play("BPM: 90\nC-E,\tD\r\n", 90, 0.5, "Base.Violin"); check(last().perf.text =
 local before = #calls
 local ok, why = c:play(string.rep("c-e-g/2,", 30) .. "\n" .. string.rep(string.rep("c-e-g/2,", 30) .. "\n", 160), 90, 0.5, "Base.Violin")
 check(ok == false and why == "TooLong" and #calls == before, "a song too long to send is refused, nothing sent")
+
+-- Review Focus 5: world instruments resume only where they were paused
+pausePos = 750 -- paused mid-song again
+local c2 = C.new("player2", deps)
+c2:play("c,d", 120, 0.7, "PlayIt.WesternPiano", { x = 1, y = 1, z = 0 }); c2:pause()
+c2:play("c,d", 120, 0.7, "PlayIt.WesternPiano", { x = 9, y = 9, z = 0 })
+check(last().pos == 0 and last().perf.place.x == 9, "resume needs the same place")
+c2:pause()
+c2:play("c,d", 120, 0.7, "PlayIt.WesternPiano", { x = 9, y = 9, z = 0 })
+check(last().pos == pausePos and c2:place().x == 9, "same place resumes")

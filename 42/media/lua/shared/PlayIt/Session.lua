@@ -18,7 +18,25 @@ end
 local function isInt(v) return type(v) == "number" and v == math.floor(v) end
 local function within(v, lo, hi) return type(v) == "number" and v >= lo and v <= hi end
 
--- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level }
+local PIECES = { kick = true, snare = true, tom = true }
+Session.SAME_INSTRUMENT = 3 -- tiles: two places of one instrument type closer than this are the same instrument
+
+local function isTile(t) return type(t) == "table" and isInt(t.x) and isInt(t.y) and isInt(t.z) end
+
+-- place of a world instrument: { x, y, z, kit = { {piece, x, y, z}, ... } (drums: 1-3 distinct pieces) }
+local function validPlace(place)
+    if not isTile(place) then return false end
+    if place.kit == nil then return true end
+    if type(place.kit) ~= "table" or #place.kit == 0 or #place.kit > 3 then return false end
+    local seen = {}
+    for _, k in ipairs(place.kit) do
+        if not isTile(k) or not PIECES[k.piece] or seen[k.piece] then return false end
+        seen[k.piece] = true
+    end
+    return true
+end
+
+-- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level, place (furniture) }
 function Session.validate(perf)
     if type(perf) ~= "table" then return false, "perf" end
     if type(perf.text) ~= "string" or #perf.text > Session.MAX_TEXT then return false, "text" end
@@ -27,6 +45,7 @@ function Session.validate(perf)
     if not within(perf.volume, 0, 1) then return false, "volume" end
     if not within(perf.length, 0, math.huge) then return false, "length" end
     if not (isInt(perf.level) and within(perf.level, 0, 10)) then return false, "level" end
+    if perf.place ~= nil and not validPlace(perf.place) then return false, "place" end
     local segs = perf.segments
     if type(segs) ~= "table" or #segs == 0 or #segs > Session.MAX_SEGMENTS then return false, "segments" end
     for _, seg in ipairs(segs) do
@@ -75,6 +94,32 @@ function Session:positionAt(id, nowMs)
     local pos = nowMs - s.origin
     if pos >= s.perf.length then return nil end
     return pos
+end
+
+local function sharesTile(a, b)
+    for _, ka in ipairs(a.kit or {}) do
+        for _, kb in ipairs(b.kit or {}) do
+            if ka.x == kb.x and ka.y == kb.y and ka.z == kb.z then return true end
+        end
+    end
+    return false
+end
+
+-- id of another musician playing (not paused) the instrument at place, or nil. s.fullType is set by the server.
+-- Pianos and the organ: the same type within SAME_INSTRUMENT tiles; drums: a shared piece.
+function Session:busyAt(fullType, place, exceptId)
+    for id, s in pairs(self.list) do
+        local other = s.perf.place
+        if id ~= exceptId and not s.paused and s.fullType == fullType and other then
+            if place.kit or other.kit then
+                if sharesTile(place, other) then return id end
+            elseif other.z == place.z and math.abs(other.x - place.x) < Session.SAME_INSTRUMENT
+                and math.abs(other.y - place.y) < Session.SAME_INSTRUMENT then
+                return id
+            end
+        end
+    end
+    return nil
 end
 
 function Session:hasListener(id, playerId)

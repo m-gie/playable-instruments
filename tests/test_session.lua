@@ -50,3 +50,27 @@ check(S.validate(perf({ text = string.rep("c,", 15999) })), "text under 32000 by
 -- Final review #3: a song received before its musician loaded starts late, at the right place
 check(S.lateStart(1000, 5000, 6500, 10000) == 2500, "late start catches up by the wait")
 check(S.lateStart(1000, 5000, 20000, 10000) == nil, "too late: song already over")
+
+-- world instruments: the place travels with the performance (2026-10-27)
+check(S.validate(perf({ place = { x = 1, y = 2, z = 0 } })), "a piano place is valid")
+local ok, why = S.validate(perf({ place = { x = 1.5, y = 2, z = 0 } })); check(not ok and why == "place", "place needs whole tiles")
+ok, why = S.validate(perf({ place = { x = 1, y = 2, z = 0, kit = { { piece = "cowbell", x = 1, y = 2, z = 0 } } } }))
+check(not ok and why == "place", "unknown drum piece")
+local four = {}
+for i = 1, 4 do four[i] = { piece = "kick", x = i, y = 2, z = 0 } end
+ok, why = S.validate(perf({ place = { x = 1, y = 2, z = 0, kit = four } })); check(not ok and why == "place", "at most three drum pieces")
+ok, why = S.validate(perf({ place = { x = 1, y = 2, z = 0, kit = { { piece = "kick", x = 1, y = 2, z = 0 }, { piece = "kick", x = 2, y = 2, z = 0 } } } }))
+check(not ok and why == "place", "one of each drum piece")
+
+local b = S.new()
+b:start(10, perf({ place = { x = 5, y = 5, z = 0 } }), 0, 0); b:get(10).fullType = "PlayIt.WesternPiano"
+check(b:busyAt("PlayIt.WesternPiano", { x = 6, y = 6, z = 0 }, 11) == 10, "someone plays a piano right there")
+check(b:busyAt("PlayIt.WesternPiano", { x = 5, y = 5, z = 0 }, 10) == nil, "not busy for the musician themself")
+check(b:busyAt("PlayIt.WesternPiano", { x = 15, y = 5, z = 0 }, 11) == nil, "another piano further away")
+check(b:busyAt("PlayIt.GrandPiano", { x = 5, y = 5, z = 0 }, 11) == nil, "a different instrument")
+b:pause(10, 100)
+check(b:busyAt("PlayIt.WesternPiano", { x = 5, y = 5, z = 0 }, 11) == nil, "paused players don't lock the instrument")
+local kitA = { { piece = "kick", x = 1, y = 1, z = 0 }, { piece = "snare", x = 2, y = 1, z = 0 } }
+b:start(12, perf({ place = { x = 1, y = 1, z = 0, kit = kitA } }), 0, 0); b:get(12).fullType = "PlayIt.Drums"
+check(b:busyAt("PlayIt.Drums", { x = 2, y = 1, z = 0, kit = { { piece = "snare", x = 2, y = 1, z = 0 } } }, 13) == 12, "a shared drum is busy")
+check(b:busyAt("PlayIt.Drums", { x = 3, y = 1, z = 0, kit = { { piece = "tom", x = 3, y = 1, z = 0 } } }, 13) == nil, "a drum nobody uses is free")

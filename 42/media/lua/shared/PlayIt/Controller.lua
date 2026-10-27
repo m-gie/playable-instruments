@@ -25,12 +25,20 @@ function Controller:chance()
     return PlayIt.Timeline.chance(self.deps.level(), cfg.p0, cfg.p10, intox, panic, cfg.skillOn)
 end
 
--- starts the song, or resumes it where it was paused if text, tempo and instrument are unchanged.
+local function samePlace(a, b)
+    if a == nil or b == nil then return a == b end
+    return a.x == b.x and a.y == b.y and a.z == b.z
+end
+
+-- starts the song, or resumes it where it was paused if text, tempo, instrument and place are unchanged.
+-- place: where a furniture instrument stands (nil for hand-held ones).
 -- The compacted song is what plays and travels; false, "TooLong" if even that is too big to send.
-function Controller:play(text, bpm, volume, fullType)
+function Controller:play(text, bpm, volume, fullType, place)
     text = PlayIt.Song.compact(text)
     if #text > PlayIt.Session.MAX_TEXT then return false, "TooLong" end
     local resume = self.pausedAt ~= nil and text == self.text and bpm == self.bpm and fullType == self.fullType
+        and samePlace(place, self.where)
+    self.where = place
     if not resume then
         self.text, self.bpm, self.fullType = text, bpm, fullType
         self.seed = self.deps.newSeed()
@@ -41,6 +49,7 @@ function Controller:play(text, bpm, volume, fullType)
     local perf = {
         text = text, bpm = song.bpm, seed = self.seed, segments = self.segments, volume = volume,
         length = PlayIt.Timeline.build(song, self.seed, self.segments).length, level = self.deps.level(),
+        place = place,
     }
     self.deps.net.start(self.player, fullType, perf, resume and self.pausedAt or 0)
     self.pausedAt, self.playing, self.vol = nil, true, volume
@@ -61,6 +70,7 @@ end
 function Controller:isPlaying() return self.playing end
 function Controller:isPaused() return not self.playing and self.pausedAt ~= nil end
 function Controller:instrument() return self.fullType end
+function Controller:place() return self.where end
 function Controller:volume() return self.vol end
 
 function Controller:positionMs()
