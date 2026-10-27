@@ -24,7 +24,7 @@ The notes are cut from these recordings by `tools/prep_samples.py`: split into s
 **Church organ:** VCSL as above, pipe organ (`Aerophones/Edge-blown Aerophones/Pipe Organ/Loud`).
 
 **Drums:** Virtuosity Drums by Versilian Studios and Karoryfer Lecolds, CC0 1.0, recorded with drummer Austin McMahon at Virtuosity Musical Instruments, Boston. https://github.com/sfzinstruments/virtuosity_drums
-- "mid" microphone: kick (snares off, velocity layer 3 of 4), snare centre hit (layer 25 of 36), high and low tom centre hits (layer 11 of 16).
+- "mid" microphone: kick (snares off, velocity layer 3 of 4), snare centre hit (layer 25 of 36), high and low tom centre hits (layer 11 of 16), closed hi-hat (layer 3 of 4), crash (layer 2 of 3).
 
 ## Song format
 

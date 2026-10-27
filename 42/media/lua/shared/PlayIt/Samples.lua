@@ -125,5 +125,7 @@ PlayIt.Samples = {
         snare = { sound = "PlayIt_Drums_Snare" },
         tomHigh = { sound = "PlayIt_Drums_TomHigh" },
         tomLow = { sound = "PlayIt_Drums_TomLow" },
+        hihat = { sound = "PlayIt_Drums_Hihat" },
+        crash = { sound = "PlayIt_Drums_Crash" },
     },
 }

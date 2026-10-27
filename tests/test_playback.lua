@@ -80,15 +80,15 @@ P.update(0); check(gotDef and gotDef.key == "Violin", "onEvent gets the instrume
 -- drums: only the pieces in the kit sound, but every chord still counts for mood and XP (2026-10-27)
 P.onEvent = function(id, e) table.insert(events, { id = id, chord = e.chord }) end
 local before = #events
-local drums = perf("c3,c5")
+local drums = perf("c3,d4,c5") -- kick, snare, crash
 drums.place = { x = 1, y = 1, z = 0, kit = { { piece = "snare", x = 1, y = 1, z = 0 } } }
 P.start("D", source(false), "PlayIt.Drums", drums, 0, 50000)
 local vd = log[#log]
-P.update(50000); P.update(50500)
+P.update(50000); P.update(50500); P.update(51000)
 check(#vd.notes == 1 and vd.notes[1].sound == "PlayIt_Drums_Snare", "only the snare note is voiced")
 local drumEvents = 0
 for i = before + 1, #events do if events[i].id == "D" then drumEvents = drumEvents + 1 end end
-check(drumEvents == 2, "onEvent for both chords")
+check(drumEvents == 3, "onEvent for every chord")
 check(vd.release == 800, "drums ring out")
 local busy = { x = 1, y = 1, z = 0, kit = { { piece = "snare", x = 1, y = 1, z = 0 } } }
 check(P.busyAt("PlayIt.Drums", busy, "E"), "client sees the snare in use")

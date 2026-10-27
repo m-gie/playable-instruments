@@ -54,23 +54,30 @@ function Instruments.songRange(song)
     return low, high
 end
 
--- which drum a note hits: the song's lowest third the kick, the top third the snare, the rest the toms
+-- which drum a note hits, by the song's range in quarters: kick, toms, snare, hi-hat; the song's highest note is a
+-- crash (an accent: a whole band of crash would be unbearable)
 function Instruments.drumPiece(midi, low, high)
-    local third = (high - low) / 3
-    if third == 0 or midi >= high - third then return "snare" end
-    if midi <= low + third then return "kick" end
-    return "tom"
+    local quarter = (high - low) / 4
+    if quarter == 0 then return "snare" end
+    if midi >= high then return "crash" end
+    if midi <= low + quarter then return "kick" end
+    if midi < low + 2 * quarter then return "tom" end
+    if midi < low + 3 * quarter then return "snare" end
+    return "hihat"
 end
+
+-- the furniture a sound needs: the snare's stand holds the hi-hat, the tom's the crash cymbal (vanilla sprites)
+local PLAYED_ON = { kick = "kick", tom = "tom", snare = "snare", hihat = "snare", crash = "tom" }
 
 -- ctx: { low, high, kit = { kick = true, ... } }; nil when the note's drum isn't in the kit
 local function resolveDrum(instrument, midi, ctx)
     local piece = Instruments.drumPiece(midi, ctx.low, ctx.high)
-    if not ctx.kit[piece] then return nil end
+    if not ctx.kit[PLAYED_ON[piece]] then return nil end
     if piece ~= "tom" then return instrument.samples[piece].sound, 1 end
-    local third = (ctx.high - ctx.low) / 3
-    local from, to = ctx.low + third, ctx.high - third
-    local mid = (from + to) / 2
-    local half = (to - from) / 2 -- > 0: a tom note lies strictly between from and to
+    local quarter = (ctx.high - ctx.low) / 4
+    local from = ctx.low + quarter
+    local half = quarter / 2 -- > 0: a tom note lies strictly between from and from + quarter
+    local mid = from + half
     local sample = midi < mid and instrument.samples.tomLow or instrument.samples.tomHigh
     -- each tom bends across its half of the band: -TOM_SPREAD at the low edge, +TOM_SPREAD at the high edge
     local x = midi < mid and (midi - from) / half or (midi - mid) / half

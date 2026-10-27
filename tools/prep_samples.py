@@ -108,7 +108,7 @@ SINGLE = {
 # unpitched drum hits from Virtuosity Drums ("mid" microphone, medium-loud velocity layer): piece -> raw file
 DRUMS_RADIUS = 50
 DRUMS = {"kick": "drums/kick.flac", "snare": "drums/snare.flac", "tomHigh": "drums/tomHigh.flac",
-         "tomLow": "drums/tomLow.flac"}
+         "tomLow": "drums/tomLow.flac", "hihat": "drums/hihat.flac", "crash": "drums/crash.flac"}
 
 
 def decode(path):

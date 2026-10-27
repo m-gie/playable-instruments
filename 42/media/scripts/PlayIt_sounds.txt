@@ -1133,4 +1133,26 @@ module Base
             distanceMax = 50,
         }
     }
+    sound PlayIt_Drums_Hihat
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drums_hihat.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
+    sound PlayIt_Drums_Crash
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drums_crash.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
 }
