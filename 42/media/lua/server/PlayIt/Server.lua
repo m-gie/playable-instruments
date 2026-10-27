@@ -85,12 +85,18 @@ function handlers.start(player, args)
         print("[PlayIt] rejected start from " .. player:getUsername() .. ": " .. tostring(why))
         return
     end
+    local song = PlayIt.Song.parse(args.perf.text, args.perf.bpm)
+    if song.events >= PlayIt.Song.MAX_EVENTS then
+        print("[PlayIt] rejected start from " .. player:getUsername() .. ": too many notes")
+        return
+    end
     local id = player:getOnlineID()
     sessions:start(id, args.perf, args.posMs, getTimestampMs())
     local s = sessions:get(id)
     s.fullType = args.fullType
     s.username = player:getUsername()
-    s.timeline = PlayIt.Timeline.build(PlayIt.Song.parse(args.perf.text, args.perf.bpm), args.perf.seed, args.perf.segments)
+    s.song = song
+    s.timeline = PlayIt.Timeline.build(song, args.perf.seed, args.perf.segments)
     s.moodFrom = args.posMs
     sendPlay(id, player, args.perf, args.fullType, args.posMs)
 end
@@ -119,7 +125,7 @@ function handlers.segments(player, args)
     perf.segments = args.segments
     if not PlayIt.Session.validate(perf) then return end
     sessions:setSegments(id, args.segments)
-    s.timeline = PlayIt.Timeline.build(PlayIt.Song.parse(s.perf.text, s.perf.bpm), s.perf.seed, args.segments)
+    s.timeline = PlayIt.Timeline.build(s.song, s.perf.seed, args.segments)
     sendToListeners(id, "segments", { id = id, segments = args.segments })
 end
 

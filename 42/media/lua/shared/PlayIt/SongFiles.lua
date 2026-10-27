@@ -1,14 +1,13 @@
--- Saved songs: one file per song under Zomboid/Lua/PlayIt/songs/, plus an index (Lua can't list folders).
--- They live on the player's own computer, so they follow them across characters and servers.
-
-require "PlayIt/Song"
+-- Saved songs: one ABC file per song under Zomboid/Lua/PlayIt/abc/, plus an index (Lua can't list folders).
+-- They live on the player's own computer, so they follow them across characters and servers. (Songs saved in the
+-- old SS13 format, under PlayIt/songs/, are left alone.)
 
 PlayIt = PlayIt or {}
 PlayIt.SongFiles = PlayIt.SongFiles or {}
 local SongFiles = PlayIt.SongFiles
 
-SongFiles.DIR = "PlayIt/songs/"
-SongFiles.INDEX = "PlayIt/songs_index.txt" -- outside DIR, so no song name can overwrite it
+SongFiles.DIR = "PlayIt/abc/"
+SongFiles.INDEX = "PlayIt/abc_index.txt" -- outside DIR, so no song name can overwrite it
 SongFiles.MAX_NAME = 40
 
 function SongFiles.sanitizeName(name)
@@ -16,20 +15,6 @@ function SongFiles.sanitizeName(name)
     clean = clean:sub(1, SongFiles.MAX_NAME):gsub("%s+$", "")
     if clean == "" then return nil end
     return clean
-end
-
--- file content: "BPM: n" header, then the song without any header of its own
-function SongFiles.encode(text, bpm)
-    local body = text
-    if PlayIt.Song.readBpmHeader(text) then body = text:gsub("^[^\n]*\n?", "", 1) end
-    return "BPM: " .. tostring(bpm) .. "\n" .. body
-end
-
--- text without the header, and the header's bpm (nil if none)
-function SongFiles.decode(content)
-    local bpm = PlayIt.Song.readBpmHeader(content)
-    if bpm == nil then return content, nil end
-    return (content:gsub("^[^\n]*\n?", "", 1)), bpm
 end
 
 function SongFiles.addToIndex(names, name)
@@ -66,18 +51,18 @@ function SongFiles.list()
     return readAll(SongFiles.INDEX) or {}
 end
 
--- returns the saved name, or nil if the name is unusable
-function SongFiles.save(name, text, bpm)
+-- returns the saved name, or nil if the name is unusable; the text is kept as pasted
+function SongFiles.save(name, text)
     name = SongFiles.sanitizeName(name)
     if name == nil then return nil end
-    writeAll(SongFiles.DIR .. name .. ".txt", SongFiles.encode(text, bpm))
+    writeAll(SongFiles.DIR .. name .. ".abc", text)
     writeAll(SongFiles.INDEX, table.concat(SongFiles.addToIndex(SongFiles.list(), name), "\n") .. "\n")
     return name
 end
 
--- text, bpm (bpm nil if the file has no header); nil if missing
+-- the song's text; nil if missing
 function SongFiles.load(name)
-    local lines = readAll(SongFiles.DIR .. name .. ".txt")
+    local lines = readAll(SongFiles.DIR .. name .. ".abc")
     if lines == nil then return nil end
-    return SongFiles.decode(table.concat(lines, "\n"))
+    return table.concat(lines, "\n")
 end

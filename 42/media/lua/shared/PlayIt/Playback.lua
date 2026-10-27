@@ -22,15 +22,16 @@ function Playback.newVoices(getPos, release)
     return PlayIt.Voices.new(getPos, nil, nil, release)
 end
 
-local function build(perf)
-    return PlayIt.Timeline.build(PlayIt.Song.parse(perf.text, perf.bpm), perf.seed, perf.segments)
+local function build(perf, song)
+    return PlayIt.Timeline.build(song or PlayIt.Song.parse(perf.text, perf.bpm), perf.seed, perf.segments)
 end
 
--- what the drums need to pick a piece for a note: the song's range and the kit; nil for other instruments
-local function drumContext(def, perf)
+-- what the drums need to pick a piece for a note: a drum part (GM numbers) or the song's range, and the kit;
+-- nil for other instruments
+local function drumContext(def, perf, song)
     if not def.drums then return nil end
-    local low, high = PlayIt.Instruments.songRange(PlayIt.Song.parse(perf.text, perf.bpm))
-    return { low = low or 0, high = high or 0, kit = PlayIt.Furniture.kitSet(perf.place and perf.place.kit) }
+    local low, high = PlayIt.Instruments.songRange(song)
+    return { gm = song.drums, low = low or 0, high = high or 0, kit = PlayIt.Furniture.kitSet(perf.place and perf.place.kit) }
 end
 
 -- source: { getPos() -> x, y, z, isSilent() -> true while the musician must not be heard (invisible) }
@@ -39,12 +40,13 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
     Playback.stop(id)
     local def = PlayIt.Instruments.defs[fullType]
     if def == nil then return end
-    local timeline = build(perf)
+    local song = PlayIt.Song.parse(perf.text, perf.bpm)
+    local timeline = build(perf, song)
     PlayIt.trace("playback start id=%s pos=%.0f length=%.0f chords=%d next=%s", tostring(id), posMs, timeline.length,
         #timeline.events, tostring(PlayIt.Timeline.firstEventAt(timeline, posMs)))
     active[id] = {
-        source = source, def = def, perf = perf, timeline = timeline, fullType = fullType,
-        drums = drumContext(def, perf),
+        source = source, def = def, perf = perf, song = song, timeline = timeline, fullType = fullType,
+        drums = drumContext(def, perf, song),
         origin = nowMs - posMs, lastChord = 0,
         nextIndex = PlayIt.Timeline.firstEventAt(timeline, posMs),
         voices = Playback.newVoices(source.getPos, def.release),
@@ -58,7 +60,7 @@ local function play(id, p, event, nowMs)
     end
     for _, note in ipairs(event.notes) do
         local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents, p.drums)
-        if sound then p.voices:noteOn(sound, ratio, event.dur, nowMs, p.perf.volume) end
+        if sound then p.voices:noteOn(sound, ratio, note.dur or event.dur, nowMs, p.perf.volume) end
     end
     if Playback.onEvent then Playback.onEvent(id, event, p.perf, p.def) end
 end
@@ -122,7 +124,7 @@ function Playback.setSegments(id, segments)
     local p = active[id]
     if p == nil then return end
     p.perf.segments = segments
-    p.timeline = build(p.perf)
+    p.timeline = build(p.perf, p.song)
     p.nextIndex = nil
     for i, e in ipairs(p.timeline.events) do
         if e.chord > p.lastChord then p.nextIndex = i; break end

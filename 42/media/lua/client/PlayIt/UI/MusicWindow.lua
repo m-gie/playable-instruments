@@ -1,4 +1,4 @@
--- The music window: paste a song, set BPM and volume, Play/Pause, Stop, Save, Load.
+-- The music window: paste an ABC song, pick a part, set BPM and volume, Play/Pause, Stop, Save, Load.
 -- Closing it while a song plays or is paused leaves the small widget instead.
 
 require "ISUI/ISCollapsableWindow"
@@ -19,6 +19,7 @@ local PAD = 8
 local FONT_HGT = getTextManager():getFontHeight(UIFont.Small)
 local ROW = FONT_HGT + 8
 local DEFAULT_VOLUME = 70
+MusicWindow.MAX_PASTE_LINES = 5000 -- a whole band file; only the chosen part travels (Session.MAX_TEXT)
 
 local windows = {} -- one per local player
 
@@ -57,10 +58,17 @@ function MusicWindow:createChildren()
     self.songBox:initialise()
     self.songBox:instantiate()
     self.songBox:setMultipleLine(true)
-    self.songBox:setMaxLines(PlayIt.Song.MAX_LINES + 1)
+    self.songBox:setMaxLines(MusicWindow.MAX_PASTE_LINES)
     self.songBox.target = self
     self.songBox.onTextChangeFunction = MusicWindow.onSongChanged
     self:addChild(self.songBox)
+
+    self.partLabel = ISLabel:new(0, 0, ROW, getText("IGUI_PlayIt_Part"), 1, 1, 1, 1, UIFont.Small, true)
+    self:addChild(self.partLabel)
+    self.partCombo = ISComboBox:new(0, 0, 200, ROW, self, MusicWindow.onPartChanged)
+    self.partCombo:initialise()
+    self:addChild(self.partCombo)
+    self.parts = {}
 
     self.bpmLabel = ISLabel:new(0, 0, ROW, getText("IGUI_PlayIt_BPM"), 1, 1, 1, 1, UIFont.Small, true)
     self:addChild(self.bpmLabel)
@@ -101,13 +109,19 @@ function MusicWindow:layout()
     local bottom = self.height - PAD - self:resizeWidgetHeight()
     local buttonsY = bottom - ROW
     local controlsY = buttonsY - PAD - ROW
-    local statusY = controlsY - PAD - FONT_HGT
+    local partY = controlsY - PAD - ROW
+    local statusY = partY - PAD - FONT_HGT
     local top = self:titleBarHeight() + PAD
     self.songBox:setX(PAD)
     self.songBox:setY(top)
     self.songBox:setWidth(self.width - PAD * 2)
     self.songBox:setHeight(math.max(ROW, statusY - PAD - top))
     self.status:setY(statusY)
+    self.partLabel:setX(PAD)
+    self.partLabel:setY(partY)
+    self.partCombo:setX(PAD * 2 + self.partLabel:getWidth())
+    self.partCombo:setY(partY)
+    self.partCombo:setWidth(math.max(60, self.width - PAD - self.partCombo:getX()))
 
     local x = PAD
     for _, el in ipairs({ self.bpmLabel, self.bpmBox, self.volumeLabel, self.volume }) do
@@ -135,8 +149,32 @@ function MusicWindow:prerender()
 end
 
 function MusicWindow:onSongChanged()
-    local bpm = PlayIt.Song.readBpmHeader(self.songBox:getText())
-    if bpm then self.bpmBox:setText(tostring(bpm)) end
+    self:refreshParts()
+end
+
+-- the parts of the pasted file in the picker, keeping the chosen one when it is still there
+function MusicWindow:refreshParts()
+    local previous = self.parts[self.partCombo.selected]
+    self.parts = PlayIt.Song.parts(self.songBox:getText())
+    self.partCombo:clear()
+    local pick = 1
+    for i, part in ipairs(self.parts) do
+        self.partCombo:addOption(part.title)
+        if previous and part.title == previous.title then pick = i end
+    end
+    if #self.parts > 0 then
+        self.partCombo.selected = pick
+        self:onPartChanged()
+    end
+end
+
+function MusicWindow:onPartChanged()
+    local part = self:selectedPart()
+    if part then self.bpmBox:setText(tostring(math.floor(PlayIt.Song.tempoOf(part.text) + 0.5))) end
+end
+
+function MusicWindow:selectedPart()
+    return self.parts[self.partCombo.selected]
 end
 
 function MusicWindow:setStatus(text)
@@ -180,7 +218,12 @@ function MusicWindow:onPlay()
         PlayIt.Controls.pause(self.player)
         return
     end
-    local text = self.songBox:getText()
+    local part = self:selectedPart()
+    if part == nil then
+        self:setStatus(getText("IGUI_PlayIt_Warn_NotAbc"))
+        return
+    end
+    local text = part.text
     local bpm = tonumber(self.bpmBox:getText()) or PlayIt.Song.BPM_DEFAULT
     local place
     if PlayIt.Instruments.isWorld(self.fullType) then
@@ -199,7 +242,8 @@ function MusicWindow:onPlay()
             return
         end
     end
-    if #PlayIt.Song.compact(text) > PlayIt.Session.MAX_TEXT then
+    if #PlayIt.Song.compact(text) > PlayIt.Session.MAX_TEXT
+        or PlayIt.Song.parse(text, bpm).events >= PlayIt.Song.MAX_EVENTS then
         self:setStatus(getText("IGUI_PlayIt_TooLong"))
         return
     end
@@ -220,8 +264,7 @@ end
 
 function MusicWindow:onSaveName(button)
     if button.internal ~= "OK" then return end
-    local bpm = tonumber(self.bpmBox:getText()) or PlayIt.Song.BPM_DEFAULT
-    local name = PlayIt.SongFiles.save(button.parent.entry:getText(), self.songBox:getText(), bpm)
+    local name = PlayIt.SongFiles.save(button.parent.entry:getText(), self.songBox:getText())
     self:setStatus(name and getText("IGUI_PlayIt_Saved", name) or getText("IGUI_PlayIt_BadName"))
 end
 
@@ -238,10 +281,10 @@ function MusicWindow:onLoad()
 end
 
 function MusicWindow:loadSong(name)
-    local text, bpm = PlayIt.SongFiles.load(name)
+    local text = PlayIt.SongFiles.load(name)
     if text == nil then return end
     self.songBox:setText(text)
-    if bpm then self.bpmBox:setText(tostring(bpm)) end
+    self:refreshParts()
     self:setStatus("")
 end
 
@@ -267,6 +310,6 @@ function MusicWindow:new(x, y, width, height, player)
     local o = ISCollapsableWindow.new(self, x, y, width, height)
     o.player = player
     o.minimumWidth = 360
-    o.minimumHeight = 260
+    o.minimumHeight = 300
     return o
 end

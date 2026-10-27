@@ -82,11 +82,38 @@ function Instruments.drumPiece(midi, low, high)
     return "hihat"
 end
 
+-- General MIDI percussion (drum parts, %%MIDI channel 10) folded onto the kit: piece, and for toms which one
+-- and a pitch step within its group. Anything not listed is a snare hit.
+local GM = {}
+for _, n in ipairs({ 35, 36 }) do GM[n] = { "kick" } end
+for _, n in ipairs({ 31, 37, 38, 39, 40, 75, 76, 77 }) do GM[n] = { "snare" } end
+for _, n in ipairs({ 42, 44, 46, 51, 53, 54, 56, 58, 59, 67, 68, 69, 70, 71, 72, 73, 74, 78, 79, 80, 81, 82 }) do
+    GM[n] = { "hihat" }
+end
+for _, n in ipairs({ 49, 52, 55, 57 }) do GM[n] = { "crash" } end
+-- toms: low floor .. high, then hand drums (bongos, congas, timbales); -1..1 places them within their sample
+GM[41] = { "tom", "tomLow", -1 }; GM[43] = { "tom", "tomLow", 0 }; GM[45] = { "tom", "tomLow", 1 }
+GM[47] = { "tom", "tomHigh", -1 }; GM[48] = { "tom", "tomHigh", 0 }; GM[50] = { "tom", "tomHigh", 1 }
+GM[60] = { "tom", "tomHigh", 1 }; GM[61] = { "tom", "tomHigh", 0 }
+GM[62] = { "tom", "tomHigh", 0 }; GM[63] = { "tom", "tomHigh", -1 }; GM[64] = { "tom", "tomLow", 1 }
+GM[65] = { "tom", "tomHigh", 0 }; GM[66] = { "tom", "tomLow", 0 }
+
+-- which drum a GM percussion number hits (kick, snare, tom, hihat, crash)
+function Instruments.gmPiece(midi)
+    return (GM[midi] or { "snare" })[1]
+end
+
 -- the furniture a sound needs: the snare's stand holds the hi-hat, the tom's the crash cymbal (vanilla sprites)
 local PLAYED_ON = { kick = "kick", tom = "tom", snare = "snare", hihat = "snare", crash = "tom" }
 
--- ctx: { low, high, kit = { kick = true, ... } }; nil when the note's drum isn't in the kit
+-- ctx: { gm, low, high, kit = { kick = true, ... } }; nil when the note's drum isn't in the kit
 local function resolveDrum(instrument, midi, ctx)
+    if ctx.gm then
+        local g = GM[midi] or { "snare" }
+        if not ctx.kit[PLAYED_ON[g[1]]] then return nil end
+        if g[1] ~= "tom" then return instrument.samples[g[1]].sound, 1 end
+        return instrument.samples[g[2]].sound, 2 ^ (g[3] * Instruments.TOM_SPREAD / 12)
+    end
     local piece = Instruments.drumPiece(midi, ctx.low, ctx.high)
     if not ctx.kit[PLAYED_ON[piece]] then return nil end
     if piece ~= "tom" then return instrument.samples[piece].sound, 1 end

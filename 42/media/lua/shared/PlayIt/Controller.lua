@@ -32,10 +32,13 @@ end
 
 -- starts the song, or resumes it where it was paused if text, tempo, instrument and place are unchanged.
 -- place: where a furniture instrument stands (nil for hand-held ones).
--- The compacted song is what plays and travels; false, "TooLong" if even that is too big to send.
+-- text is one part (PlayIt.Song.parts). The compacted part is what plays and travels; false and "TooLong" if
+-- even that is too big to send or has too many notes.
 function Controller:play(text, bpm, volume, fullType, place)
     text = PlayIt.Song.compact(text)
     if #text > PlayIt.Session.MAX_TEXT then return false, "TooLong" end
+    local song = PlayIt.Song.parse(text, bpm)
+    if song.events >= PlayIt.Song.MAX_EVENTS then return false, "TooLong" end
     local resume = self.pausedAt ~= nil and text == self.text and bpm == self.bpm and fullType == self.fullType
         and samePlace(place, self.where)
     self.where = place
@@ -45,7 +48,6 @@ function Controller:play(text, bpm, volume, fullType, place)
         self.lastChance = self:chance()
         self.segments = { { fromChord = 1, chance = self.lastChance } }
     end
-    local song = PlayIt.Song.parse(text, bpm)
     local perf = {
         text = text, bpm = song.bpm, seed = self.seed, segments = self.segments, volume = volume,
         length = PlayIt.Timeline.build(song, self.seed, self.segments).length, level = self.deps.level(),

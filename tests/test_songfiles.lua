@@ -7,15 +7,6 @@ check(F.sanitizeName("") == nil and F.sanitizeName("  !! ") == nil, "empty names
 check(#F.sanitizeName(string.rep("a", 60)) == 40, "cut to 40 characters")
 check(F.sanitizeName("  Ode - to_Joy  ") == "Ode - to_Joy", "trimmed, keeps spaces, dashes, underscores")
 
-local content = F.encode("c,d,e\nf,g", 96)
-check(content == "BPM: 96\nc,d,e\nf,g", "stored with a BPM header")
-local text, bpm = F.decode(content)
-check(text == "c,d,e\nf,g" and bpm == 96, "decoded back")
-text, bpm = F.decode(F.encode("BPM: 60\nc", 140))
-check(text == "c" and bpm == 140, "an old header in the text is replaced")
-text, bpm = F.decode("c,d")
-check(text == "c,d" and bpm == nil, "no header: bpm nil")
-
 check(F.addToIndex({ "a", "b" }, "b")[3] == nil, "index has no duplicates")
 check(F.addToIndex({ "b" }, "a")[1] == "a", "index sorted")
 

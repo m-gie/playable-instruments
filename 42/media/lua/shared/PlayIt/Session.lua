@@ -7,8 +7,9 @@ PlayIt.Session = PlayIt.Session or {}
 local Session = PlayIt.Session
 Session.__index = Session
 
--- network strings carry a 16-bit byte length; songs travel compacted (PlayIt.Song.compact, ASCII) below this
-Session.MAX_TEXT = 32000
+-- a part travels as one string, and PZ's network strings carry a signed 16-bit byte length (32,767 at most):
+-- the compacted part (PlayIt.Song.compact) must stay below this
+Session.MAX_TEXT = 30000
 Session.MAX_SEGMENTS = 64
 
 -- messages that make the server parse a song and send it on (start, segments): a burst of RATE_BURST, then one

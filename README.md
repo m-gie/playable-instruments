@@ -1,14 +1,19 @@
 # Play it! Playable musical instruments
 
-Project Zomboid (Build 42) mod: the vanilla acoustic guitar, violin, trumpet, harmonica, flute, saxophone and keytar play songs written in the Space Station 13 note format, note by note, heard by every player nearby. Zombies come to listen, wild animals run, tame ones that trust you come closer, and a Music skill decides how often you blunder.
+Project Zomboid (Build 42) mod: the vanilla acoustic guitar, violin, trumpet, harmonica, flute, saxophone and keytar play songs written in ABC notation, note by note, heard by every player nearby. Zombies come to listen, wild animals run, tame ones that trust you come closer, and a Music skill decides how often you blunder.
 
 Tests: `python tests/run.py` (Lua 5.1 via lupa).
 
 ## Songs
 
-Paste text in the Space Station 13 instrument format: an optional `BPM: 120` first line, chords separated by `,`, notes in a chord joined by `-`, `/n` divides a chord's length (`/0.5` doubles it), an octave digit and `#`/`b`/`n` stick to their letter. Up to 300 lines of 300 characters.
+Paste a song in [ABC notation](https://abcnotation.com/) into the music window. A file with several tunes (`X:`) or voices (`V:`) is a band arrangement: pick your part in the Part list. The BPM field starts at the part's tempo (`Q:`); changing it speeds the whole part up or down.
 
-Songs: the /tg/station and Yogstation wikis have "Songs" pages. MIDI files convert with midi2piano (tgstation `tools/midi2piano`, or the web version at midi.dreambubble.xyz).
+- Supported: keys and modes (`K:`), meters, unit lengths, tempos and their inline changes, accidentals, octaves, note lengths, rests, chords, ties (also on single notes in a chord), broken rhythm, tuplets, repeats with first and second endings. Decorations, chord symbols, grace notes, slurs and lyrics are skipped.
+- Drum parts: a tune with `%%MIDI channel 10` is read as General MIDI percussion (note number = drum), folded onto the kit's kick, snare, toms, hi-hat and crash; `%%percmap` is honoured. Any other part played on the drums maps its range to the kit.
+- Solo play skips the silence before a part's first note.
+- Limits: a part travels to other players as one network string, so at most 30,000 characters (comments, lyrics and blank lines don't count) and 10,000 notes, chords and rests after repeats.
+
+Songs: abcnotation.com and thesession.org have hundreds of thousands of tunes; MIDI files convert with the Play it! MIDI converter (a web page; link to follow).
 
 ## Development
 
