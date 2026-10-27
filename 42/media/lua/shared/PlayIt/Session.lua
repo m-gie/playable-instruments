@@ -11,8 +11,24 @@ Session.__index = Session
 Session.MAX_TEXT = 32000
 Session.MAX_SEGMENTS = 64
 
+-- messages that make the server parse a song and send it on (start, segments): a burst of RATE_BURST, then one
+-- per RATE_MS. Play, pause and play again stays well inside; a hacked client can't flood the players in range.
+Session.RATE_BURST = 4
+Session.RATE_MS = 2000 -- the client sends segments at most every 2 s (ISPlayItAction CHANCE_EVERY_MS)
+
 function Session.new()
-    return setmetatable({ list = {} }, Session)
+    return setmetatable({ list = {}, rate = {} }, Session)
+end
+
+-- true when player id may send another start or segments message now (and counts it)
+function Session:allow(id, nowMs)
+    local r = self.rate[id] or { tokens = Session.RATE_BURST, at = nowMs }
+    self.rate[id] = r
+    r.tokens = math.min(Session.RATE_BURST, r.tokens + (nowMs - r.at) / Session.RATE_MS)
+    r.at = nowMs
+    if r.tokens < 1 then return false end
+    r.tokens = r.tokens - 1
+    return true
 end
 
 local function isInt(v) return type(v) == "number" and v == math.floor(v) end

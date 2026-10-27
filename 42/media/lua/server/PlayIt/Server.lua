@@ -68,6 +68,7 @@ end
 local handlers = {}
 
 function handlers.start(player, args)
+    if not sessions:allow(player:getOnlineID(), getTimestampMs()) then return end -- flooding: drop quietly
     local ok, why = PlayIt.Session.validate(args.perf)
     if ok and type(args.posMs) ~= "number" then ok, why = false, "posMs" end
     if ok and PlayIt.Instruments.isWorld(args.fullType) then
@@ -112,6 +113,7 @@ function handlers.segments(player, args)
     local id = player:getOnlineID()
     local s = sessions:get(id)
     if s == nil or type(args.segments) ~= "table" then return end
+    if not sessions:allow(id, getTimestampMs()) then return end
     local perf = {}
     for k, v in pairs(s.perf) do perf[k] = v end
     perf.segments = args.segments

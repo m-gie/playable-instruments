@@ -74,3 +74,18 @@ local kitA = { { piece = "kick", x = 1, y = 1, z = 0 }, { piece = "snare", x = 2
 b:start(12, perf({ place = { x = 1, y = 1, z = 0, kit = kitA } }), 0, 0); b:get(12).fullType = "PlayIt.Drums"
 check(b:busyAt("PlayIt.Drums", { x = 2, y = 1, z = 0, kit = { { piece = "snare", x = 2, y = 1, z = 0 } } }, 13) == 12, "a shared drum is busy")
 check(b:busyAt("PlayIt.Drums", { x = 3, y = 1, z = 0, kit = { { piece = "tom", x = 3, y = 1, z = 0 } } }, 13) == nil, "a drum nobody uses is free")
+
+-- rate limit on start/segments: a burst, then one per RATE_MS
+local r = S.new()
+local okCount = 0
+for i = 1, 20 do if r:allow(5, 1000) then okCount = okCount + 1 end end
+check(okCount == S.RATE_BURST, "a burst of RATE_BURST messages passes, the rest are dropped")
+check(not r:allow(5, 1000 + S.RATE_MS - 1), "nothing more before RATE_MS")
+check(r:allow(5, 1000 + S.RATE_MS), "one more after RATE_MS")
+check(not r:allow(5, 1000 + S.RATE_MS), "and only one")
+check(r:allow(6, 1000), "players are limited separately")
+local spam = 0
+for t = 0, 60000, 100 do if r:allow(7, t) then spam = spam + 1 end end
+check(spam <= S.RATE_BURST + 60000 / S.RATE_MS + 1, "ten messages a second for a minute: about one per RATE_MS passes")
+local q = S.new()
+check(q:allow(8, 0) and q:allow(8, 500) and q:allow(8, 900), "play, pause, play again quickly passes")
