@@ -106,7 +106,7 @@ end)
 
 -- listeners' stats are server-owned in MP: apply the mood of the music heard since the last tick, then sync
 local function moodTick(musician, s, pos, cfg, def)
-    local dur, blunders = PlayIt.Effects.window(s.timeline, s.moodFrom or pos, pos)
+    local dur, blunderMs = PlayIt.Effects.window(s.timeline, s.moodFrom or pos, pos)
     s.moodFrom = pos
     if dur == 0 then return end
     local earshot = PlayIt.Effects.earshot(def, s.perf.volume)
@@ -114,10 +114,10 @@ local function moodTick(musician, s, pos, cfg, def)
     for i = 0, players:size() - 1 do
         local p = players:get(i)
         if not p:isDead() then
-            local fx = PlayIt.Effects.forWindow(dur, blunders, p:DistTo(musician), earshot, s.perf.level, cfg.annoy,
-                p == musician)
+            local stats = p:getStats()
+            local fx = PlayIt.Effects.forWindow(dur, blunderMs, p:DistTo(musician), earshot, s.perf.level, cfg.annoy,
+                p == musician, PlayIt.Effects.moodOf(stats))
             if fx then
-                local stats = p:getStats()
                 stats:remove(CharacterStat.BOREDOM, -fx.boredom)
                 if fx.stress > 0 then stats:add(CharacterStat.STRESS, fx.stress) end
                 if fx.unhappy > 0 then stats:add(CharacterStat.UNHAPPINESS, fx.unhappy) end

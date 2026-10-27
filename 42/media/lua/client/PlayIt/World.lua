@@ -68,10 +68,10 @@ PlayIt.Playback.onEvent = function(id, event, perf, def)
     local cfg = PlayIt.Config.get()
     local earshot = PlayIt.Effects.earshot(def, perf.volume)
     for _, player in ipairs(localPlayers()) do
+        local stats = player:getStats()
         local fx = PlayIt.Effects.forListener(event, player:DistTo(musician), earshot, perf.level or 0, cfg.annoy,
-            player == musician)
+            player == musician, PlayIt.Effects.moodOf(stats))
         if fx then
-            local stats = player:getStats()
             stats:remove(CharacterStat.BOREDOM, -fx.boredom)
             if fx.stress > 0 then stats:add(CharacterStat.STRESS, fx.stress) end
             if fx.unhappy > 0 then stats:add(CharacterStat.UNHAPPINESS, fx.unhappy) end

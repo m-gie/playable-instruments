@@ -7,8 +7,12 @@ local Effects = PlayIt.Effects
 Effects.NOISE_INTERVAL_MS = 2000
 Effects.XP_PER_SECOND = 0.2 -- the engine x1.5s perks.txt: level 5 after ~3.9 h of playing, level 10 after ~45.5 h
 Effects.BOREDOM_BASE = 0.1 -- boredom (0-100) per real second at Music 0; a TV has no fixed rate to copy
-Effects.ANNOY_STRESS = 0.01 -- stress is 0-1
-Effects.ANNOY_UNHAPPY = 0.5 -- unhappiness is 0-100
+-- Bad music is only slightly bad: it can push a listener just past the first Unhappy and Anxious moodles and
+-- no further, and a whole botched song at Music 0 (half the notes wrong, 90 s of blunders in 3 min) gets there.
+Effects.ANNOY_UNHAPPY_MAX = 25 -- unhappiness is 0-100
+Effects.ANNOY_STRESS_MAX = 0.25 -- stress is 0-1
+Effects.ANNOY_UNHAPPY_PER_SEC = Effects.ANNOY_UNHAPPY_MAX / 90 -- per second of wrong notes heard
+Effects.ANNOY_STRESS_PER_SEC = Effects.ANNOY_STRESS_MAX / 90
 
 -- tiles zombies and animals notice the music from
 function Effects.noiseRadius(def, volume, mult)
@@ -24,37 +28,43 @@ function Effects.boredomPerSecond(level)
     return Effects.BOREDOM_BASE * (1 + 0.2 * level)
 end
 
--- total length (ms) and blunder count of the chords starting in [fromMs, toMs): what a listener heard
+-- total length (ms) of the chords starting in [fromMs, toMs) and of the botched ones: what a listener heard
 function Effects.window(timeline, fromMs, toMs)
-    local dur, blunders = 0, 0
+    local dur, blunderMs = 0, 0
     for _, e in ipairs(timeline.events) do
         if e.t >= fromMs and e.t < toMs and #e.notes > 0 then
             dur = dur + e.dur
-            if e.blunder then blunders = blunders + 1 end
+            if e.blunder then blunderMs = blunderMs + e.dur end
         end
     end
-    return dur, blunders
+    return dur, blunderMs
 end
 
--- stat changes for a stretch of music (durMs of chords, with `blunders` wrong notes); nil when out of earshot.
+-- what `add` raises a stat by when it can't go past `max` (and never lowers it)
+local function capped(now, add, max)
+    return math.max(0, math.min(add, max - now))
+end
+
+-- a character's current { unhappy, stress }, as forWindow wants them
+function Effects.moodOf(stats)
+    return { unhappy = stats:get(CharacterStat.UNHAPPINESS), stress = stats:get(CharacterStat.STRESS) }
+end
+
+-- stat changes for a stretch of music (durMs of chords, blunderMs of them wrong) on a listener in `mood`
+-- ({ unhappy, stress }, their current stats); nil when out of earshot.
 -- The musician enjoys their own playing but isn't annoyed by their own wrong notes.
-function Effects.forWindow(durMs, blunders, distance, earshot, musicianLevel, annoy, isMusician)
+function Effects.forWindow(durMs, blunderMs, distance, earshot, musicianLevel, annoy, isMusician, mood)
     if distance > earshot then return nil end
-    local n = (annoy and not isMusician) and blunders or 0
+    local secs = (annoy and not isMusician) and blunderMs / 1000 or 0
     return {
         boredom = -Effects.boredomPerSecond(musicianLevel) * durMs / 1000,
-        stress = n * Effects.ANNOY_STRESS,
-        unhappy = n * Effects.ANNOY_UNHAPPY,
+        stress = capped(mood.stress, secs * Effects.ANNOY_STRESS_PER_SEC, Effects.ANNOY_STRESS_MAX),
+        unhappy = capped(mood.unhappy, secs * Effects.ANNOY_UNHAPPY_PER_SEC, Effects.ANNOY_UNHAPPY_MAX),
     }
 end
 
 -- stat changes for one played chord on a listener at `distance`; nil when out of earshot
-function Effects.forListener(event, distance, earshot, musicianLevel, annoy, isMusician)
-    if distance > earshot then return nil end
-    local blunder = event.blunder ~= nil and annoy and not isMusician
-    return {
-        boredom = -Effects.boredomPerSecond(musicianLevel) * event.dur / 1000,
-        stress = blunder and Effects.ANNOY_STRESS or 0,
-        unhappy = blunder and Effects.ANNOY_UNHAPPY or 0,
-    }
+function Effects.forListener(event, distance, earshot, musicianLevel, annoy, isMusician, mood)
+    return Effects.forWindow(event.dur, event.blunder and event.dur or 0, distance, earshot, musicianLevel, annoy,
+        isMusician, mood)
 end
