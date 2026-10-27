@@ -166,6 +166,14 @@ function MusicWindow:worldPlace()
     return place
 end
 
+-- drums: put a drumstick in the main hand first (the play action waits for the equip)
+function MusicWindow:equipStick()
+    local hand = self.player:getPrimaryHandItem()
+    if not PlayIt.Furniture.needsStickInHand(self.fullType, hand and hand:getFullType()) then return end
+    local stick = PlayIt.Furniture.stickOf(self.player)
+    if stick then ISInventoryPaneContextMenu.equipWeapon(stick, true, false, self.player:getPlayerNum()) end
+end
+
 function MusicWindow:onPlay()
     local c = self:controller()
     if c:isPlaying() then
@@ -182,6 +190,7 @@ function MusicWindow:onPlay()
             self:setStatus(getText("IGUI_PlayIt_" .. why))
             return
         end
+        self:equipStick()
     else
         local item = self.player:getPrimaryHandItem()
         local queued = ISTimedActionQueue.hasActionType(self.player, "ISEquipWeaponAction")

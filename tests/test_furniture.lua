@@ -46,3 +46,9 @@ check(not ok and why == "TooFar", "far from every tile of the piano")
 -- final review: the organ's upper row stands on the floor above and is not an instrument
 check(F.isUpperTile("2,0,1") and not F.isUpperTile("0,0") and not F.isUpperTile("1,2,0") and not F.isUpperTile(nil),
     "upper-row tiles are recognised by SpriteGridPos")
+
+-- drums put a drumstick in the main hand when playing starts (user, 2026-10-27)
+check(F.needsStickInHand("PlayIt.Drums", nil), "empty hand: equip a stick")
+check(F.needsStickInHand("PlayIt.Drums", "Base.BaseballBat"), "holding something else: swap to a stick")
+check(not F.needsStickInHand("PlayIt.Drums", "Base.Drumstick"), "already holding a stick")
+check(not F.needsStickInHand("PlayIt.GrandPiano", nil), "pianos need no stick")

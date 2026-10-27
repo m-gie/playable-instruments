@@ -110,6 +110,12 @@ function Furniture.check(fullType, place, ctx)
     return false, present and "TooFar" or "Gone"
 end
 
+-- drums are played with a drumstick in the main hand: does the musician need one put there?
+function Furniture.needsStickInHand(fullType, handFullType)
+    local def = PlayIt.Instruments.defs[fullType]
+    return def ~= nil and def.drums == true and handFullType ~= Furniture.STICK
+end
+
 -- game side ------------------------------------------------------------------------------------------------
 
 -- the instruments among one object's sprite properties: fullType, piece, or nil
@@ -147,6 +153,16 @@ function Furniture.scan(px, py, pz)
         end
     end
     return out
+end
+
+-- a drumstick in the player's main inventory (not in bags), or nil
+function Furniture.stickOf(player)
+    local items = player:getInventory():getItems()
+    for i = 0, items:size() - 1 do
+        local item = items:get(i)
+        if item:getFullType() == Furniture.STICK then return item end
+    end
+    return nil
 end
 
 function Furniture.ctxFor(player)
