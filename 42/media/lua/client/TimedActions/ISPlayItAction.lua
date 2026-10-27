@@ -66,6 +66,25 @@ function ISPlayItAction:start()
         return
     end
     self.nextChance = getTimestampMs() + CHANCE_EVERY_MS
+    self:animate()
+end
+
+-- the playing loop; at furniture the musician turns to the instrument and only drumsticks show in the hands.
+-- Other players see it through the game's own action state sync, which sends the hand models along with the
+-- animation, so they are set first.
+function ISPlayItAction:animate()
+    local s = self.song
+    local a = PlayIt.Instruments.anims[s.fullType]
+    if a == nil then return end
+    if s.place then self.character:faceLocation(s.place.x + 0.5, s.place.y + 0.5) end
+    if a.models then
+        self:setOverrideHandModelsString(a.models[1], a.models[2])
+    elseif PlayIt.Instruments.isWorld(s.fullType) then
+        self:setOverrideHandModels(nil, nil)
+    else
+        self:setOverrideHandModels(self.character:getPrimaryHandItem(), nil)
+    end
+    self:setActionAnim(a.anim)
 end
 
 function ISPlayItAction:stop()

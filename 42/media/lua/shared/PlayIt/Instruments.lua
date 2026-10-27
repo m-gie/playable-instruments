@@ -29,6 +29,22 @@ for fullType, d in pairs(Instruments.defs) do
     d.world = fullType:sub(1, 7) == "PlayIt."
 end
 
+-- the playing loop (AnimSets/player/actions/<anim>.xml; seated variants pick themselves) and, when the hands show
+-- something other than the held item, the model scripts for the main and off hand
+Instruments.anims = {
+    ["Base.GuitarAcoustic"] = { anim = "PlayItGuitar" },
+    ["Base.Violin"] = { anim = "PlayItViolin", models = { "Violin", "PlayIt_ViolinBow" } },
+    ["Base.Trumpet"] = { anim = "PlayItTrumpet" },
+    ["Base.Harmonica"] = { anim = "PlayItHarmonica" },
+    ["Base.Flute"] = { anim = "PlayItFlute" },
+    ["Base.Saxophone"] = { anim = "PlayItSaxophone" },
+    ["Base.Keytar"] = { anim = "PlayItKeytar" },
+    ["PlayIt.WesternPiano"] = { anim = "PlayItPiano" },
+    ["PlayIt.GrandPiano"] = { anim = "PlayItPiano" },
+    ["PlayIt.ChurchOrgan"] = { anim = "PlayItPiano" },
+    ["PlayIt.Drums"] = { anim = "PlayItDrums", models = { "Drumstick", "PlayIt_DrumstickL" } },
+}
+
 Instruments.TOM_SPREAD = 2 -- semitones a tom bends up or down with the note's pitch
 
 function Instruments.isWorld(fullType)

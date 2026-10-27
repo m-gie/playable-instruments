@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="PlayItDrums.xml">
+	<m_Name>PlayItDrumsChair</m_Name>
+	<m_AnimName>Bob_PlayItDrumsChair</m_AnimName>
+	<m_Conditions>
+		<m_Name>PerformingAction</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>PlayItDrums</m_Value>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>sittingonfurniture</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+</animNode>
