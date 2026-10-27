@@ -85,6 +85,31 @@ INSTRUMENTS = {
     ]),
 }
 
+# one recorded note per file: instrument key -> (maxRadius, seconds kept, [(raw file, sounding midi)]). The midi comes
+# from the file name (the detector makes octave errors on organ pipes and extreme piano notes); the measured pitch,
+# folded to the nearest octave, only gives the fine tuning
+SINGLE = {
+    # VCSL Yamaha upright file names are one octave low (file "C2" sounds C3); only C and G were recorded
+    "Upright": (35, 4.0, [
+        (f"upright/Upright1_Sus_{n}_vl2_rr1.wav", m)
+        for n, m in [("C1", 36), ("G1", 43), ("C2", 48), ("G2", 55), ("C3", 60), ("G3", 67),
+                     ("C4", 72), ("G4", 79), ("C5", 84), ("G5", 91)]
+    ]),
+    "Grand": (45, 4.0, [
+        (f"grand/JHPiano_Sus_Close_{n}{o}_vl3_rr1.wav", 12 * (o + 1) + {"C": 0, "E": 4, "G#": 8}[n])
+        for o in range(2, 7) for n in ("C", "E", "G#")
+    ] + [("grand/JHPiano_Sus_Close_C7_vl3_rr1.wav", 96)]),
+    "Organ": (60, 6.0, [
+        (f"organ/Rode_Man3Open_{n}{o}.wav", 12 * (o + 1) + {"C": 0, "D#": 3, "F#": 6, "A": 9}[n])
+        for o in range(2, 6) for n in ("C", "D#", "F#", "A")
+    ] + [("organ/Rode_Man3Open_C6.wav", 84)]),
+}
+
+# unpitched drum hits from Virtuosity Drums ("mid" microphone, medium-loud velocity layer): piece -> raw file
+DRUMS_RADIUS = 50
+DRUMS = {"kick": "drums/kick.flac", "snare": "drums/snare.flac", "tomHigh": "drums/tomHigh.flac",
+         "tomLow": "drums/tomLow.flac"}
+
 
 def decode(path):
     out = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", str(path), "-ac", "1", "-ar", str(RATE),
@@ -144,8 +169,8 @@ def find_note(audio, wanted, raw):
     sys.exit(f"{raw}: no note with pitch {note_name(wanted)} found")
 
 
-def finish(note):
-    note = note[:int(MAX_SECONDS * RATE)].copy()
+def finish(note, seconds=MAX_SECONDS):
+    note = note[:int(seconds * RATE)].copy()
     fade = int(FADE_SECONDS * RATE)
     if len(note) > fade:
         note[-fade:] *= np.linspace(1, 0, fade)
@@ -160,6 +185,32 @@ def write_ogg(audio, path):
 
 def note_name(midi):
     return f"{NAMES[midi % 12]}{midi // 12 - 1}"
+
+
+def single_note(audio, midi, raw):
+    """The file's one note from its start, and its tuning (st) against `midi` with octave errors folded away."""
+    regions = segments(audio, min_len=0.3)
+    if not regions:
+        sys.exit(f"{raw}: no note found")
+    a = regions[0][0]
+    note = audio[max(0, a - int(0.01 * RATE)):]
+    off = pitch_midi(note) - midi
+    off -= 12 * round(off / 12)
+    if abs(off) > 0.5:
+        sys.exit(f"{raw}: sounds {off:+.2f} st away from {note_name(midi)}")
+    return note, off
+
+
+def hit(audio):
+    """A drum hit from its onset (first sample above -40 dB of the peak)."""
+    start = int(np.argmax(np.abs(audio) > np.abs(audio).max() * 0.01))
+    return audio[max(0, start - int(0.002 * RATE)):]
+
+
+def sound_script(name, file, radius):
+    return [f"    sound {name}", "    {", "        category = Item,", "        is3D = true,",
+            "        clip", "        {", f"            file = media/sound/PlayIt/{file},",
+            "            distanceMin = 1,", f"            distanceMax = {radius},", "        }", "    }"]
 
 
 def main():
@@ -180,11 +231,30 @@ def main():
             name = f"PlayIt_{key}_{note_name(midi)}"
             file = f"{key.lower()}_{note_name(midi).lower()}.ogg"
             write_ogg(finish(note), SOUND_DIR / file)
-            script += [f"    sound {name}", "    {", "        category = Item,", "        is3D = true,",
-                       "        clip", "        {", f"            file = media/sound/PlayIt/{file},",
-                       "            distanceMin = 1,", f"            distanceMax = {radius},", "        }", "    }"]
+            script += sound_script(name, file, radius)
             lua.append(f"        {{ midi = {midi}, tune = {round(off * 100)}, sound = \"{name}\" }},")
         lua.append("    },")
+    for key, (radius, seconds, notes) in SINGLE.items():
+        lua.append(f"    {key} = {{")
+        for raw, midi in notes:
+            note, off = single_note(decode(RAW / raw), midi, raw)
+            worst = max(worst, abs(off))
+            print(f"{key:9} {raw:38} {note_name(midi):4} midi {midi} ({off:+.2f} st)")
+            name = f"PlayIt_{key}_{note_name(midi)}"
+            file = f"{key.lower()}_{note_name(midi).lower()}.ogg"
+            write_ogg(finish(note, seconds), SOUND_DIR / file)
+            script += sound_script(name, file, radius)
+            lua.append(f"        {{ midi = {midi}, tune = {round(off * 100)}, sound = \"{name}\" }},")
+        lua.append("    },")
+    lua.append("    Drums = {")
+    for piece, raw in DRUMS.items():
+        name = f"PlayIt_Drums_{piece[0].upper()}{piece[1:]}"
+        file = f"drums_{piece.lower()}.ogg"
+        write_ogg(finish(hit(decode(RAW / raw))), SOUND_DIR / file)
+        script += sound_script(name, file, DRUMS_RADIUS)
+        lua.append(f"        {piece} = {{ sound = \"{name}\" }},")
+        print(f"Drums     {raw:38} -> {name}")
+    lua.append("    },")
     script.append("}")
     lua.append("}")
     SCRIPT.write_text("\n".join(script) + "\n", encoding="utf-8")

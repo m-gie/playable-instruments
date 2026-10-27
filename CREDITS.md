@@ -17,6 +17,15 @@ The notes are cut from these recordings by `tools/prep_samples.py`: split into s
 
 **Keytar:** VCSL as above, Yamaha TX81Z "Clavisynth" patch (`Electrophones/TX81Z/Clavisynth`, velocity layer 2). File names are two octaves below the sounding pitch; the mod uses the measured pitch.
 
+**Upright piano (Western Piano):** VCSL as above, Yamaha upright (`Chordophones/Zithers/Upright Piano, Yamaha/Sustains`, velocity layer 2, round robin 1). Only C and G were recorded; file names are one octave below the sounding pitch.
+
+**Grand piano (Black Grand Piano):** VCSL as above, Steinway B grand (`Chordophones/Zithers/Grand Piano, Steinway B/Sus`, close microphones, velocity layer 3, round robin 1).
+
+**Church organ:** VCSL as above, pipe organ (`Aerophones/Edge-blown Aerophones/Pipe Organ/Loud`).
+
+**Drums:** Virtuosity Drums by Versilian Studios and Karoryfer Lecolds, CC0 1.0, recorded with drummer Austin McMahon at Virtuosity Musical Instruments, Boston. https://github.com/sfzinstruments/virtuosity_drums
+- "mid" microphone: kick (snares off, velocity layer 3 of 4), snare centre hit (layer 25 of 36), high and low tom centre hits (layer 11 of 16).
+
 ## Song format
 
 The song text format follows Space Station 13's instrument songs (tgstation, `code/modules/instruments`).
