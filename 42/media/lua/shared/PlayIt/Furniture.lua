@@ -11,6 +11,7 @@ local Furniture = PlayIt.Furniture
 Furniture.REACH = 1.5 -- tiles from the musician to the edge of the instrument's tile
 Furniture.SCAN = 2 -- tiles around the musician searched for drum pieces
 Furniture.STICK = "Base.Drumstick"
+Furniture.SPAN = 2 -- tiles from the clicked tile to the far end of the biggest instrument (grand piano, organ: 3 long)
 
 -- CustomName / GroupName of the vanilla sprites (B42 newtiledefinitions)
 local KINDS = {
@@ -27,6 +28,14 @@ function Furniture.classify(customName, groupName)
     local kind = KINDS[tostring(customName) .. "/" .. tostring(groupName)]
     if kind == nil then return nil end
     return kind[1], kind[2]
+end
+
+-- SpriteGridPos "x,y,1": a tile of a two-storey object's upper half (the organ's top row), which stands on the
+-- floor above and isn't something to play
+function Furniture.isUpperTile(gridPos)
+    if gridPos == nil then return false end
+    local z = tostring(gridPos):match("^[^,]*,[^,]*,%s*(%d+)")
+    return z ~= nil and tonumber(z) > 0
 end
 
 -- same floor, and the musician at (px, py) within REACH of the tile square [x, x+1] x [y, y+1]
@@ -87,9 +96,18 @@ function Furniture.check(fullType, place, ctx)
         end
         return false, present and "TooFar" or "Gone"
     end
-    if not has(ctx.look(place.x, place.y, place.z), fullType) then return false, "Gone" end
-    if not Furniture.inReach(ctx.px, ctx.py, ctx.pz, place.x, place.y, place.z) then return false, "TooFar" end
-    return true
+    -- pianos and the organ span several tiles: any of them around the clicked one counts, so the musician may
+    -- click the tail and play at the keyboard, and the instrument stands while any tile of it does
+    local present = false
+    for x = place.x - Furniture.SPAN, place.x + Furniture.SPAN do
+        for y = place.y - Furniture.SPAN, place.y + Furniture.SPAN do
+            if has(ctx.look(x, y, place.z), fullType) then
+                present = true
+                if Furniture.inReach(ctx.px, ctx.py, ctx.pz, x, y, place.z) then return true end
+            end
+        end
+    end
+    return false, present and "TooFar" or "Gone"
 end
 
 -- game side ------------------------------------------------------------------------------------------------
@@ -99,6 +117,7 @@ function Furniture.ofObject(obj)
     local sprite = obj and obj:getSprite()
     local props = sprite and sprite:getProperties()
     if props == nil or not props:has("CustomName") then return nil end
+    if props:has("SpriteGridPos") and Furniture.isUpperTile(props:get("SpriteGridPos")) then return nil end
     return Furniture.classify(props:get("CustomName"), props:has("GroupName") and props:get("GroupName") or nil)
 end
 

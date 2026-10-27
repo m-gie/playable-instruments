@@ -30,3 +30,19 @@ ok, why = F.check("PlayIt.Drums", { x = 10, y = 10, z = 0, kit = kit }, { px = 1
 check(not ok and why == "Gone", "every kit piece gone")
 local two = F.kitAround({ { x = 10, y = 10, z = 0, piece = "kick" }, { x = 10, y = 11, z = 0, piece = "kick" } }, 10.5, 11.6, 0)
 check(#two == 1 and two[1].y == 11, "one piece of each kind, the nearest")
+
+-- final review: reach counts from any tile of the instrument, not only the clicked one
+local grandAt = function(x, y, z)
+    return (z == 0 and x >= 10 and x <= 11 and y >= 10 and y <= 12) and { { fullType = "PlayIt.GrandPiano" } } or {}
+end
+check(F.check("PlayIt.GrandPiano", { x = 10, y = 12, z = 0 }, { px = 10.5, py = 9.5, pz = 0, look = grandAt }),
+    "clicked the tail, playing at the keyboard end")
+local tailGone = function(x, y, z) if x == 10 and y == 12 then return {} end return grandAt(x, y, z) end
+check(F.check("PlayIt.GrandPiano", { x = 10, y = 12, z = 0 }, { px = 10.5, py = 9.5, pz = 0, look = tailGone }),
+    "the clicked tile was removed, the rest of the piano still stands")
+ok, why = F.check("PlayIt.GrandPiano", { x = 10, y = 12, z = 0 }, { px = 10.5, py = 6, pz = 0, look = grandAt })
+check(not ok and why == "TooFar", "far from every tile of the piano")
+
+-- final review: the organ's upper row stands on the floor above and is not an instrument
+check(F.isUpperTile("2,0,1") and not F.isUpperTile("0,0") and not F.isUpperTile("1,2,0") and not F.isUpperTile(nil),
+    "upper-row tiles are recognised by SpriteGridPos")
