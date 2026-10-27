@@ -29,3 +29,29 @@ check(I.defs["Base.Keytar"].release == 80, "keytar: very short release (VCSL's a
 for _, ft in ipairs({ "Base.Violin", "Base.Trumpet", "Base.Harmonica", "Base.Flute", "Base.Saxophone" }) do
     check(I.defs[ft].release == 100, ft .. " stops quickly")
 end
+
+-- world instruments: pianos, organ and drums (2026-10-27)
+require "PlayIt/Song"
+local D = I.defs["PlayIt.Drums"]
+check(I.isWorld("PlayIt.GrandPiano") and not I.isWorld("Base.Violin"), "world instruments are flagged")
+check(I.defs["PlayIt.WesternPiano"].samples ~= I.defs["PlayIt.GrandPiano"].samples, "the two pianos sound different")
+check(I.defs["PlayIt.ChurchOrgan"].maxRadius == 60 and D.maxRadius == 50, "organ and drums carry far")
+-- song range thirds: 48..60 -> kick <= 52, snare >= 56, tom between
+check(I.drumPiece(48, 48, 60) == "kick" and I.drumPiece(52, 48, 60) == "kick", "lowest third: kick")
+check(I.drumPiece(54, 48, 60) == "tom", "middle third: tom")
+check(I.drumPiece(56, 48, 60) == "snare" and I.drumPiece(60, 48, 60) == "snare", "top third: snare")
+check(I.drumPiece(55, 55, 55) == "snare", "drums: one pitch")
+check(I.drumPiece(40, 48, 60) == "kick" and I.drumPiece(70, 48, 60) == "snare", "drums: outside range")
+local full = { kick = true, snare = true, tom = true }
+check(I.resolve(D, 48, 0, { low = 48, high = 60, kit = full }) == "PlayIt_Drums_Kick", "kick sound")
+check(I.resolve(D, 48, 0, { low = 48, high = 60, kit = { snare = true } }) == nil, "missing piece is silent")
+local sLow, rLow = I.resolve(D, 53, 0, { low = 48, high = 60, kit = full })
+local sHigh, rHigh = I.resolve(D, 55, 0, { low = 48, high = 60, kit = full })
+check(sLow == "PlayIt_Drums_TomLow" and sHigh == "PlayIt_Drums_TomHigh", "lower toms on the low tom, higher on the high tom")
+local _, r1 = I.resolve(D, 54.9, 0, { low = 48, high = 60, kit = full })
+local _, r2 = I.resolve(D, 55.5, 0, { low = 48, high = 60, kit = full })
+check(r2 > r1 and rLow >= 2 ^ (-2 / 12) and rHigh <= 2 ^ (2 / 12), "toms follow pitch a little (within 2 semitones)")
+check(I.songRange(PlayIt.Song.parse("", 120)) == nil, "drums: empty song")
+local lo, hi = I.songRange(PlayIt.Song.parse("c3,e3-g4", 120)); check(lo == 48 and hi == 67, "song range")
+local pitched = I.resolve(I.defs["PlayIt.GrandPiano"], 60, 0)
+check(pitched == "PlayIt_Grand_C4", "pianos resolve like the hand-held instruments")
