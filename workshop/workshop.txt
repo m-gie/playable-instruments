@@ -1,7 +1,7 @@
 version=1
 id=3827828271
 title=Play it! Playable musical instruments
-description=Found a guitar in someone's living room and wished you could do more with it than smack a zombie? Or maybe you just want to annoy the rest of your base at 3 AM? I've got you covered.
+description=Found a guitar in someone's living room and wished you could do more with it than smack a zombie? Or maybe you just want to annoy the rest of your base at 3 AM? Yeah, me too.
 description=
 description=[b]Play it![/b] makes the instruments you find actually playable. Paste in a song, press Play, and your survivor plays it note by note - and everyone nearby hears it. Including the zombies.
 description=
@@ -11,6 +11,11 @@ description=
 description=Paste a song, set the [b]BPM[/b] and [b]volume[/b], and press [b]Play[/b]. You can walk while you play, pause and resume right where you stopped, and [b]Save[/b] your favourite songs - they're kept on your computer, so they follow you to every character and every server.
 description=
 description=Running, getting hit, getting grabbed or pressing [b]Esc[/b] pauses the song. Close the window mid-song and a small widget stays on screen, so you can keep an eye on the road instead of the sheet music.
+description=
+description=[h2]Pianos, Organs and Drums[/h2]
+description=Found a piano in someone's living room? Right-click a [b]piano[/b], [b]grand piano[/b], [b]church organ[/b] or a [b]drum[/b] and choose [b]Play[/b]. Your survivor walks over and the music window opens - everything works just like the hand-held instruments. Sit on a stool next to it if you like, or play standing. Walk away and the song pauses.
+description=
+description=A drum kit is every [b]kick, snare and tom drum[/b] within reach - the snare comes with a [b]hi-hat[/b] and the tom with a [b]crash cymbal[/b]. The lowest notes of a song hit the kick, then the toms, the snare and the hi-hat, and the very highest notes crash the cymbal. Missing a drum? Those notes stay silent. You'll need a [b]drumstick[/b] in your inventory.
 description=
 description=[h2]Where Do Songs Come From?[/h2]
 description=Songs use the [b]Space Station 13[/b] instrument format, so years of community songbooks work right away. Got a MIDI file instead? Run it through an SS13 MIDI converter (like midi2piano) and paste the result.
@@ -23,13 +28,13 @@ description=
 description=[h2]Everyone's a Critic[/h2]
 description=Music is real noise. Zombies hear it from up to [b]45 tiles[/b] away with a trumpet at full volume - great for luring a horde away from a building you want to loot, terrible for a quiet night in. Turn the volume down to play it safe.
 description=
-description=Listening to music [b]cures boredom[/b] for you and everyone in earshot - the better you play, the faster it works. Play badly, though, and every wrong note makes your audience a little more [b]stressed[/b] and [b]unhappy[/b].
+description=Listening to music [b]cures boredom[/b] for you and everyone in earshot - the better you play, the faster it works. Play badly, though, and every wrong note makes your audience a little more [b]stressed[/b] and [b]unhappy[/b] - though nobody gets more than mildly upset.
 description=
 description=Wild animals run from the racket. Tame animals that trust you might just wander over to listen. [i]Even the cows have better taste than your neighbours.[/i]
 description=
 description=[h2]Features[/h2]
 description=[list]
-description=[*]Seven playable instruments, using real recorded notes.
+description=[*]Seven hand-held instruments plus pianos, the church organ and drums, using real recorded notes.
 description=[*]Paste songs in the Space Station 13 format, or convert your own MIDI files.
 description=[*]Save and load your songs, pause and resume, play while walking.
 description=[*]New Music skill - from tone-deaf to virtuoso.
@@ -45,6 +50,8 @@ description=[b]Instrument recordings[/b]
 description=[list]
 description=[*][b]Acoustic guitar, trumpet, violin, flute, saxophone:[/b] University of Iowa Electronic Music Studios, Musical Instrument Samples (Lawrence Fritts). Guitar played by Brian Penkrot, trumpet by Aren Van Houzen, violin by Leonid Iogansen, flute by Sonja Feig, alto saxophone by Michael Giles. [url=https://theremin.music.uiowa.edu/MIS.html]theremin.music.uiowa.edu/MIS.html[/url]
 description=[*][b]Harmonica, keytar:[/b] Versilian Studios Community Sample Library (VCSL) by Sam Gossner, CC0 (Hohner Super 64; Yamaha TX81Z "Clavisynth"). [url=https://github.com/sgossner/VCSL]github.com/sgossner/VCSL[/url]
+description=[*][b]Piano, grand piano, church organ:[/b] VCSL as above (Yamaha upright; Steinway B grand; pipe organ).
+description=[*][b]Drums:[/b] Virtuosity Drums by Versilian Studios and Karoryfer Lecolds, CC0, played by Austin McMahon (drums and cymbals). [url=https://github.com/sfzinstruments/virtuosity_drums]github.com/sfzinstruments/virtuosity_drums[/url]
 description=[/list]
 description=The song format comes from Space Station 13's instruments (/tg/station).
 tags=Build 42;Multiplayer
