@@ -14,7 +14,8 @@ local ROW = FONT_HGT + 6
 
 local widgets = {}
 
-function MiniWidget.show(player, fullType)
+-- place: the furniture's tile (nil for hand-held instruments), so Resume and Open go back to it
+function MiniWidget.show(player, fullType, place)
     local w = widgets[player:getPlayerNum()]
     if w == nil then
         w = MiniWidget:new(getCore():getScreenWidth() - 300, 120, player)
@@ -24,7 +25,8 @@ function MiniWidget.show(player, fullType)
     end
     w.player = player
     w.fullType = fullType
-    w.label:setName(getItemNameFromFullType(fullType))
+    w.place = place
+    w.label:setName(PlayIt.Instruments.displayName(fullType))
     w:setVisible(true)
 end
 
@@ -64,14 +66,14 @@ function MiniWidget:onPause()
     if c:isPlaying() then
         PlayIt.Controls.pause(self.player)
     else
-        PlayIt.MusicWindow.open(self.player, self.fullType):onPlay()
+        PlayIt.MusicWindow.open(self.player, self.fullType, self.place):onPlay()
         self:setVisible(true)
         PlayIt.MusicWindow.get(self.player):setVisible(false)
     end
 end
 
 function MiniWidget:onOpen()
-    PlayIt.MusicWindow.open(self.player, self.fullType)
+    PlayIt.MusicWindow.open(self.player, self.fullType, self.place)
 end
 
 function MiniWidget:onClose()

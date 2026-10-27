@@ -7,6 +7,9 @@ require "PlayIt/Song"
 require "PlayIt/SongFiles"
 require "PlayIt/Session"
 require "PlayIt/Controls"
+require "PlayIt/Instruments"
+require "PlayIt/Furniture"
+require "PlayIt/Playback"
 
 PlayIt = PlayIt or {}
 PlayIt.MusicWindow = ISCollapsableWindow:derive("PlayItMusicWindow")
@@ -19,7 +22,8 @@ local DEFAULT_VOLUME = 70
 
 local windows = {} -- one per local player
 
-function MusicWindow.open(player, fullType)
+-- place: the tile of a piano, organ or drum played from the world (nil for hand-held instruments)
+function MusicWindow.open(player, fullType, place)
     local w = windows[player:getPlayerNum()]
     if w == nil then
         w = MusicWindow:new(200, 150, 440, 400, player)
@@ -29,7 +33,8 @@ function MusicWindow.open(player, fullType)
     end
     w.player = player -- the slot's character may have died and respawned since the window was made
     w.fullType = fullType
-    w:setTitle(getText("IGUI_PlayIt_Title", getItemNameFromFullType(fullType)))
+    w.place = place
+    w:setTitle(getText("IGUI_PlayIt_Title", PlayIt.Instruments.displayName(fullType)))
     w:setVisible(true)
     w:bringToTop()
     PlayIt.MiniWidget.hide(player)
@@ -145,6 +150,22 @@ function MusicWindow:warningsFor(text, bpm)
     return getText("IGUI_PlayIt_Warn_" .. w.key, tostring(w.line))
 end
 
+-- the place to send for furniture: the clicked tile, plus for drums the kit around the musician now.
+-- nil and the reason ("Gone", "TooFar", "NoSticks", "Busy") when they can't play here
+function MusicWindow:worldPlace()
+    local p = self.place
+    local place = { x = p.x, y = p.y, z = p.z }
+    local ctx = PlayIt.Furniture.ctxFor(self.player)
+    if PlayIt.Instruments.defs[self.fullType].drums then
+        place.kit = PlayIt.Furniture.kitAround(PlayIt.Furniture.scan(ctx.px, ctx.py, ctx.pz), ctx.px, ctx.py, ctx.pz)
+        if #place.kit == 0 then return nil, ctx.hasStick and "TooFar" or "NoSticks" end
+    end
+    local ok, why = PlayIt.Furniture.check(self.fullType, place, ctx)
+    if not ok then return nil, why end
+    if PlayIt.Playback.busyAt(self.fullType, place, PlayIt.Net.idOf(self.player)) then return nil, "Busy" end
+    return place
+end
+
 function MusicWindow:onPlay()
     local c = self:controller()
     if c:isPlaying() then
@@ -153,18 +174,28 @@ function MusicWindow:onPlay()
     end
     local text = self.songBox:getText()
     local bpm = tonumber(self.bpmBox:getText()) or PlayIt.Song.BPM_DEFAULT
-    local item = self.player:getPrimaryHandItem()
-    local queued = ISTimedActionQueue.hasActionType(self.player, "ISEquipWeaponAction")
-    if not queued and (item == nil or item:getFullType() ~= self.fullType) then
-        self:setStatus(getText("IGUI_PlayIt_NotHolding"))
-        return
+    local place
+    if PlayIt.Instruments.isWorld(self.fullType) then
+        local why
+        place, why = self:worldPlace()
+        if place == nil then
+            self:setStatus(getText("IGUI_PlayIt_" .. why))
+            return
+        end
+    else
+        local item = self.player:getPrimaryHandItem()
+        local queued = ISTimedActionQueue.hasActionType(self.player, "ISEquipWeaponAction")
+        if not queued and (item == nil or item:getFullType() ~= self.fullType) then
+            self:setStatus(getText("IGUI_PlayIt_NotHolding"))
+            return
+        end
     end
     if #PlayIt.Song.compact(text) > PlayIt.Session.MAX_TEXT then
         self:setStatus(getText("IGUI_PlayIt_TooLong"))
         return
     end
     self:setStatus(self:warningsFor(text, bpm))
-    PlayIt.Controls.play(self.player, text, bpm, self.volume:getCurrentValue() / 100, self.fullType)
+    PlayIt.Controls.play(self.player, text, bpm, self.volume:getCurrentValue() / 100, self.fullType, place)
 end
 
 function MusicWindow:onStop()
@@ -220,7 +251,7 @@ end
 function MusicWindow:close()
     ISCollapsableWindow.close(self)
     local c = self:controller()
-    if c:isPlaying() or c:isPaused() then PlayIt.MiniWidget.show(self.player, self.fullType) end
+    if c:isPlaying() or c:isPaused() then PlayIt.MiniWidget.show(self.player, self.fullType, self.place) end
 end
 
 function MusicWindow:new(x, y, width, height, player)

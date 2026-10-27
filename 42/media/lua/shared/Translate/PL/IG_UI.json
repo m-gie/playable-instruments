@@ -18,5 +18,13 @@
   "IGUI_PlayIt_NotHolding": "Weź instrument do głównej ręki, żeby zagrać.",
   "IGUI_PlayIt_Warn_LineTooLong": "Linia %1 ma ponad 300 znaków i została pominięta.",
   "IGUI_PlayIt_Warn_TooManyLines": "Grane jest tylko pierwsze %1 linii.",
-  "IGUI_PlayIt_TooLong": "Ten utwór jest za długi, żeby inni gracze go usłyszeli. Usuń kilka linii."
+  "IGUI_PlayIt_TooLong": "Ten utwór jest za długi, żeby inni gracze go usłyszeli. Usuń kilka linii.",
+  "IGUI_PlayIt_Name_Upright": "Pianino",
+  "IGUI_PlayIt_Name_Grand": "Fortepian",
+  "IGUI_PlayIt_Name_Organ": "Organy",
+  "IGUI_PlayIt_Name_Drums": "Perkusja",
+  "IGUI_PlayIt_Gone": "Instrumentu już tu nie ma.",
+  "IGUI_PlayIt_TooFar": "Podejdź bliżej instrumentu, żeby zagrać.",
+  "IGUI_PlayIt_NoSticks": "Potrzebujesz pałeczki, żeby grać na perkusji.",
+  "IGUI_PlayIt_Busy": "Ktoś inny już na tym gra."
 }

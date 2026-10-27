@@ -1,4 +1,5 @@
 {
   "ContextMenu_PlayIt_Play": "Zagraj",
-  "ContextMenu_PlayIt_Stop": "Przestań grać"
+  "ContextMenu_PlayIt_Stop": "Przestań grać",
+  "ContextMenu_PlayIt_PlayWorld": "Zagraj (%1)"
 }

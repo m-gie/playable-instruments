@@ -36,6 +36,12 @@ function Instruments.isWorld(fullType)
     return d ~= nil and d.world
 end
 
+-- the name players see: the item's name, or for furniture IGUI_PlayIt_Name_<key>
+function Instruments.displayName(fullType)
+    if Instruments.isWorld(fullType) then return getText("IGUI_PlayIt_Name_" .. Instruments.defs[fullType].key) end
+    return getItemNameFromFullType(fullType)
+end
+
 -- lowest and highest note of a song as written (blunders aside); nil when it has no notes
 function Instruments.songRange(song)
     local low, high

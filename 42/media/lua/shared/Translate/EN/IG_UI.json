@@ -18,5 +18,13 @@
   "IGUI_PlayIt_NotHolding": "Hold the instrument in your main hand to play.",
   "IGUI_PlayIt_Warn_LineTooLong": "Line %1 is longer than 300 characters and was skipped.",
   "IGUI_PlayIt_Warn_TooManyLines": "Only the first %1 lines are played.",
-  "IGUI_PlayIt_TooLong": "This song is too long to share with other players. Remove some lines."
+  "IGUI_PlayIt_TooLong": "This song is too long to share with other players. Remove some lines.",
+  "IGUI_PlayIt_Name_Upright": "Piano",
+  "IGUI_PlayIt_Name_Grand": "Grand Piano",
+  "IGUI_PlayIt_Name_Organ": "Church Organ",
+  "IGUI_PlayIt_Name_Drums": "Drums",
+  "IGUI_PlayIt_Gone": "The instrument is gone.",
+  "IGUI_PlayIt_TooFar": "Get closer to the instrument to play.",
+  "IGUI_PlayIt_NoSticks": "You need a drumstick to play the drums.",
+  "IGUI_PlayIt_Busy": "Someone else is already playing this."
 }

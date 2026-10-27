@@ -40,10 +40,11 @@ function Controls.get(player)
     return c
 end
 
--- queue the play action; it starts (or resumes) the song once the instrument is in hand
-function Controls.play(player, text, bpm, volume, fullType)
+-- queue the play action; it starts (or resumes) the song once the instrument is in hand.
+-- place: where a piano, organ or drum kit stands (nil for hand-held instruments)
+function Controls.play(player, text, bpm, volume, fullType, place)
     if ISTimedActionQueue.hasActionType(player, "ISPlayItAction") then return end
-    local song = { text = text, bpm = bpm, volume = volume, fullType = fullType }
+    local song = { text = text, bpm = bpm, volume = volume, fullType = fullType, place = place }
     ISTimedActionQueue.add(ISPlayItAction:new(player, Controls.get(player), song))
 end
 
