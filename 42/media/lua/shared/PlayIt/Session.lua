@@ -105,18 +105,20 @@ local function sharesTile(a, b)
     return false
 end
 
+-- do two performances use the same instrument? Pianos and the organ: the same type within SAME_INSTRUMENT tiles;
+-- drums: a shared piece
+function Session.overlaps(fullType, place, otherType, other)
+    if fullType ~= otherType or place == nil or other == nil then return false end
+    if place.kit or other.kit then return sharesTile(place, other) end
+    return other.z == place.z and math.abs(other.x - place.x) < Session.SAME_INSTRUMENT
+        and math.abs(other.y - place.y) < Session.SAME_INSTRUMENT
+end
+
 -- id of another musician playing (not paused) the instrument at place, or nil. s.fullType is set by the server.
--- Pianos and the organ: the same type within SAME_INSTRUMENT tiles; drums: a shared piece.
 function Session:busyAt(fullType, place, exceptId)
     for id, s in pairs(self.list) do
-        local other = s.perf.place
-        if id ~= exceptId and not s.paused and s.fullType == fullType and other then
-            if place.kit or other.kit then
-                if sharesTile(place, other) then return id end
-            elseif other.z == place.z and math.abs(other.x - place.x) < Session.SAME_INSTRUMENT
-                and math.abs(other.y - place.y) < Session.SAME_INSTRUMENT then
-                return id
-            end
+        if id ~= exceptId and not s.paused and Session.overlaps(fullType, place, s.fullType, s.perf.place) then
+            return id
         end
     end
     return nil

@@ -10,6 +10,7 @@ require "PlayIt/Herd"
 require "PlayIt/Config"
 require "PlayIt/Song"
 require "PlayIt/Timeline"
+require "PlayIt/Furniture"
 
 local RELAY_RANGE = 80
 local CATCH_UP_MS = 2000
@@ -54,12 +55,33 @@ local function holds(player, fullType)
     return item ~= nil and item:getFullType() == fullType and PlayIt.Instruments.defs[fullType] ~= nil
 end
 
+-- furniture: the instrument is there, the musician is next to it (with a drumstick for drums) and nobody else
+-- plays it. true, or false and the reason the client shows ("Gone", "TooFar", "NoSticks", "Busy")
+local function mayPlayFurniture(player, fullType, place)
+    if place == nil then return false, "Gone" end
+    local ok, why = PlayIt.Furniture.check(fullType, place, PlayIt.Furniture.ctxFor(player))
+    if not ok then return false, why end
+    if sessions:busyAt(fullType, place, player:getOnlineID()) then return false, "Busy" end
+    return true
+end
+
 local handlers = {}
 
 function handlers.start(player, args)
     local ok, why = PlayIt.Session.validate(args.perf)
-    if not ok or type(args.posMs) ~= "number" or not holds(player, args.fullType) then
-        print("[PlayIt] rejected start from " .. player:getUsername() .. ": " .. tostring(why or "instrument"))
+    if ok and type(args.posMs) ~= "number" then ok, why = false, "posMs" end
+    if ok and PlayIt.Instruments.isWorld(args.fullType) then
+        local refused
+        ok, refused = mayPlayFurniture(player, args.fullType, args.perf.place)
+        if not ok then
+            why = refused
+            sendServerCommand(player, "PlayIt", "refused", { reason = refused })
+        end
+    elseif ok and not holds(player, args.fullType) then
+        ok, why = false, "instrument"
+    end
+    if not ok then
+        print("[PlayIt] rejected start from " .. player:getUsername() .. ": " .. tostring(why))
         return
     end
     local id = player:getOnlineID()

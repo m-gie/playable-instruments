@@ -6,6 +6,8 @@ require "PlayIt/Timeline"
 require "PlayIt/Instruments"
 require "PlayIt/Voices"
 require "PlayIt/Trace"
+require "PlayIt/Furniture"
+require "PlayIt/Session"
 
 PlayIt = PlayIt or {}
 PlayIt.Playback = PlayIt.Playback or {}
@@ -24,6 +26,13 @@ local function build(perf)
     return PlayIt.Timeline.build(PlayIt.Song.parse(perf.text, perf.bpm), perf.seed, perf.segments)
 end
 
+-- what the drums need to pick a piece for a note: the song's range and the kit; nil for other instruments
+local function drumContext(def, perf)
+    if not def.drums then return nil end
+    local low, high = PlayIt.Instruments.songRange(PlayIt.Song.parse(perf.text, perf.bpm))
+    return { low = low or 0, high = high or 0, kit = PlayIt.Furniture.kitSet(perf.place and perf.place.kit) }
+end
+
 -- source: { getPos() -> x, y, z, isSilent() -> true while the musician must not be heard (invisible) }
 -- perf: { text, bpm, seed, segments, volume (0-1) }; posMs: where in the song to begin
 function Playback.start(id, source, fullType, perf, posMs, nowMs)
@@ -34,7 +43,8 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
     PlayIt.trace("playback start id=%s pos=%.0f length=%.0f chords=%d next=%s", tostring(id), posMs, timeline.length,
         #timeline.events, tostring(PlayIt.Timeline.firstEventAt(timeline, posMs)))
     active[id] = {
-        source = source, def = def, perf = perf, timeline = timeline,
+        source = source, def = def, perf = perf, timeline = timeline, fullType = fullType,
+        drums = drumContext(def, perf),
         origin = nowMs - posMs, lastChord = 0,
         nextIndex = PlayIt.Timeline.firstEventAt(timeline, posMs),
         voices = Playback.newVoices(source.getPos, def.release),
@@ -47,8 +57,8 @@ local function play(id, p, event, nowMs)
         return
     end
     for _, note in ipairs(event.notes) do
-        local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents)
-        p.voices:noteOn(sound, ratio, event.dur, nowMs, p.perf.volume)
+        local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents, p.drums)
+        if sound then p.voices:noteOn(sound, ratio, event.dur, nowMs, p.perf.volume) end
     end
     if Playback.onEvent then Playback.onEvent(id, event, p.perf, p.def) end
 end
@@ -78,6 +88,14 @@ function Playback.position(id, nowMs)
     local pos = nowMs - p.origin
     if pos >= p.timeline.length then return nil end
     return pos
+end
+
+-- someone other than exceptId is playing the instrument at place (as far as this client hears)
+function Playback.busyAt(fullType, place, exceptId)
+    for id, p in pairs(active) do
+        if id ~= exceptId and PlayIt.Session.overlaps(fullType, place, p.fullType, p.perf.place) then return true end
+    end
+    return false
 end
 
 -- index of the last chord played (0 before the first)

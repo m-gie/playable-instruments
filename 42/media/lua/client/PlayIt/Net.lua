@@ -69,6 +69,15 @@ function handlers.segments(args)
     PlayIt.Playback.setSegments(args.id, args.segments)
 end
 
+-- the server turned down our song on a piano, organ or drums: stop it here too and say why
+function handlers.refused(args)
+    local player = getPlayer()
+    if player == nil or PlayIt.Controls == nil then return end
+    PlayIt.Controls.stop(player)
+    local w = PlayIt.MusicWindow and PlayIt.MusicWindow.get(player)
+    if w then w:setStatus(getText("IGUI_PlayIt_" .. tostring(args.reason))) end
+end
+
 -- the relay reaches further than a client loads players: start waiting songs once their musician appears
 Events.OnTick.Add(function()
     local now = getTimestampMs()
