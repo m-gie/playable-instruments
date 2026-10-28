@@ -56,7 +56,8 @@ end
 
 -- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level, place (furniture),
 -- fromMs (where in its timeline the part comes in; nil = from its first note), tone (one of the instrument's
--- PlayIt.Instruments.tonesOf ids; nil = its default sound) }
+-- PlayIt.Instruments.tonesOf ids; nil = its default sound), echo (0 < echo <= 1 strength of the echo tails; nil = off,
+-- never on the drums) }
 function Session.validate(perf, fullType)
     if type(perf) ~= "table" then return false, "perf" end
     if type(perf.text) ~= "string" or #perf.text > Session.MAX_TEXT then return false, "text" end
@@ -73,6 +74,10 @@ function Session.validate(perf, fullType)
             known = known or t.id == perf.tone
         end
         if not known then return false, "tone" end
+    end
+    if perf.echo ~= nil then
+        local def = PlayIt.Instruments.defs[fullType]
+        if not within(perf.echo, 0, 1) or perf.echo == 0 or (def and def.drums) then return false, "echo" end
     end
     local segs = perf.segments
     if type(segs) ~= "table" or #segs == 0 or #segs > Session.MAX_SEGMENTS then return false, "segments" end

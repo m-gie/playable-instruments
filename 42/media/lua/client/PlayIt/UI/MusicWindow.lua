@@ -1,5 +1,5 @@
 -- The music window: paste an ABC song, pick a part (and a tone where the instrument has several), set BPM and
--- volume, Play/Pause, Stop, Save, Load.
+-- volume and echo, Play/Pause, Stop, Save, Load.
 -- Closing it while a song plays or is paused leaves the small widget instead.
 
 require "ISUI/ISCollapsableWindow"
@@ -97,6 +97,15 @@ function MusicWindow:createChildren()
     self.volume:setCurrentValue(DEFAULT_VOLUME, true)
     self:addChild(self.volume)
 
+    self.echoLabel = ISLabel:new(0, 0, ROW, getText("IGUI_PlayIt_Echo"), 1, 1, 1, 1, UIFont.Small, true)
+    self:addChild(self.echoLabel)
+    self.echo = ISSliderPanel:new(0, 0, 100, ROW, self, MusicWindow.onEchoChanged)
+    self.echo:initialise()
+    self.echo:instantiate()
+    self.echo:setValues(0, 100, 5, 10)
+    self.echo:setCurrentValue(0, true)
+    self:addChild(self.echo)
+
     local function button(key, onClick)
         local b = ISButton:new(0, 0, 80, ROW, getText(key), self, onClick)
         b:initialise()
@@ -151,7 +160,16 @@ function MusicWindow:layout()
         el:setY(controlsY)
         x = x + el:getWidth() + PAD
     end
-    self.volume:setWidth(math.max(60, self.width - PAD - self.volume:getX()))
+    local hasEcho = self.echo:isVisible()
+    local share = hasEcho and 2 or 1 -- with the echo slider, volume and echo split the rest of the row
+    self.volume:setWidth(math.max(60, (self.width - PAD - self.volume:getX() - (hasEcho and self.echoLabel:getWidth() + PAD * 2 or 0)) / share))
+    if hasEcho then
+        self.echoLabel:setX(self.volume:getX() + self.volume:getWidth() + PAD)
+        self.echoLabel:setY(controlsY)
+        self.echo:setX(self.echoLabel:getX() + self.echoLabel:getWidth() + PAD)
+        self.echo:setY(controlsY)
+        self.echo:setWidth(math.max(60, self.width - PAD - self.echo:getX()))
+    end
 
     x = PAD
     for _, b in ipairs({ self.playButton, self.stopButton, self.saveButton, self.loadButton }) do
@@ -217,12 +235,28 @@ function MusicWindow:refreshTones()
     self.toneCombo.selected = pick
     self.toneLabel:setVisible(#self.tones > 0)
     self.toneCombo:setVisible(#self.tones > 0)
+    -- no echo on the drum kit
+    local def = PlayIt.Instruments.defs[self.fullType]
+    local hasEcho = def ~= nil and not def.drums
+    self.echoLabel:setVisible(hasEcho)
+    self.echo:setVisible(hasEcho)
+    self.echo:setCurrentValue(math.floor(PlayIt.Tones.getEcho(self.fullType) * 100 + 0.5), true)
     self:layout()
 end
 
 function MusicWindow:selectedTone()
     local t = self.tones[self.toneCombo.selected]
     return t and t.id
+end
+
+function MusicWindow:onEchoChanged(value)
+    PlayIt.Tones.setEcho(self.fullType, value / 100)
+end
+
+-- the echo strength 0..1 to play with (0 on the drum kit)
+function MusicWindow:selectedEcho()
+    if not self.echo:isVisible() then return 0 end
+    return self.echo:getCurrentValue() / 100
 end
 
 function MusicWindow:onToneChanged()
@@ -302,7 +336,7 @@ function MusicWindow:onPlay()
     end
     self:setStatus(self:warningsFor(text, bpm))
     PlayIt.Controls.play(self.player, text, bpm, self.volume:getCurrentValue() / 100, self.fullType, place,
-        self:selectedTone())
+        self:selectedTone(), self:selectedEcho())
 end
 
 function MusicWindow:onStop()
