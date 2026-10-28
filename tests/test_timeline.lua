@@ -40,3 +40,16 @@ check(#lead.events == 2 and lead.events[1].t == 0 and lead.events[1].chord == 3 
 local held = T.build(S.parse(abc("[C-E]2 [CG]2 [Q:1/4=60] D"), 120), 1, {{fromChord = 1, chance = 0}})
 check(held.events[1].notes[1].dur == 2000 and held.events[1].notes[2].dur == 1000, "tied note held through the next chord")
 check(held.events[3].t == 2000 and held.events[3].dur == 1000 and held.length == 3000, "tempo change: a beat lasts 1 s at 60")
+
+-- band play: leading silence and bar starts on the timeline, hesitations don't shift later chords
+local barred = T.build(S.parse(abc("z2 C2 | D2"), 120), 1, {{fromChord = 1, chance = 0}})
+check(barred.leadMs == 1000 and barred.events[1].t == 0, "leadMs is the skipped silence")
+check(#barred.bars == 2 and barred.bars[1] == -1000 and barred.bars[2] == 1000, "bar starts in timeline ms")
+check(T.nextBar(barred, 1) == 1000 and T.nextBar(barred, -5000) == -1000 and T.nextBar(barred, 1500) == nil, "nextBar")
+check(clean.leadMs == 0 and clean.bars[1] == 0, "a part starting on a note")
+local hes
+for seed = 1, 500 do
+    local tl = T.build(song, seed, {{fromChord = 1, chance = 1}})
+    if tl.events[1].blunder == "pause" then hes = tl; break end
+end
+check(hes ~= nil and hes.events[1].t > 0 and hes.events[2].t == 500, "a hesitation delays only its own chord")

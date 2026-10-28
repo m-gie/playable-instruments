@@ -149,3 +149,9 @@ local messy = "X:1\nT:Song % comment\n%%MIDI channel 10\nL:1/4\nK:C\n% a comment
 local c = S.compact(messy)
 check(c == "X:1\nT:Song\n%%MIDI channel 10\nL:1/4\nK:C\nC D\nE", "compact drops comments, lyrics, blank lines and trailing spaces")
 check(seq(S.parse(c)) == seq(S.parse(messy)) and S.parse(c).drums, "compact text plays exactly like the original")
+
+-- bar starts (band play comes in on a bar)
+local barSong = P("z C | D | E")
+check(barSong.chords[1].bar and not barSong.chords[2].bar and barSong.chords[3].bar and barSong.chords[4].bar, "chords that start a bar")
+local rep = P("|: C2 :| D2")
+check(#rep.chords == 3 and rep.chords[1].bar and rep.chords[2].bar and rep.chords[3].bar, "a repeat jump starts a bar")

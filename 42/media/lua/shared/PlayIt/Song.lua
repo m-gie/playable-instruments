@@ -379,6 +379,7 @@ function Parser:readBar(s, i)
     local endRepeat = #run > 1 and run:sub(1, 1) == ":"
     local startRepeat = #run > 1 and run:sub(-1) == ":"
     self:bar()
+    self:add({ kind = "bar" })
     if endRepeat then self:add({ kind = "end" }) end
     if startRepeat then self:add({ kind = "start" }) end
     if run:find("||", 1, true) or run:find("|]", 1, true) then self:add({ kind = "double" }) end
@@ -509,9 +510,10 @@ function Parser:music(s)
     end
 end
 
--- repeats and endings played out; every :| jumps back once, so a piece at most doubles
+-- repeats and endings played out; every :| jumps back once, so a piece at most doubles.
+-- Also returns which chords start a bar: the first, the first after a bar line and the first after a jump.
 local function expand(items)
-    local out = {}
+    local out, bars, barNext = {}, {}, true
     local i, pass, start = 1, 1, 1
     local used = {}
     local guard = 0
@@ -521,6 +523,10 @@ local function expand(items)
         local it = items[i]
         if it.kind == "chord" then
             out[#out + 1] = it
+            if barNext then bars[#out], barNext = true, false end
+            i = i + 1
+        elseif it.kind == "bar" then
+            barNext = true
             i = i + 1
         elseif it.kind == "start" then
             start, pass = i + 1, 1
@@ -530,6 +536,7 @@ local function expand(items)
                 used[i] = true
                 pass = 2
                 i = start
+                barNext = true
             else
                 start = i + 1
                 i = i + 1
@@ -549,14 +556,14 @@ local function expand(items)
             i = i + 1
         end
     end
-    return out
+    return out, bars
 end
 
--- ties joined, per-note lengths: chords = { {notes = struck midis, lens = beats each, beats, qpm} }
-local function resolveTies(items)
+-- ties joined, per-note lengths: chords = { {notes = struck midis, lens = beats each, beats, qpm, bar} }
+local function resolveTies(items, bars)
     local chords, held = {}, {}
     for idx, it in ipairs(items) do
-        local chord = { notes = {}, lens = {}, beats = it.beats, qpm = it.qpm }
+        local chord = { notes = {}, lens = {}, beats = it.beats, qpm = it.qpm, bar = bars[idx] }
         local nextHeld = {}
         for _, n in ipairs(it.notes) do
             local origin = held[n.midi]
@@ -588,7 +595,7 @@ local function tuneText(text)
 end
 
 -- bpm: the menu field (quarter notes a minute); scales every tempo in the part. Returns
--- { bpm, title, drums, events, chords = { {notes, lens, beats, qpm} }, warnings = { {key, line} } }
+-- { bpm, title, drums, events, chords = { {notes, lens, beats, qpm, bar} }, warnings = { {key, line} } }
 function Song.parse(text, bpm)
     local song = { chords = {}, warnings = {}, events = 0, drums = false }
     local tune = tuneText(text or "")
@@ -618,8 +625,8 @@ function Song.parse(text, bpm)
     local scale = 1
     if type(bpm) == "number" then scale = clampBpm(bpm) / base end
     song.bpm = clampBpm(base * scale)
-    local items = expand(p.items)
-    song.chords = resolveTies(items)
+    local items, bars = expand(p.items)
+    song.chords = resolveTies(items, bars)
     for _, c in ipairs(song.chords) do c.qpm = clampBpm(c.qpm * scale) end
     song.events = #song.chords
     song.title, song.drums = p.title, p.drums

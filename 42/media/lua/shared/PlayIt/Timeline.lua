@@ -62,21 +62,36 @@ local function rollChord(chord, chordMs, rand, chance)
 end
 
 -- segments: { {fromChord = 1, chance = p}, ... } ascending, first fromChord = 1.
--- Played solo, the silence before the first note is skipped (chord numbers stay as written).
+-- Timeline 0 is the first note: the silence before it (leadMs) is skipped in solo play and kept on a shared
+-- performance's clock. bars: bar start times, negative before the first note. A hesitation delays its own chord
+-- only, so a band member never falls behind for good. Chord numbers stay as written.
 function Timeline.build(song, seed, segments)
-    local events, t = {}, 0
-    local started = false
+    local starts, base, leadMs = {}, 0, nil
     for i, chord in ipairs(song.chords) do
-        started = started or #chord.notes > 0
-        if started then
+        starts[i] = base
+        if leadMs == nil and #chord.notes > 0 then leadMs = base end
+        base = base + 60000 / chord.qpm * chord.beats
+    end
+    leadMs = leadMs or base
+    local events, bars = {}, {}
+    for i, chord in ipairs(song.chords) do
+        local t = starts[i] - leadMs
+        if chord.bar then bars[#bars + 1] = t end
+        if t >= 0 then
             local chordMs = 60000 / chord.qpm * chord.beats
             local notes, blunder, delay = rollChord(chord, chordMs, Timeline.rng(seed, i), chanceFor(segments, i))
-            t = t + delay
-            events[#events + 1] = { t = t, chord = i, notes = notes, dur = chordMs, blunder = blunder }
-            t = t + chordMs
+            events[#events + 1] = { t = t + delay, chord = i, notes = notes, dur = chordMs, blunder = blunder }
         end
     end
-    return { events = events, length = t }
+    return { events = events, length = base - leadMs, leadMs = leadMs, bars = bars }
+end
+
+-- the first bar start at or after posMs; nil when no bar is left
+function Timeline.nextBar(timeline, posMs)
+    for _, t in ipairs(timeline.bars) do
+        if t >= posMs then return t end
+    end
+    return nil
 end
 
 -- index of the first event starting at or after posMs; nil past the end
