@@ -28,6 +28,7 @@ function Controls.get(player)
             currentChord = function() return PlayIt.Playback.currentChord(PlayIt.Net.idOf(c.player)) end,
             level = function() return musicLevel(c.player) end,
             config = PlayIt.Config.get,
+            serverNow = function() return PlayIt.Net.clock:toServer(getTimestampMs()) end,
             mood = function()
                 local stats = c.player:getStats()
                 return stats:get(CharacterStat.INTOXICATION), stats:get(CharacterStat.PANIC)

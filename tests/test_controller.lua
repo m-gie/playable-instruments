@@ -1,9 +1,12 @@
 require "PlayIt/Controller"
 local C = PlayIt.Controller
 
-local calls, pausePos, livePos, liveChord = {}, 750, 0, 0
+local calls, pausePos, livePos, liveChord, serverNow = {}, 750, 0, 0, 0
 local net = {
-    start = function(_, fullType, perf, pos) table.insert(calls, { "start", fullType = fullType, perf = perf, pos = pos }) end,
+    start = function(_, fullType, perf, pos, opts) table.insert(calls, { "start", fullType = fullType, perf = perf, pos = pos, opts = opts }) end,
+    startLocal = function(_, fullType, perf, pos) table.insert(calls, { "startLocal", perf = perf, pos = pos }) end,
+    stopLocal = function() table.insert(calls, { "stopLocal" }) end,
+    unalong = function() table.insert(calls, { "unalong" }) end,
     pause = function() table.insert(calls, { "pause" }); return pausePos end,
     stop = function() table.insert(calls, { "stop" }) end,
     segments = function(_, segs) table.insert(calls, { "segments", segs = segs }) end,
@@ -17,6 +20,7 @@ local deps = {
     level = function() return 3 end,
     config = function() return { skillOn = true, p0 = 0.5, p10 = 0.0001 } end,
     mood = function() return 0, 0 end,
+    serverNow = function() return serverNow end,
 }
 local c = C.new("player", deps)
 local last = function() return calls[#calls] end
@@ -77,3 +81,41 @@ check(last().pos == 0 and last().perf.place.x == 9, "resume needs the same place
 c2:pause()
 c2:play(abc("C D"), 120, 0.7, "PlayIt.WesternPiano", { x = 9, y = 9, z = 0 })
 check(last().pos == pausePos and c2:place().x == 9, "same place resumes")
+
+check(last().opts == nil, "solo play doesn't wait for the server")
+
+-- play along (2026-10-28)
+local function count(kind) local n = 0 for _, x in ipairs(calls) do if x[1] == kind then n = n + 1 end end return n end
+livePos = nil -- no local playback until the server says go
+local a = C.new("player3", deps)
+a:playAlong(7, "Ann")
+check(a:alongStatus() == "PlayingAlongReady", "chosen, not playing yet")
+local locals = count("startLocal")
+a:play(abc("z4 C D E F"), 120, 0.5, "Base.Violin")
+check(last()[1] == "start" and last().opts.wait == true and last().opts.along == 7, "play along waits for the server")
+check(count("startLocal") == locals and a:isPlaying(), "nothing sounds before go, but the action keeps running")
+a:tick(); check(a:isPlaying(), "waiting is not a finished song")
+local key, arg = a:alongStatus(); check(key == "WaitingFor" and arg == "Ann", "waiting for Ann")
+serverNow = 1000
+a:onGo(4000, 2000, 90, 4000)
+check(last()[1] == "startLocal" and last().pos == -3000 and last().perf.fromMs == 2000 and last().perf.bpm == 90, "go starts local playback on the server clock")
+key, arg = a:alongStatus(); check(key == "StartingIn" and arg == 3, "count-in 3")
+serverNow = 3500; key, arg = a:alongStatus(); check(key == "StartingIn" and arg == 1, "count-in 1")
+serverNow = 4100; key, arg = a:alongStatus(); check(key == "PlayingAlong" and arg == "Ann", "playing along")
+a:onBand({ "Ann", "Me" }, 90); check(a:bandBpm() == 90, "the band's tempo")
+livePos = 500
+a:pause(); check(last()[1] == "pause", "pause leaves the band")
+a:play(abc("z4 C D E F"), 120, 0.5, "Base.Violin")
+check(last().opts.wait and last().opts.resume == true, "resume goes back into the band")
+a:onAlongEnded("TooFarFromBand")
+check(last()[1] == "stopLocal" and not a:isPlaying() and a:alongStatus() == "TooFarFromBand", "taken out of the band")
+
+local w = C.new("player4", deps)
+w:playAlong(8, "Bob"); w:play(abc("C D"), 120, 0.5, "Base.Violin"); w:stop()
+check(last()[1] == "unalong" and w:alongStatus() == nil, "stop while waiting gives up the wait")
+
+local st = C.new("player5", deps)
+st:onWaiters({ "Cid" })
+key, arg = st:alongStatus(); check(key == "Waiters" and arg == "Cid", "someone waits for us")
+st:play(abc("C D"), 120, 0.5, "Base.Violin")
+check(last().opts.wait == true and last().opts.along == nil, "with someone waiting, Play waits for the count-in")

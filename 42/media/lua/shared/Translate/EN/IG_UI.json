@@ -27,5 +27,14 @@
   "IGUI_PlayIt_Gone": "The instrument is gone.",
   "IGUI_PlayIt_TooFar": "Get closer to the instrument to play.",
   "IGUI_PlayIt_NoSticks": "You need a drumstick to play the drums.",
-  "IGUI_PlayIt_Busy": "Someone else is already playing this."
+  "IGUI_PlayIt_Busy": "Someone else is already playing this.",
+  "IGUI_PlayIt_Along_PlayingAlongReady": "Playing along with %1. Press Play when ready.",
+  "IGUI_PlayIt_Along_WaitingFor": "Waiting for %1 to start...",
+  "IGUI_PlayIt_Along_StartingIn": "Starting in %1...",
+  "IGUI_PlayIt_Along_PlayingAlong": "Playing along with %1",
+  "IGUI_PlayIt_Along_InSong": "In this song: %1",
+  "IGUI_PlayIt_Along_Waiters": "Waiting for you to start: %1",
+  "IGUI_PlayIt_Along_TooFar": "Too far away to play along.",
+  "IGUI_PlayIt_Along_TargetLeft": "The player you wanted to play along with left.",
+  "IGUI_PlayIt_Along_TooFarFromBand": "Too far from the band."
 }

@@ -101,6 +101,8 @@ function MusicWindow:createChildren()
 
     self.status = ISLabel:new(PAD, 0, FONT_HGT, "", 1, 0.8, 0.4, 1, UIFont.Small, true)
     self:addChild(self.status)
+    self.along = ISLabel:new(PAD, 0, FONT_HGT, "", 0.6, 0.9, 1, 1, UIFont.Small, true)
+    self:addChild(self.along)
     self:layout()
 end
 
@@ -111,12 +113,14 @@ function MusicWindow:layout()
     local controlsY = buttonsY - PAD - ROW
     local partY = controlsY - PAD - ROW
     local statusY = partY - PAD - FONT_HGT
+    local alongY = statusY - FONT_HGT
     local top = self:titleBarHeight() + PAD
     self.songBox:setX(PAD)
     self.songBox:setY(top)
     self.songBox:setWidth(self.width - PAD * 2)
-    self.songBox:setHeight(math.max(ROW, statusY - PAD - top))
+    self.songBox:setHeight(math.max(ROW, alongY - PAD - top))
     self.status:setY(statusY)
+    self.along:setY(alongY)
     self.partLabel:setX(PAD)
     self.partLabel:setY(partY)
     self.partCombo:setX(PAD * 2 + self.partLabel:getWidth())
@@ -146,6 +150,12 @@ function MusicWindow:prerender()
     local c = self:controller()
     self.playButton:setTitle(getText(c:isPlaying() and "IGUI_PlayIt_Pause"
         or (c:isPaused() and "IGUI_PlayIt_Resume" or "IGUI_PlayIt_Play")))
+    local key, arg = c:alongStatus()
+    self.along:setName(key and getText("IGUI_PlayIt_Along_" .. key, tostring(arg)) or "")
+    -- playing with others: their tempo, not ours
+    local bandBpm = c:bandBpm()
+    self.bpmBox:setEditable(bandBpm == nil)
+    if bandBpm and self.bpmBox:getInternalText() ~= tostring(bandBpm) then self.bpmBox:setText(tostring(bandBpm)) end
 end
 
 function MusicWindow:onSongChanged()

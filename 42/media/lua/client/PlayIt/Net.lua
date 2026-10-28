@@ -27,13 +27,31 @@ function Net.sourceOf(player)
     }
 end
 
-function Net.start(player, fullType, perf, posMs)
+-- opts (play along): { wait = true, along = player id, resume } -- the part sounds only once the server says go
+function Net.start(player, fullType, perf, posMs, opts)
     local now = getTimestampMs()
-    PlayIt.Playback.start(Net.idOf(player), Net.sourceOf(player), fullType, perf, posMs, now)
+    opts = opts or {}
+    if not opts.wait then PlayIt.Playback.start(Net.idOf(player), Net.sourceOf(player), fullType, perf, posMs, now) end
     if multiplayer() then
-        local origin = Net.clock:toServer(now) - posMs
-        sendClientCommand(player, "PlayIt", "start", { fullType = fullType, perf = perf, origin = origin })
+        sendClientCommand(player, "PlayIt", "start", {
+            fullType = fullType, perf = perf, origin = Net.clock:toServer(now) - posMs, posMs = posMs,
+            wait = opts.wait, along = opts.along, resume = opts.resume,
+        })
     end
+end
+
+-- the musician's own playback only (the server already relays the part)
+function Net.startLocal(player, fullType, perf, posMs)
+    PlayIt.Playback.start(Net.idOf(player), Net.sourceOf(player), fullType, perf, posMs, getTimestampMs())
+end
+
+function Net.stopLocal(player)
+    PlayIt.Playback.stop(Net.idOf(player))
+end
+
+-- stop waiting for the player we wanted to play along with
+function Net.unalong(player)
+    if multiplayer() then sendClientCommand(player, "PlayIt", "unalong", {}) end
 end
 
 -- returns where the song was paused (nil if it had ended)
@@ -76,6 +94,34 @@ end
 
 function handlers.pong(args)
     Net.clock:sample(args.t0, args.s, getTimestampMs())
+end
+
+-- play along: what the server decided for the local player's part
+local function controller()
+    local player = getPlayer()
+    return player and PlayIt.Controls and PlayIt.Controls.get(player)
+end
+
+function handlers.go(args)
+    local c = controller()
+    if c then c:onGo(args.origin, args.fromMs, args.bpm, args.startAt) end
+end
+
+function handlers.band(args)
+    local c = controller()
+    if c then c:onBand(args.members, args.bpm) end
+end
+
+function handlers.waiters(args)
+    local c = controller()
+    if c then c:onWaiters(args.names) end
+end
+
+function handlers.waiting() end -- the window already says who we wait for
+
+function handlers.alongEnded(args)
+    local c = controller()
+    if c then c:onAlongEnded(tostring(args.reason)) end
 end
 
 function handlers.stop(args)
