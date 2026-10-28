@@ -53,7 +53,8 @@ local function validPlace(place)
     return true
 end
 
--- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level, place (furniture) }
+-- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level, place (furniture),
+-- fromMs (where in its timeline the part comes in; nil = from its first note) }
 function Session.validate(perf)
     if type(perf) ~= "table" then return false, "perf" end
     if type(perf.text) ~= "string" or #perf.text > Session.MAX_TEXT then return false, "text" end
@@ -63,6 +64,7 @@ function Session.validate(perf)
     if not within(perf.length, 0, math.huge) then return false, "length" end
     if not (isInt(perf.level) and within(perf.level, 0, 10)) then return false, "level" end
     if perf.place ~= nil and not validPlace(perf.place) then return false, "place" end
+    if perf.fromMs ~= nil and not within(perf.fromMs, 0, math.huge) then return false, "fromMs" end
     local segs = perf.segments
     if type(segs) ~= "table" or #segs == 0 or #segs > Session.MAX_SEGMENTS then return false, "segments" end
     for _, seg in ipairs(segs) do
@@ -70,6 +72,16 @@ function Session.validate(perf)
             return false, "segments"
         end
     end
+    return true
+end
+
+-- the rest of a start message: posMs (where the musician means to start), along (the player they play along
+-- with), wait (they wait for the server's "go" before playing), resume (back into the performance they left)
+function Session.validStart(args)
+    if not within(args.posMs, 0, math.huge) then return false end
+    if args.along ~= nil and not isInt(args.along) then return false end
+    if args.wait ~= nil and type(args.wait) ~= "boolean" then return false end
+    if args.resume ~= nil and type(args.resume) ~= "boolean" then return false end
     return true
 end
 

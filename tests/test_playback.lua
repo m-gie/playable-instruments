@@ -120,3 +120,13 @@ P.start("T", source(false), "Base.Violin", perf("C2- C D"), 0, 80000)
 local vt = log[#log]
 P.update(80000); P.update(81000); P.update(81500)
 check(#vt.notes == 2 and vt.notes[1].dur == 1500, "a tie lengthens the note instead of striking it again")
+
+-- play along: a part waits before its origin and comes in at fromMs (2026-10-28)
+local along = perf("C D E F")
+along.fromMs = 1000
+P.start("B", source(false), "Base.GuitarAcoustic", along, -500, 20000) -- 500 ms before its timeline 0
+local vb = log[#log]
+P.update(20400); check(#vb.notes == 0, "nothing before the origin")
+P.update(21000); check(#vb.notes == 0, "chords before fromMs are skipped")
+P.update(21500); check(#vb.notes == 1, "comes in at fromMs (chord 3)")
+P.stop("B")

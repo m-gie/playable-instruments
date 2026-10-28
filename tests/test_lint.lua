@@ -14,3 +14,13 @@ for _, path in ipairs(SHIPPED) do
 end
 check(#nextUsers == 0, "Kahlua has no next(): " .. table.concat(nextUsers, ", "))
 check(#badPercent == 0, "bare % in translations: " .. table.concat(badPercent, ", "))
+
+-- every shipped Lua file at least compiles (client and server code have no offline tests of their own)
+local broken = {}
+for _, path in ipairs(SHIPPED) do
+    if path:match("%.lua$") then
+        local fn, err = loadstring(read(path), path)
+        if not fn then table.insert(broken, err) end
+    end
+end
+check(#broken == 0, "Lua that doesn't compile: " .. table.concat(broken, "; "))

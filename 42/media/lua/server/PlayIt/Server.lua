@@ -11,12 +11,15 @@ require "PlayIt/Config"
 require "PlayIt/Song"
 require "PlayIt/Timeline"
 require "PlayIt/Furniture"
+require "PlayIt/Band"
 
 local RELAY_RANGE = 80
 local CATCH_UP_MS = 2000
 local ORIGIN_SLACK_MS = 5000
 
 local sessions = PlayIt.Session.new()
+local bands = PlayIt.Band.new()
+local ready = {} -- players waiting to play along who already pressed Play: { [id] = { perf, fullType } }
 local nextCatchUp = 0
 
 local function inRange(a, b)
@@ -69,10 +72,97 @@ end
 
 local handlers = {}
 
+local function send(player, command, args)
+    if player then sendServerCommand(player, "PlayIt", command, args) end
+end
+
+-- a copy of a part played at bpm, with its song and timeline (members play at the performance's tempo)
+local function atBpm(perf, bpm)
+    local copy = {}
+    for k, v in pairs(perf) do copy[k] = v end
+    copy.bpm = bpm
+    local song = PlayIt.Song.parse(copy.text, bpm)
+    local timeline = PlayIt.Timeline.build(song, copy.seed, copy.segments)
+    copy.length = timeline.length
+    return copy, song, timeline
+end
+
+-- a session for the part with its timeline 0 at origin (server ms), relayed to the players in range
+local function startPart(player, perf, fullType, song, timeline, origin)
+    local id = player:getOnlineID()
+    sessions:start(id, perf, origin)
+    local s = sessions:get(id)
+    s.fullType = fullType
+    s.username = player:getUsername()
+    s.song = song
+    s.timeline = timeline
+    s.moodFrom = math.max(perf.fromMs or 0, getTimestampMs() - origin)
+    sendPlay(id, player, perf, fullType, origin)
+end
+
+-- the part starts for its musician, who waited for the server: at origin, from fromMs, at the band's bpm
+local function go(player, perf, fullType, song, timeline, origin, startAt)
+    startPart(player, perf, fullType, song, timeline, origin)
+    send(player, "go", { origin = origin, fromMs = perf.fromMs, bpm = perf.bpm, startAt = startAt })
+end
+
+local function nameOf(player) return player:getDisplayName() end
+
+-- every member learns who plays in their performance
+local function sendRoster(band)
+    if band == nil then return end
+    local names, players = {}, {}
+    for _, id in ipairs(bands:members(band)) do
+        local p = musicianOf(id)
+        if p then
+            names[#names + 1] = nameOf(p)
+            players[#players + 1] = p
+        end
+    end
+    for _, p in ipairs(players) do send(p, "band", { members = names, bpm = band.bpm }) end
+end
+
+-- the musician learns who waits for them to start (their client then waits for the count-in)
+local function sendWaiters(targetId)
+    local names = {}
+    for _, id in ipairs(bands:waitersOf(targetId)) do
+        local p = musicianOf(id)
+        if p then names[#names + 1] = nameOf(p) end
+    end
+    send(musicianOf(targetId), "waiters", { names = names })
+end
+
+local function endWait(id, reason)
+    local target = bands.waits[id]
+    bands:unwait(id)
+    ready[id] = nil
+    if reason then send(musicianOf(id), "alongEnded", { reason = reason }) end
+    if target then sendWaiters(target) end
+end
+
+-- a waiter whose musician started without waiting for them (a race) comes in at the next bar
+local function joinWaiter(waiterId, band, now)
+    local w, player = ready[waiterId], musicianOf(waiterId)
+    if w == nil or player == nil then return end
+    local perf, song, timeline = atBpm(w.perf, band.bpm)
+    local origin, fromMs = bands:join(waiterId, band, timeline, now)
+    ready[waiterId] = nil
+    if origin == nil then return end
+    perf.fromMs = fromMs
+    go(player, perf, w.fullType, song, timeline, origin)
+end
+
+local function leaveBand(id, now)
+    local band = bands:of(id)
+    bands:leave(id, now)
+    sendRoster(band)
+end
+
 function handlers.start(player, args)
     if not sessions:allow(player:getOnlineID(), getTimestampMs()) then return end -- flooding: drop quietly
     local ok, why = PlayIt.Session.validate(args.perf)
     if ok and type(args.origin) ~= "number" then ok, why = false, "origin" end
+    if ok and not PlayIt.Session.validStart(args) then ok, why = false, "start" end
     if ok and PlayIt.Instruments.isWorld(args.fullType) then
         local refused
         ok, refused = mayPlayFurniture(player, args.fullType, args.perf.place)
@@ -94,16 +184,77 @@ function handlers.start(player, args)
     end
     local id = player:getOnlineID()
     local now = getTimestampMs()
-    local origin = args.origin -- the client's clock estimate; implausible ones start now
-    if math.abs(origin - now) > args.perf.length + ORIGIN_SLACK_MS then origin = now end
-    sessions:start(id, args.perf, origin)
-    local s = sessions:get(id)
-    s.fullType = args.fullType
-    s.username = player:getUsername()
-    s.song = song
-    s.timeline = PlayIt.Timeline.build(song, args.perf.seed, args.perf.segments)
-    s.moodFrom = math.max(0, now - origin)
-    sendPlay(id, player, args.perf, args.fullType, origin)
+    endWait(id)
+
+    if not args.wait then
+        -- playing alone, already sounding on the musician's client: their clock estimate, implausible ones now
+        local origin = args.origin
+        if math.abs(origin - now) > args.perf.length + ORIGIN_SLACK_MS then origin = now end
+        local timeline = PlayIt.Timeline.build(song, args.perf.seed, args.perf.segments)
+        bands:startSolo(id, timeline, args.perf.bpm, origin)
+        startPart(player, args.perf, args.fullType, song, timeline, origin)
+        local band = bands:of(id)
+        for _, waiterId in ipairs(bands:waitersOf(id)) do joinWaiter(waiterId, band, now) end
+        sendWaiters(id)
+        sendRoster(band)
+        return
+    end
+
+    -- back into the performance they left, or into the one of the player they play along with
+    local band = (args.resume and bands:lastBand(id)) or (args.along and bands:of(args.along))
+    if band then
+        local perf, partSong, timeline = atBpm(args.perf, band.bpm)
+        local origin, fromMs = bands:join(id, band, timeline, now)
+        if origin then
+            perf.fromMs = fromMs
+            go(player, perf, args.fullType, partSong, timeline, origin)
+            sendRoster(band)
+            return
+        end
+    elseif args.along and not args.resume then
+        local target = musicianOf(args.along)
+        if target == nil or target == player or not inRange(player, target) then
+            send(player, "alongEnded", { reason = "TooFar" })
+            return
+        end
+        bands:wait(id, args.along)
+        ready[id] = { perf = args.perf, fullType = args.fullType }
+        send(player, "waiting", { name = nameOf(target) })
+        sendWaiters(args.along)
+        return
+    end
+
+    -- the musician others wait for: everyone ready and in range starts together after the count-in
+    local perf, partSong, timeline = atBpm(args.perf, args.perf.bpm)
+    local joining, parts, any = {}, {}, false
+    for _, waiterId in ipairs(bands:waitersOf(id)) do
+        local w, wp = ready[waiterId], musicianOf(waiterId)
+        if w and wp and inRange(wp, player) then
+            local wPerf, wSong, wTimeline = atBpm(w.perf, perf.bpm)
+            joining[waiterId] = { player = wp, perf = wPerf, song = wSong, timeline = wTimeline, fullType = w.fullType }
+            parts[waiterId] = wTimeline
+            any = true
+        end
+    end
+    if any then
+        local starts = bands:startWithWaiters(id, timeline, perf.bpm, now, parts)
+        local startAt = now + PlayIt.Band.COUNT_IN_MS
+        go(player, perf, args.fullType, partSong, timeline, starts[id], startAt)
+        for waiterId, j in pairs(joining) do
+            ready[waiterId] = nil
+            go(j.player, j.perf, j.fullType, j.song, j.timeline, starts[waiterId], startAt)
+        end
+        sendWaiters(id)
+        sendRoster(bands:of(id))
+        return
+    end
+
+    -- nothing to join or start with: alone, a moment from now, from where the musician meant to start
+    if args.posMs > 0 then perf.fromMs = args.posMs end
+    local origin = now + PlayIt.Band.JOIN_MARGIN_MS - args.posMs
+    bands:startSolo(id, timeline, perf.bpm, origin)
+    go(player, perf, args.fullType, partSong, timeline, origin)
+    sendRoster(bands:of(id))
 end
 
 -- the client's clock: answer with ours (PlayIt.Clock on the client)
@@ -118,12 +269,20 @@ function handlers.pause(player, args)
     if s then s.moodFrom = nil end
     sendToListeners(id, "stop", { id = id })
     sessions:pause(id, args.posMs)
+    leaveBand(id, getTimestampMs())
 end
 
 function handlers.stop(player)
     local id = player:getOnlineID()
     sendToListeners(id, "stop", { id = id })
     sessions:stop(id)
+    leaveBand(id, getTimestampMs())
+    endWait(id)
+end
+
+-- a waiting player gave up
+function handlers.unalong(player)
+    endWait(player:getOnlineID())
 end
 
 function handlers.segments(player, args)
@@ -182,6 +341,40 @@ local function playingTick(musician, s, now, pos)
     end
 end
 
+-- waits end when either player is gone or out of reach; a member out of reach of every other member stops
+-- ("too far from the band"); performances nobody played in for a while end
+local function bandTick(now)
+    for waiterId, targetId in pairs(bands.waits) do
+        local waiter, target = musicianOf(waiterId), musicianOf(targetId)
+        if waiter == nil then
+            endWait(waiterId)
+        elseif target == nil then
+            endWait(waiterId, "TargetLeft")
+        elseif not inRange(waiter, target) then
+            endWait(waiterId, "TooFar")
+        end
+    end
+    for _, band in pairs(bands.list) do
+        local ids = bands:members(band)
+        if #ids > 1 then
+            for _, id in ipairs(ids) do
+                local p, near = musicianOf(id), false
+                for _, other in ipairs(ids) do
+                    local o = musicianOf(other)
+                    if other ~= id and o and p and inRange(p, o) then near = true end
+                end
+                if p and not near then
+                    sendToListeners(id, "stop", { id = id })
+                    sessions:stop(id)
+                    leaveBand(id, now)
+                    send(p, "alongEnded", { reason = "TooFarFromBand" })
+                end
+            end
+        end
+    end
+    bands:tick(now)
+end
+
 -- late joiners get the song at its current place; sessions of departed or dead musicians end
 Events.OnTick.Add(function()
     local now = getTimestampMs()
@@ -193,6 +386,7 @@ Events.OnTick.Add(function()
         if musician == nil or musician:isDead() or musician:getUsername() ~= s.username then
             sendToListeners(id, "stop", { id = id })
             sessions:removePlayer(id)
+            leaveBand(id, now)
         else
             local pos = sessions:positionAt(id, now)
             if pos then
@@ -200,7 +394,9 @@ Events.OnTick.Add(function()
                 if pos >= 0 then playingTick(musician, s, now, pos) end
             elseif not sessions:pausedAt(id) then
                 sessions:stop(id) -- song over
+                leaveBand(id, now)
             end
         end
     end
+    bandTick(now)
 end)

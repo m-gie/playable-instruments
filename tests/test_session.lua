@@ -90,3 +90,14 @@ for t = 0, 60000, 100 do if r:allow(7, t) then spam = spam + 1 end end
 check(spam <= S.RATE_BURST + 60000 / S.RATE_MS + 1, "ten messages a second for a minute: about one per RATE_MS passes")
 local q = S.new()
 check(q:allow(8, 0) and q:allow(8, 500) and q:allow(8, 900), "play, pause, play again quickly passes")
+
+-- play along (2026-10-28): where a part starts in its own timeline travels with it
+check(S.validate(perf({ fromMs = 4000 })), "fromMs accepted")
+bad({ fromMs = -1 }, "negative fromMs rejected")
+bad({ fromMs = "x" }, "fromMs must be a number")
+check(S.validStart({ along = 12, wait = true, posMs = 0 }), "along a player id")
+check(S.validStart({ posMs = 500 }), "plain start")
+check(not S.validStart({ along = 1.5, posMs = 0 }), "along must be a whole id")
+check(not S.validStart({ wait = "yes", posMs = 0 }), "wait must be a boolean")
+check(not S.validStart({ resume = 1, posMs = 0 }), "resume must be a boolean")
+check(not S.validStart({ posMs = -5 }), "posMs not negative")

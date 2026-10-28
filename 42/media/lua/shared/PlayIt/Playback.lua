@@ -35,7 +35,8 @@ local function drumContext(def, perf, song)
 end
 
 -- source: { getPos() -> x, y, z, isSilent() -> true while the musician must not be heard (invisible) }
--- perf: { text, bpm, seed, segments, volume (0-1) }; posMs: where in the song to begin
+-- perf: { text, bpm, seed, segments, volume (0-1), fromMs (chords before it are skipped; play along) };
+-- posMs: where in the song it is now (negative: it starts that much later)
 function Playback.start(id, source, fullType, perf, posMs, nowMs)
     Playback.stop(id)
     local def = PlayIt.Instruments.defs[fullType]
@@ -48,7 +49,7 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
         source = source, def = def, perf = perf, song = song, timeline = timeline, fullType = fullType,
         drums = drumContext(def, perf, song),
         origin = nowMs - posMs, lastChord = 0,
-        nextIndex = PlayIt.Timeline.firstEventAt(timeline, posMs),
+        nextIndex = PlayIt.Timeline.firstEventAt(timeline, math.max(posMs, perf.fromMs or 0)),
         voices = Playback.newVoices(source.getPos, def.release),
     }
 end
