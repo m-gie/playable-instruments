@@ -1,4 +1,5 @@
--- The music window: paste an ABC song, pick a part, set BPM and volume, Play/Pause, Stop, Save, Load.
+-- The music window: paste an ABC song, pick a part (and a tone where the instrument has several), set BPM and
+-- volume, Play/Pause, Stop, Save, Load.
 -- Closing it while a song plays or is paused leaves the small widget instead.
 
 require "ISUI/ISCollapsableWindow"
@@ -10,6 +11,7 @@ require "PlayIt/Controls"
 require "PlayIt/Instruments"
 require "PlayIt/Furniture"
 require "PlayIt/Playback"
+require "PlayIt/Tones"
 
 PlayIt = PlayIt or {}
 PlayIt.MusicWindow = ISCollapsableWindow:derive("PlayItMusicWindow")
@@ -35,6 +37,7 @@ function MusicWindow.open(player, fullType, place)
     w.player = player -- the slot's character may have died and respawned since the window was made
     w.fullType = fullType
     w.place = place
+    w:refreshTones()
     w:setTitle(getText("IGUI_PlayIt_Title", PlayIt.Instruments.displayName(fullType)))
     w:setVisible(true)
     w:bringToTop()
@@ -69,6 +72,13 @@ function MusicWindow:createChildren()
     self.partCombo:initialise()
     self:addChild(self.partCombo)
     self.parts = {}
+
+    self.toneLabel = ISLabel:new(0, 0, ROW, getText("IGUI_PlayIt_Tone"), 1, 1, 1, 1, UIFont.Small, true)
+    self:addChild(self.toneLabel)
+    self.toneCombo = ISComboBox:new(0, 0, 130, ROW, self, MusicWindow.onToneChanged)
+    self.toneCombo:initialise()
+    self:addChild(self.toneCombo)
+    self.tones = {}
 
     self.bpmLabel = ISLabel:new(0, 0, ROW, getText("IGUI_PlayIt_BPM"), 1, 1, 1, 1, UIFont.Small, true)
     self:addChild(self.bpmLabel)
@@ -125,7 +135,15 @@ function MusicWindow:layout()
     self.partLabel:setY(partY)
     self.partCombo:setX(PAD * 2 + self.partLabel:getWidth())
     self.partCombo:setY(partY)
-    self.partCombo:setWidth(math.max(60, self.width - PAD - self.partCombo:getX()))
+    local right = self.width - PAD
+    if #self.tones > 0 then -- the tone picker sits at the end of the part row
+        self.toneCombo:setX(right - self.toneCombo:getWidth())
+        self.toneCombo:setY(partY)
+        self.toneLabel:setX(self.toneCombo:getX() - PAD - self.toneLabel:getWidth())
+        self.toneLabel:setY(partY)
+        right = self.toneLabel:getX() - PAD * 2
+    end
+    self.partCombo:setWidth(math.max(60, right - self.partCombo:getX()))
 
     local x = PAD
     for _, el in ipairs({ self.bpmLabel, self.bpmBox, self.volumeLabel, self.volume }) do
@@ -185,6 +203,31 @@ end
 
 function MusicWindow:selectedPart()
     return self.parts[self.partCombo.selected]
+end
+
+-- the instrument's tones in the picker (hidden when it has one sound), its remembered one chosen
+function MusicWindow:refreshTones()
+    self.tones = PlayIt.Instruments.tonesOf(self.fullType)
+    self.toneCombo:clear()
+    local pick, remembered = 1, PlayIt.Tones.get(self.fullType)
+    for i, t in ipairs(self.tones) do
+        self.toneCombo:addOption(getText("IGUI_PlayIt_Tone_" .. t.id))
+        if t.id == remembered then pick = i end
+    end
+    self.toneCombo.selected = pick
+    self.toneLabel:setVisible(#self.tones > 0)
+    self.toneCombo:setVisible(#self.tones > 0)
+    self:layout()
+end
+
+function MusicWindow:selectedTone()
+    local t = self.tones[self.toneCombo.selected]
+    return t and t.id
+end
+
+function MusicWindow:onToneChanged()
+    local tone = self:selectedTone()
+    if tone then PlayIt.Tones.set(self.fullType, tone) end
 end
 
 function MusicWindow:setStatus(text)
@@ -258,7 +301,8 @@ function MusicWindow:onPlay()
         return
     end
     self:setStatus(self:warningsFor(text, bpm))
-    PlayIt.Controls.play(self.player, text, bpm, self.volume:getCurrentValue() / 100, self.fullType, place)
+    PlayIt.Controls.play(self.player, text, bpm, self.volume:getCurrentValue() / 100, self.fullType, place,
+        self:selectedTone())
 end
 
 function MusicWindow:onStop()

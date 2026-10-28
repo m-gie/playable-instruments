@@ -25,7 +25,30 @@ The notes are cut from these recordings by `tools/prep_samples.py`: split into s
 
 **Drums:** Virtuosity Drums by Versilian Studios and Karoryfer Lecolds, CC0 1.0, recorded with drummer Austin McMahon at Virtuosity Musical Instruments, Boston. https://github.com/sfzinstruments/virtuosity_drums
 - "mid" microphone: kick (snares off, velocity layer 3 of 4), snare centre hit (layer 25 of 36), high and low tom centre hits (layer 11 of 16), closed hi-hat (layer 3 of 4), crash (layer 2 of 3).
+- Lo-fi tone: the same hits from the "lofi" mix.
+
+### Tones and later instruments (2026-10-28)
+
+**Electric guitar (Clean, Jazz, Distorted):** FreePats project, "Electric Guitar FSBS", CC0 1.0: a Fender electric guitar, bridge pickup, sampled direct and run through an amp and effects rack. Clean #1, Clean #2 (jazz) and Distorted #2 banks, loudest velocity layer, first round robin. https://freepats.zenvoid.org/ElectricGuitar/clean-electric-guitar.html and https://freepats.zenvoid.org/ElectricGuitar/distorted-electric-guitar.html
+
+**Electric bass (Pick, Fingers):** FreePats project, Yamaha RBX bass sampled by Andrea Biasior, CC0 1.0. https://freepats.zenvoid.org/ElectricGuitar/clean-electric-bass.html
+
+**Banjo, 5-string:** "Windsor Banjo c1920-1930" SoundFont by Clive Nelson, public domain (Polyphone soundfont library): an old 5-string Windsor banjo made in Birmingham, England; its four samples (D3, G3, B3, D4). https://www.polyphone.io/en/soundfonts/plucked-strings/444-windsor-banjo-c1920-1930
+
+**Banjo, 6-string:** "ganjo" by itsclipping (sfzinstruments), CC0 1.0: an SX 6-string guitar banjo, first round robin. https://github.com/sfzinstruments/ganjo
+
+**Upright piano, Honky-tonk:** FreePats project, Francis Bacon player piano recorded by Piotr Barcz, CC0 1.0. https://freepats.zenvoid.org/Piano/honky-tonk-piano.html
+
+**Violin, Plucked:** University of Iowa MIS as above, the same violin and player, pizzicato (`Violin.pizz.mf.*.mono.aif`).
+
+**Saxophone, Tenor:** VCSL as above, tenor saxophone (`Aerophones/Reed Aerophones/Tenor Saxophone/Vibrato`).
+
+**Harmonica, Blues harp:** VCSL as above, Hohner Special 20 in C (`Aerophones/Free Aerophones/Harmonica-Hohner-Special20-C/Sustains/Normal`).
+
+**Keytar, FM Piano and Piano:** VCSL as above, Yamaha TX81Z "FM Piano" and "Piano 1" patches (`Electrophones/TX81Z`, velocity layer 2).
+
+**Church organ, Renaissance:** VCSL as above, Renaissance organ, full registration (`Aerophones/Edge-blown Aerophones/Renaissance Organ/Full`, room microphones, round robin 1).
 
 ## Song format
 
-The song text format follows Space Station 13's instrument songs (tgstation, `code/modules/instruments`).
+Songs are ABC notation (abcnotation.com). The idea of pasting songs into an in-game instrument comes from Space Station 13's instruments (tgstation, `code/modules/instruments`).

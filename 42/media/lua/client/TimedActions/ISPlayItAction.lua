@@ -61,7 +61,7 @@ function ISPlayItAction:start()
     PlayIt.trace("action start: %s, holding %s, invisible %s", s.fullType,
         tostring(self.character:getPrimaryHandItem() and self.character:getPrimaryHandItem():getFullType()),
         tostring(self.character:isInvisible()))
-    if not self.controller:play(s.text, s.bpm, s.volume, s.fullType, s.place) then
+    if not self.controller:play(s.text, s.bpm, s.volume, s.fullType, s.place, s.tone) then
         self:forceStop() -- too long to send; the window already said so
         return
     end
@@ -97,7 +97,7 @@ function ISPlayItAction:perform()
     ISBaseTimedAction.perform(self)
 end
 
--- song: { text, bpm, volume, fullType, place (furniture) }
+-- song: { text, bpm, volume, fullType, place (furniture), tone }
 function ISPlayItAction:new(character, controller, song)
     local o = ISBaseTimedAction.new(self, character)
     o.controller = controller
