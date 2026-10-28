@@ -127,7 +127,13 @@ local function goSolo(player, perf, fullType, posMs, now)
     go(player, copy, fullType, song, timeline, origin)
 end
 
-local function nameOf(player) return player:getDisplayName() end
+-- the character's name, as the Play along menu shows it (getDisplayName is the account name on the server)
+local function nameOf(player)
+    local d = player:getDescriptor()
+    local name = d and ((d:getForename() or "") .. " " .. (d:getSurname() or "")):gsub("^%s+", ""):gsub("%s+$", "")
+    if name == nil or name == "" then return player:getDisplayName() end
+    return name
+end
 
 -- every member learns who plays in their performance
 local function sendRoster(band)
