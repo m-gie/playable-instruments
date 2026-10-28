@@ -155,7 +155,7 @@ end
 -- the parts of the pasted file in the picker, keeping the chosen one when it is still there
 function MusicWindow:refreshParts()
     local previous = self.parts[self.partCombo.selected]
-    self.parts = PlayIt.Song.parts(self.songBox:getText())
+    self.parts = PlayIt.Song.parts(self.songBox:getInternalText())
     self.partCombo:clear()
     local pick = 1
     for i, part in ipairs(self.parts) do
@@ -264,7 +264,7 @@ end
 
 function MusicWindow:onSaveName(button)
     if button.internal ~= "OK" then return end
-    local name = PlayIt.SongFiles.save(button.parent.entry:getText(), self.songBox:getText())
+    local name = PlayIt.SongFiles.save(button.parent.entry:getText(), self.songBox:getInternalText())
     self:setStatus(name and getText("IGUI_PlayIt_Saved", name) or getText("IGUI_PlayIt_BadName"))
 end
 
