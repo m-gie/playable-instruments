@@ -14,6 +14,7 @@ require "PlayIt/Furniture"
 
 local RELAY_RANGE = 80
 local CATCH_UP_MS = 2000
+local ORIGIN_SLACK_MS = 5000
 
 local sessions = PlayIt.Session.new()
 local nextCatchUp = 0
@@ -31,13 +32,14 @@ local function musicianOf(id)
     return nil
 end
 
-local function sendPlay(id, musician, perf, fullType, posMs)
+-- origin: server ms of the part's timeline 0; each listener places it with its own clock offset
+local function sendPlay(id, musician, perf, fullType, origin)
     local players = getOnlinePlayers()
     for i = 0, players:size() - 1 do
         local p = players:get(i)
         if p ~= musician and not sessions:hasListener(id, p:getOnlineID()) and inRange(p, musician) then
             sessions:addListener(id, p:getOnlineID())
-            sendServerCommand(p, "PlayIt", "play", { id = id, fullType = fullType, perf = perf, posMs = posMs })
+            sendServerCommand(p, "PlayIt", "play", { id = id, fullType = fullType, perf = perf, origin = origin })
         end
     end
 end
@@ -70,7 +72,7 @@ local handlers = {}
 function handlers.start(player, args)
     if not sessions:allow(player:getOnlineID(), getTimestampMs()) then return end -- flooding: drop quietly
     local ok, why = PlayIt.Session.validate(args.perf)
-    if ok and type(args.posMs) ~= "number" then ok, why = false, "posMs" end
+    if ok and type(args.origin) ~= "number" then ok, why = false, "origin" end
     if ok and PlayIt.Instruments.isWorld(args.fullType) then
         local refused
         ok, refused = mayPlayFurniture(player, args.fullType, args.perf.place)
@@ -91,14 +93,23 @@ function handlers.start(player, args)
         return
     end
     local id = player:getOnlineID()
-    sessions:start(id, args.perf, args.posMs, getTimestampMs())
+    local now = getTimestampMs()
+    local origin = args.origin -- the client's clock estimate; implausible ones start now
+    if math.abs(origin - now) > args.perf.length + ORIGIN_SLACK_MS then origin = now end
+    sessions:start(id, args.perf, origin)
     local s = sessions:get(id)
     s.fullType = args.fullType
     s.username = player:getUsername()
     s.song = song
     s.timeline = PlayIt.Timeline.build(song, args.perf.seed, args.perf.segments)
-    s.moodFrom = args.posMs
-    sendPlay(id, player, args.perf, args.fullType, args.posMs)
+    s.moodFrom = math.max(0, now - origin)
+    sendPlay(id, player, args.perf, args.fullType, origin)
+end
+
+-- the client's clock: answer with ours (PlayIt.Clock on the client)
+function handlers.ping(player, args)
+    if type(args.t0) ~= "number" then return end
+    sendServerCommand(player, "PlayIt", "pong", { t0 = args.t0, s = getTimestampMs() })
 end
 
 function handlers.pause(player, args)
@@ -185,8 +196,8 @@ Events.OnTick.Add(function()
         else
             local pos = sessions:positionAt(id, now)
             if pos then
-                sendPlay(id, musician, s.perf, s.fullType, pos)
-                playingTick(musician, s, now, pos)
+                sendPlay(id, musician, s.perf, s.fullType, s.origin)
+                if pos >= 0 then playingTick(musician, s, now, pos) end
             elseif not sessions:pausedAt(id) then
                 sessions:stop(id) -- song over
             end

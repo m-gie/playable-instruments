@@ -73,15 +73,17 @@ function Session.validate(perf)
     return true
 end
 
--- where to begin a song received at receivedAt but only started at nowMs (its musician loaded late); nil if over
-function Session.lateStart(posMs, receivedAt, nowMs, length)
-    local pos = posMs + (nowMs - receivedAt)
+-- where a part is at nowMs, given its origin (when its timeline 0 is, on the same clock): negative before it
+-- starts, nil once it is over
+function Session.posAt(origin, nowMs, length)
+    local pos = nowMs - origin
     if pos >= length then return nil end
     return pos
 end
 
-function Session:start(id, perf, posMs, nowMs)
-    self.list[id] = { perf = perf, origin = nowMs - posMs, paused = nil, listeners = {} }
+-- origin: server ms of the part's timeline 0
+function Session:start(id, perf, origin)
+    self.list[id] = { perf = perf, origin = origin, paused = nil, listeners = {} }
 end
 
 function Session:get(id) return self.list[id] end
