@@ -2,7 +2,7 @@
 
 ## Instrument samples
 
-The notes are cut from these recordings by `tools/prep_samples.py`: split into single notes, trimmed to 3 s with a fade-out, normalised, and converted to mono ogg.
+The notes are cut from these recordings by `tools/prep_samples.py`: split into single notes, trimmed to 3 s with a fade-out, normalised, and converted to mono ogg. The echo tails (Echo slider) are made from those finished notes with ffmpeg's aecho filter, without the dry note.
 
 **Acoustic guitar, trumpet, violin, flute, alto saxophone:** University of Iowa Electronic Music Studios, Musical Instrument Samples (Lawrence Fritts, director). https://theremin.music.uiowa.edu/MIS.html
 "These recordings ... may be downloaded and used for any projects, without restrictions."
