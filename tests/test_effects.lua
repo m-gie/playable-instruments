@@ -26,11 +26,11 @@ check(fx.stress == 0 and fx.unhappy == 0, "annoyance off: blunders don't annoy")
 
 -- Final review #2: what a 2 s server window of a song does
 require "PlayIt/Timeline"; require "PlayIt/Song"
-local tl = PlayIt.Timeline.build(PlayIt.Song.parse("c,d,e,f", 120), 1, { { fromChord = 1, chance = 0 } })
+local tl = PlayIt.Timeline.build(PlayIt.Song.parse("X:1\nL:1/4\nK:C\nC D E F", 120), 1, { { fromChord = 1, chance = 0 } })
 local dur, blunders = E.window(tl, 0, 1000)
 check(dur == 1000 and blunders == 0, "chords starting in [0, 1000) counted")
 dur = E.window(tl, 1000, 2000); check(dur == 1000, "next window")
-local bad = PlayIt.Timeline.build(PlayIt.Song.parse("c,d", 120), 1, { { fromChord = 1, chance = 1 } })
+local bad = PlayIt.Timeline.build(PlayIt.Song.parse("X:1\nL:1/4\nK:C\nC D", 120), 1, { { fromChord = 1, chance = 1 } })
 local _, nb = E.window(bad, 0, 2000); check(nb == 1000, "blunders counted by their length")
 local fx2 = E.forWindow(2000, 1000, 4, 10, 0, true, false, calm)
 check(near(fx2.boredom, -E.boredomPerSecond(0) * 2) and near(fx2.stress, E.ANNOY_STRESS_PER_SEC) and near(fx2.unhappy, E.ANNOY_UNHAPPY_PER_SEC), "a window of 2 s with 1 s of blunders")

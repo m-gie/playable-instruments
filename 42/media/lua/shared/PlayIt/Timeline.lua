@@ -42,10 +42,12 @@ end
 
 local function sign(r) return r < 0.5 and -1 or 1 end
 
--- returns notes ({midi, cents}), blunder kind or nil, extra delay in ms before the chord
-local function rollChord(midis, chordMs, rand, chance)
+-- returns notes ({midi, cents, dur}), blunder kind or nil, extra delay in ms before the chord
+local function rollChord(chord, chordMs, rand, chance)
     local notes = {}
-    for i, m in ipairs(midis) do notes[i] = { midi = m, cents = 0 } end
+    for i, m in ipairs(chord.notes) do
+        notes[i] = { midi = m, cents = 0, dur = 60000 / chord.qpm * (chord.lens and chord.lens[i] or chord.beats) }
+    end
     if #notes == 0 or rand() >= chance then return notes, nil, 0 end
     local kind = rand()
     if kind < 0.5 then
@@ -59,17 +61,37 @@ local function rollChord(midis, chordMs, rand, chance)
     return notes, "pause", math.min(0.5 * chordMs, Timeline.PAUSE_MAX_MS)
 end
 
--- segments: { {fromChord = 1, chance = p}, ... } ascending, first fromChord = 1
+-- segments: { {fromChord = 1, chance = p}, ... } ascending, first fromChord = 1.
+-- Timeline 0 is the first note: the silence before it (leadMs) is skipped in solo play and kept on a shared
+-- performance's clock. bars: bar start times, negative before the first note. A hesitation delays its own chord
+-- only, so a band member never falls behind for good. Chord numbers stay as written.
 function Timeline.build(song, seed, segments)
-    local events, t = {}, 0
+    local starts, base, leadMs = {}, 0, nil
     for i, chord in ipairs(song.chords) do
-        local chordMs = 60000 / song.bpm * chord.beats
-        local notes, blunder, delay = rollChord(chord.notes, chordMs, Timeline.rng(seed, i), chanceFor(segments, i))
-        t = t + delay
-        events[i] = { t = t, chord = i, notes = notes, dur = chordMs, blunder = blunder }
-        t = t + chordMs
+        starts[i] = base
+        if leadMs == nil and #chord.notes > 0 then leadMs = base end
+        base = base + 60000 / chord.qpm * chord.beats
     end
-    return { events = events, length = t }
+    leadMs = leadMs or base
+    local events, bars = {}, {}
+    for i, chord in ipairs(song.chords) do
+        local t = starts[i] - leadMs
+        if chord.bar then bars[#bars + 1] = t end
+        if t >= 0 then
+            local chordMs = 60000 / chord.qpm * chord.beats
+            local notes, blunder, delay = rollChord(chord, chordMs, Timeline.rng(seed, i), chanceFor(segments, i))
+            events[#events + 1] = { t = t + delay, chord = i, notes = notes, dur = chordMs, blunder = blunder }
+        end
+    end
+    return { events = events, length = base - leadMs, leadMs = leadMs, bars = bars }
+end
+
+-- the first bar start at or after posMs; nil when no bar is left
+function Timeline.nextBar(timeline, posMs)
+    for _, t in ipairs(timeline.bars) do
+        if t >= posMs then return t end
+    end
+    return nil
 end
 
 -- index of the first event starting at or after posMs; nil past the end

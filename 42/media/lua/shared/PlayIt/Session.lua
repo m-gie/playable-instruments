@@ -7,12 +7,29 @@ PlayIt.Session = PlayIt.Session or {}
 local Session = PlayIt.Session
 Session.__index = Session
 
--- network strings carry a 16-bit byte length; songs travel compacted (PlayIt.Song.compact, ASCII) below this
-Session.MAX_TEXT = 32000
+-- a part travels as one string, and PZ's network strings carry a signed 16-bit byte length (32,767 at most):
+-- the compacted part (PlayIt.Song.compact) must stay below this
+Session.MAX_TEXT = 30000
 Session.MAX_SEGMENTS = 64
 
+-- messages that make the server parse a song and send it on (start, segments): a burst of RATE_BURST, then one
+-- per RATE_MS. Play, pause and play again stays well inside; a hacked client can't flood the players in range.
+Session.RATE_BURST = 4
+Session.RATE_MS = 2000 -- the client sends segments at most every 2 s (ISPlayItAction CHANCE_EVERY_MS)
+
 function Session.new()
-    return setmetatable({ list = {} }, Session)
+    return setmetatable({ list = {}, rate = {} }, Session)
+end
+
+-- true when player id may send another start or segments message now (and counts it)
+function Session:allow(id, nowMs)
+    local r = self.rate[id] or { tokens = Session.RATE_BURST, at = nowMs }
+    self.rate[id] = r
+    r.tokens = math.min(Session.RATE_BURST, r.tokens + (nowMs - r.at) / Session.RATE_MS)
+    r.at = nowMs
+    if r.tokens < 1 then return false end
+    r.tokens = r.tokens - 1
+    return true
 end
 
 local function isInt(v) return type(v) == "number" and v == math.floor(v) end
@@ -36,7 +53,8 @@ local function validPlace(place)
     return true
 end
 
--- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level, place (furniture) }
+-- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level, place (furniture),
+-- fromMs (where in its timeline the part comes in; nil = from its first note) }
 function Session.validate(perf)
     if type(perf) ~= "table" then return false, "perf" end
     if type(perf.text) ~= "string" or #perf.text > Session.MAX_TEXT then return false, "text" end
@@ -46,6 +64,7 @@ function Session.validate(perf)
     if not within(perf.length, 0, math.huge) then return false, "length" end
     if not (isInt(perf.level) and within(perf.level, 0, 10)) then return false, "level" end
     if perf.place ~= nil and not validPlace(perf.place) then return false, "place" end
+    if perf.fromMs ~= nil and not within(perf.fromMs, 0, math.huge) then return false, "fromMs" end
     local segs = perf.segments
     if type(segs) ~= "table" or #segs == 0 or #segs > Session.MAX_SEGMENTS then return false, "segments" end
     for _, seg in ipairs(segs) do
@@ -56,15 +75,27 @@ function Session.validate(perf)
     return true
 end
 
--- where to begin a song received at receivedAt but only started at nowMs (its musician loaded late); nil if over
-function Session.lateStart(posMs, receivedAt, nowMs, length)
-    local pos = posMs + (nowMs - receivedAt)
+-- the rest of a start message: posMs (where the musician means to start), along (the player they play along
+-- with), wait (they wait for the server's "go" before playing), resume (back into the performance they left)
+function Session.validStart(args)
+    if not within(args.posMs, 0, math.huge) then return false end
+    if args.along ~= nil and not isInt(args.along) then return false end
+    if args.wait ~= nil and type(args.wait) ~= "boolean" then return false end
+    if args.resume ~= nil and type(args.resume) ~= "boolean" then return false end
+    return true
+end
+
+-- where a part is at nowMs, given its origin (when its timeline 0 is, on the same clock): negative before it
+-- starts, nil once it is over
+function Session.posAt(origin, nowMs, length)
+    local pos = nowMs - origin
     if pos >= length then return nil end
     return pos
 end
 
-function Session:start(id, perf, posMs, nowMs)
-    self.list[id] = { perf = perf, origin = nowMs - posMs, paused = nil, listeners = {} }
+-- origin: server ms of the part's timeline 0
+function Session:start(id, perf, origin)
+    self.list[id] = { perf = perf, origin = origin, paused = nil, listeners = {} }
 end
 
 function Session:get(id) return self.list[id] end

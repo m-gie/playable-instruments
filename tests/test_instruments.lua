@@ -60,6 +60,21 @@ local _, r1 = I.resolve(D, 52.6, 0, { low = 48, high = 60, kit = full })
 local _, r2 = I.resolve(D, 53.4, 0, { low = 48, high = 60, kit = full })
 check(r2 > r1 and rLow >= 2 ^ (-2 / 12) and rHigh <= 2 ^ (2 / 12), "toms follow pitch a little (within 2 semitones)")
 check(I.songRange(PlayIt.Song.parse("", 120)) == nil, "drums: empty song")
-local lo, hi = I.songRange(PlayIt.Song.parse("c3,e3-g4", 120)); check(lo == 48 and hi == 67, "song range")
+local lo, hi = I.songRange(PlayIt.Song.parse("X:1\nL:1/4\nK:C\nC, [E,G]", 120)); check(lo == 48 and hi == 67, "song range")
 local pitched = I.resolve(I.defs["PlayIt.GrandPiano"], 60, 0)
 check(pitched == "PlayIt_Grand_C4", "pianos resolve like the hand-held instruments")
+
+-- drum parts: General MIDI numbers folded onto the kit
+check(I.gmPiece(35) == "kick" and I.gmPiece(36) == "kick", "GM kicks")
+check(I.gmPiece(38) == "snare" and I.gmPiece(40) == "snare" and I.gmPiece(37) == "snare", "GM snares and side stick")
+check(I.gmPiece(42) == "hihat" and I.gmPiece(46) == "hihat" and I.gmPiece(51) == "hihat" and I.gmPiece(70) == "hihat",
+    "hi-hats, ride and shakers on the hi-hat")
+check(I.gmPiece(49) == "crash" and I.gmPiece(57) == "crash", "crashes")
+check(I.gmPiece(41) == "tom" and I.gmPiece(50) == "tom" and I.gmPiece(63) == "tom", "toms and hand drums")
+check(I.gmPiece(99) == "snare", "anything else: snare")
+local gmCtx = { gm = true, low = 0, high = 0, kit = full }
+check(I.resolve(D, 36, 0, gmCtx) == "PlayIt_Drums_Kick" and I.resolve(D, 42, 0, gmCtx) == "PlayIt_Drums_Hihat", "GM kick and hi-hat")
+local lowS, lowR = I.resolve(D, 41, 0, gmCtx)
+local highS, highR = I.resolve(D, 50, 0, gmCtx)
+check(lowS == "PlayIt_Drums_TomLow" and highS == "PlayIt_Drums_TomHigh" and lowR < 1 and highR > 1, "GM toms low to high")
+check(I.resolve(D, 49, 0, { gm = true, kit = { snare = true } }) == nil, "GM crash needs the tom stand")

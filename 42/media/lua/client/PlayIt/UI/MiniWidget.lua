@@ -30,6 +30,11 @@ function MiniWidget.show(player, fullType, place)
     w:setVisible(true)
 end
 
+function MiniWidget.isOpen(player)
+    local w = widgets[player:getPlayerNum()]
+    return w ~= nil and w:isVisible()
+end
+
 function MiniWidget.hide(player)
     local w = widgets[player:getPlayerNum()]
     if w then w:setVisible(false) end
@@ -59,6 +64,9 @@ function MiniWidget:prerender()
         return
     end
     self.pauseButton:setTitle(getText(c:isPlaying() and "IGUI_PlayIt_Pause" or "IGUI_PlayIt_Resume"))
+    local key, arg = c:alongStatus()
+    self.label:setName(key and getText("IGUI_PlayIt_Along_" .. key, tostring(arg))
+        or PlayIt.Instruments.displayName(self.fullType))
 end
 
 function MiniWidget:onPause()
