@@ -62,6 +62,12 @@ s = P("C- D")
 check(notes(s, 2) == "62" and near(s.chords[1].lens[1], 1), "tie to a different pitch is dropped")
 s = P("C4- | C2 D")
 check(#s.chords[2].notes == 0 and near(s.chords[1].lens[1], 6), "tie across a bar line")
+s = P("[C-E]2[A,C]2")
+check(notes(s, 2) == "57" and near(s.chords[1].lens[1], 4) and near(s.chords[1].lens[2], 2), "chord ties pair by pitch, not position")
+s = P("[C-^C-]2[=C^C]2")
+check(#s.chords[2].notes == 0 and near(s.chords[1].lens[1], 4) and near(s.chords[1].lens[2], 4), "tied C and C# are separate notes")
+s = P("^C2-|^C2C2")
+check(seq(s) == "61,,61" and near(s.chords[1].lens[1], 4) and near(s.chords[3].lens[1], 2), "an accidental on a tied continuation carries through its bar")
 
 -- broken rhythm and tuplets
 s = P("C>D E<F")
