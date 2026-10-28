@@ -146,3 +146,15 @@ for _, case in ipairs({ { "Base.Harmonica", "blues", 48 }, { "Base.Banjo", "sixs
 end
 local _, r48 = I.resolve(I.defs["Base.Harmonica"], 48, 0, nil, "blues")
 check(r48 > 0.8, "blues harp: C3 plays an octave up (its real range starts at C4)")
+
+-- echo (2026-10-28): a sample's tail comes back with it; drums have none
+PlayIt.Samples.ToneT = { { midi = 60, tune = 0, sound = "T_C4", tail = "TT_C4" } }
+local tailed = { low = 40, high = 80, samples = PlayIt.Samples.ToneT }
+local _, _, tl = I.resolve(tailed, 62, 0); check(tl == "TT_C4", "resolve returns the chosen sample's tail")
+_, _, tl = I.resolve(guitar, 40, 0); check(tl == nil, "a sample without a tail: none")
+local ds, _, dt = I.resolve(drumsDef, 36, 0, { gm = true, kit = kitAll }, "studio"); check(ds ~= nil and dt == nil, "drums: no tail")
+for ft, d in pairs(I.defs) do
+    if not d.drums then
+        for _, s in ipairs(I.samplesFor(d, nil)) do check(type(s.tail) == "string", ft .. ": every sample has a tail") break end
+    end
+end

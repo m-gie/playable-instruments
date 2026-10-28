@@ -359,6 +359,29 @@ def write_ogg(audio, path):
                     "-c:a", "libvorbis", "-q:a", "5", str(path)], input=audio.astype(np.float32).tobytes(), check=True)
 
 
+TAIL_FILTER = ("apad=pad_dur=3.5,aecho=0:0.7:110|230|360|520|700:0.5|0.35|0.25|0.16|0.1,"
+               "afade=t=out:st=4.8:d=1.2,volume=0.9")
+
+
+def write_tail(dry_path, tail_path):
+    """The echo of a finished dry sample without the dry note itself (played beside it at the echo strength)."""
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(dry_path), "-af", TAIL_FILTER, "-t", "6",
+                    "-ac", "1", "-c:a", "libvorbis", "-q:a", "5", str(tail_path)], check=True)
+
+
+def write_note(audio, key, midi, radius, script):
+    """Writes a note's dry and tail oggs and sound scripts; returns its Samples.lua fields after midi/tune."""
+    name = f"PlayIt_{key}_{note_name(midi)}"
+    file = f"{key.lower()}_{note_name(midi).lower()}.ogg"
+    tail = f"PlayIt_{key}Tail_{note_name(midi)}"
+    tail_file = f"{key.lower()}tail_{note_name(midi).lower()}.ogg"
+    write_ogg(audio, SOUND_DIR / file)
+    write_tail(SOUND_DIR / file, SOUND_DIR / tail_file)
+    script += sound_script(name, file, radius)
+    script += sound_script(tail, tail_file, radius)
+    return f"sound = \"{name}\", tail = \"{tail}\""
+
+
 def note_name(midi):
     return f"{NAMES[midi % 12]}{midi // 12 - 1}"
 
@@ -436,11 +459,8 @@ def main():
             off = measured - midi
             worst = max(worst, abs(off))
             print(f"{key:9} {raw:38} {note_name(midi):4} midi {midi} ({off:+.2f} st)")
-            name = f"PlayIt_{key}_{note_name(midi)}"
-            file = f"{key.lower()}_{note_name(midi).lower()}.ogg"
-            write_ogg(finish(note), SOUND_DIR / file)
-            script += sound_script(name, file, radius)
-            lua.append(f"        {{ midi = {midi}, tune = {round(off * 100)}, sound = \"{name}\" }},")
+            fields = write_note(finish(note), key, midi, radius, script)
+            lua.append(f"        {{ midi = {midi}, tune = {round(off * 100)}, {fields} }},")
         lua.append("    },")
     singles = {key: (radius, seconds, notes, {}) for key, (radius, seconds, notes) in SINGLE.items()}
     for key, (radius, seconds, notes, opts) in {**singles, **TONES}.items():
@@ -463,11 +483,8 @@ def main():
             used.add(midi)
             worst = max(worst, abs(off))
             print(f"{key:9} {raw:38} {note_name(midi):4} midi {midi} ({off:+.2f} st)")
-            name = f"PlayIt_{key}_{note_name(midi)}"
-            file = f"{key.lower()}_{note_name(midi).lower()}.ogg"
-            write_ogg(finish(note, seconds), SOUND_DIR / file)
-            script += sound_script(name, file, radius)
-            lua.append(f"        {{ midi = {midi}, tune = {round(off * 100)}, sound = \"{name}\" }},")
+            fields = write_note(finish(note, seconds), key, midi, radius, script)
+            lua.append(f"        {{ midi = {midi}, tune = {round(off * 100)}, {fields} }},")
         lua.append("    },")
     for key, pieces in DRUM_SETS.items():
         lua.append(f"    {key} = {{")

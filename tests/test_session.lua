@@ -109,3 +109,11 @@ check(S.validate(perf(), "Test.Toned"), "no tone: the default")
 check(not S.validate(perf({ tone = "zz" }), "Test.Toned"), "an unknown tone is rejected")
 check(not S.validate(perf({ tone = "a" }), "Base.Flute"), "a tone on an instrument without tones is rejected")
 check(not S.validate(perf({ tone = 5 }), "Test.Toned"), "tone must be a string")
+
+-- echo (2026-10-28): 0 < echo <= 1, never on the drums
+check(S.validate(perf({ echo = 0.5 }), "Base.Flute"), "echo 0.5")
+check(S.validate(perf({ echo = 1 }), "Base.Flute"), "echo 1")
+check(not S.validate(perf({ echo = 1.5 }), "Base.Flute"), "echo above 1 rejected")
+check(not S.validate(perf({ echo = 0 }), "Base.Flute"), "echo 0 travels as nil")
+check(not S.validate(perf({ echo = "x" }), "Base.Flute"), "echo must be a number")
+local okD, whyD = S.validate(perf({ echo = 0.5 }), "PlayIt.Drums"); check(not okD and whyD == "echo", "no echo on the drums")

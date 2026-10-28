@@ -40,6 +40,7 @@
   "IGUI_PlayIt_Along_NoAnswer": "No answer from the server. Try again.",
   "IGUI_PlayIt_Along_Refused": "Couldn't start playing along. Try again.",
   "IGUI_PlayIt_Tone": "Tone",
+  "IGUI_PlayIt_Echo": "Echo",
   "IGUI_PlayIt_Tone_bowed": "Bowed",
   "IGUI_PlayIt_Tone_plucked": "Plucked",
   "IGUI_PlayIt_Tone_alto": "Alto",

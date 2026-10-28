@@ -8,8 +8,9 @@ PlayIt.Voices = PlayIt.Voices or {}
 local Voices = PlayIt.Voices
 Voices.__index = Voices
 
-Voices.MAX_VOICES = 12
+Voices.MAX_VOICES = 20 -- echo tails double the count
 Voices.RELEASE_MS = 300
+Voices.CUT_MS = 120 -- a ringing tail or finished note fades this long when the next note starts (echo on)
 
 local function worldEmitter(x, y, z)
     return getWorld():getFreeEmitter(x, y, z)
@@ -26,7 +27,7 @@ local function stop(voice)
     voice.emitter:stopSound(voice.ref)
 end
 
-function Voices:noteOn(sound, ratio, durMs, nowMs, gain)
+function Voices:start(sound, ratio, durMs, nowMs, gain, isTail)
     local emitter = self.newEmitter(self.getPos())
     -- playSoundImpl, not playSound: on an MP client playSound also sends an unpitched copy to other players,
     -- who already play the song themselves
@@ -38,24 +39,47 @@ function Voices:noteOn(sound, ratio, durMs, nowMs, gain)
     emitter:setPitch(ref, ratio)
     emitter:setVolume(ref, gain)
     if #self.list >= self.max then stop(table.remove(self.list, 1)) end
-    table.insert(self.list, { emitter = emitter, ref = ref, start = nowMs, dur = durMs, gain = gain })
+    table.insert(self.list, { emitter = emitter, ref = ref, start = nowMs, dur = durMs, gain = gain, tail = isTail })
 end
 
--- follow the musician; full gain for the note's length, then a linear fade over the release
+-- the gain a voice sounds at now (before any cut)
+local function level(self, v, nowMs)
+    if v.tail then return v.gain end
+    local past = nowMs - v.start - v.dur
+    return past <= 0 and v.gain or v.gain * math.max(0, 1 - past / self.release)
+end
+
+-- tail: the sample's echo tail, started beside it at tailGain (echo on). With a tail, every earlier tail and note
+-- past its written length fades out over CUT_MS; notes still within their length (held chords) keep sounding.
+function Voices:noteOn(sound, ratio, durMs, nowMs, gain, tail, tailGain)
+    if tail then
+        for _, v in ipairs(self.list) do
+            if v.cutAt == nil and v.start < nowMs and (v.tail or nowMs - v.start >= v.dur) then
+                v.cutFrom, v.cutAt = level(self, v, nowMs), nowMs
+            end
+        end
+    end
+    self:start(sound, ratio, durMs, nowMs, gain, false)
+    if tail then self:start(tail, ratio, durMs, nowMs, tailGain, true) end
+end
+
+-- follow the musician; full gain for the note's length, then a linear fade over the release (tails ring to their
+-- end); a cut voice fades from where it was over CUT_MS
 function Voices:update(nowMs)
     local x, y, z = self.getPos()
     for i = #self.list, 1, -1 do
         local v = self.list[i]
         local past = nowMs - v.start - v.dur
+        local cut = v.cutAt and (nowMs - v.cutAt) / Voices.CUT_MS
         if not v.emitter:isPlaying(v.ref) then
             -- the sample ended: the game pools the emitter again, so stop touching it
             table.remove(self.list, i)
-        elseif past >= self.release then
+        elseif (cut and cut >= 1) or (not v.tail and past >= self.release) then
             stop(v)
             table.remove(self.list, i)
         else
             v.emitter:setPos(x, y, z)
-            v.emitter:setVolume(v.ref, past <= 0 and v.gain or v.gain * (1 - past / self.release))
+            v.emitter:setVolume(v.ref, cut and v.cutFrom * (1 - cut) or level(self, v, nowMs))
         end
     end
 end

@@ -172,7 +172,7 @@ end
 
 -- sound name and pitch ratio for a note; notes outside the range move by whole octaves into it,
 -- sample.tune (cents, measured when the sample was made) is corrected. Drums need ctx (see resolveDrum).
--- toneId: which of the instrument's sounds (nil = the default)
+-- toneId: which of the instrument's sounds (nil = the default). Also returns the sample's echo tail (nil for drums).
 function Instruments.resolve(instrument, midi, cents, ctx, toneId)
     local samples, _, low, high = Instruments.samplesFor(instrument, toneId)
     if instrument.drums then return resolveDrum(samples, midi, ctx) end
@@ -183,5 +183,5 @@ function Instruments.resolve(instrument, midi, cents, ctx, toneId)
         if best == nil or math.abs(midi - s.midi) < math.abs(midi - best.midi) then best = s end
     end
     local ratio = 2 ^ ((midi - best.midi) / 12 + ((cents or 0) - (best.tune or 0)) / 1200)
-    return best.sound, ratio
+    return best.sound, ratio, best.tail
 end

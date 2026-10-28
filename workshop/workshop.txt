@@ -6,11 +6,16 @@ description=
 description=[b]Play it![/b] makes the instruments you find actually playable. Paste in a song, press Play, and your survivor plays it note by note - and everyone nearby hears it. Including the zombies.
 description=
 description=[h2]Playing Music[/h2]
-description=Right-click a [b]guitar, violin, trumpet, harmonica, flute, saxophone or keytar[/b] and choose [b]Play[/b]. Your survivor takes it in hand and the music window opens.
+description=Right-click a [b]guitar, electric guitar, bass, banjo, violin, trumpet, harmonica, flute, saxophone or keytar[/b] and choose [b]Play[/b]. Your survivor takes it in hand and the music window opens.
 description=
 description=Paste a song, pick your [b]part[/b], set the [b]BPM[/b] and [b]volume[/b], and press [b]Play[/b]. You can walk while you play, pause and resume right where you stopped, and [b]Save[/b] your favourite songs - they're kept on your computer, so they follow you to every character and every server.
 description=
 description=Running, getting hit, getting grabbed or pressing [b]Esc[/b] pauses the song. Close the window mid-song and a small widget stays on screen, so you can keep an eye on the road instead of the sheet music.
+description=
+description=[h2]Tones and Echo[/h2]
+description=Many instruments have more than one sound - pick it from the [b]Tone[/b] list: a clean, jazz or distorted electric guitar, a bass played with a pick or fingers, a 5- or 6-string banjo, a bowed or plucked violin, an alto or tenor sax, a chromatic or blues harp, three keytar patches, an upright or honky-tonk piano, a pipe or renaissance organ, and a studio or lo-fi drum kit.
+description=
+description=Want that lonely western sound? Turn up the [b]Echo[/b] slider and every note rings out after you play it - perfect for a harmonica at dusk. Everyone listening hears it too. (Not on the drums. Trust me.)
 description=
 description=[h2]Pianos, Organs and Drums[/h2]
 description=Found a piano in someone's living room? Right-click a [b]piano[/b], [b]grand piano[/b], [b]church organ[/b] or a [b]drum[/b] and choose [b]Play[/b]. Your survivor walks over and the music window opens - everything works just like the hand-held instruments. Sit on a stool next to it if you like, or play standing. Walk away and the song pauses.
@@ -41,7 +46,8 @@ description=Wild animals run from the racket. Tame animals that trust you might 
 description=
 description=[h2]Features[/h2]
 description=[list]
-description=[*]Seven hand-held instruments plus pianos, the church organ and drums, using real recorded notes.
+description=[*]Ten hand-held instruments plus pianos, the church organ and drums, using real recorded notes.
+description=[*]Several tones for most instruments, and an Echo slider.
 description=[*]Paste songs in ABC notation, or convert your own MIDI files with the [url=https://playit-midi.vercel.app/]Play it! MIDI converter[/url].
 description=[*]Play along with other survivors - one song, one beat, every part.
 description=[*]Save and load your songs, pause and resume, play while walking.
@@ -59,7 +65,11 @@ description=[list]
 description=[*][b]Acoustic guitar, trumpet, violin, flute, saxophone:[/b] University of Iowa Electronic Music Studios, Musical Instrument Samples (Lawrence Fritts). Guitar played by Brian Penkrot, trumpet by Aren Van Houzen, violin by Leonid Iogansen, flute by Sonja Feig, alto saxophone by Michael Giles. [url=https://theremin.music.uiowa.edu/MIS.html]theremin.music.uiowa.edu/MIS.html[/url]
 description=[*][b]Harmonica, keytar:[/b] Versilian Studios Community Sample Library (VCSL) by Sam Gossner, CC0 (Hohner Super 64; Yamaha TX81Z "Clavisynth"). [url=https://github.com/sgossner/VCSL]github.com/sgossner/VCSL[/url]
 description=[*][b]Piano, grand piano, church organ:[/b] VCSL as above (Yamaha upright; Steinway B grand; pipe organ).
-description=[*][b]Drums:[/b] Virtuosity Drums by Versilian Studios and Karoryfer Lecolds, CC0, played by Austin McMahon (drums and cymbals). [url=https://github.com/sfzinstruments/virtuosity_drums]github.com/sfzinstruments/virtuosity_drums[/url]
+description=[*][b]Drums (studio and lo-fi):[/b] Virtuosity Drums by Versilian Studios and Karoryfer Lecolds, CC0, played by Austin McMahon (drums and cymbals). [url=https://github.com/sfzinstruments/virtuosity_drums]github.com/sfzinstruments/virtuosity_drums[/url]
+description=[*][b]Electric guitar, bass, honky-tonk piano:[/b] FreePats project, CC0 (Fender electric guitar; Yamaha RBX bass sampled by Andrea Biasior; Francis Bacon player piano recorded by Piotr Barcz). [url=https://freepats.zenvoid.org/]freepats.zenvoid.org[/url]
+description=[*][b]5-string banjo:[/b] "Windsor Banjo c1920-1930" SoundFont by Clive Nelson, public domain. [url=https://www.polyphone.io/en/soundfonts/plucked-strings/444-windsor-banjo-c1920-1930]polyphone.io[/url]
+description=[*][b]6-string banjo:[/b] "ganjo" by itsclipping, CC0. [url=https://github.com/sfzinstruments/ganjo]github.com/sfzinstruments/ganjo[/url]
+description=[*][b]Other tones:[/b] plucked violin from the University of Iowa MIS (same violin and player); tenor sax, blues harp (Hohner Special 20), keytar FM Piano and Piano 1, and renaissance organ from VCSL.
 description=[/list]
 description=Inspired by Space Station 13's instruments (/tg/station).
 tags=Build 42;Multiplayer

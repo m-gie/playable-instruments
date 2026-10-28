@@ -11,6 +11,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_GuitarTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Guitar_A2
     {
         category = Item,
@@ -18,6 +29,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/guitar_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_GuitarTail_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_a2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -33,6 +55,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_GuitarTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Guitar_G3
     {
         category = Item,
@@ -40,6 +73,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/guitar_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_GuitarTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_g3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -55,6 +99,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_GuitarTail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Guitar_E4
     {
         category = Item,
@@ -62,6 +117,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/guitar_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_GuitarTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_e4.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -77,6 +143,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_GuitarTail_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Guitar_B4
     {
         category = Item,
@@ -84,6 +161,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/guitar_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_GuitarTail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/guitartail_b4.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -99,6 +187,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_TrumpetTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpettail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Trumpet_C4
     {
         category = Item,
@@ -106,6 +205,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/trumpet_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_TrumpetTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpettail_c4.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -121,6 +231,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_TrumpetTail_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpettail_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Trumpet_Bb4
     {
         category = Item,
@@ -128,6 +249,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/trumpet_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_TrumpetTail_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpettail_bb4.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -143,6 +275,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_TrumpetTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpettail_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Trumpet_A5
     {
         category = Item,
@@ -150,6 +293,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/trumpet_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_TrumpetTail_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/trumpettail_a5.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -165,6 +319,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violintail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Violin_D4
     {
         category = Item,
@@ -172,6 +337,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violin_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinTail_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violintail_d4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -187,6 +363,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinTail_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violintail_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Violin_E5
     {
         category = Item,
@@ -194,6 +381,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violin_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violintail_e5.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -209,6 +407,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violintail_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Violin_G6
     {
         category = Item,
@@ -216,6 +425,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violin_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinTail_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violintail_g6.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -231,6 +451,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_FluteTail_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flutetail_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Flute_G4
     {
         category = Item,
@@ -238,6 +469,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/flute_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_FluteTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flutetail_g4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -253,6 +495,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_FluteTail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flutetail_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Flute_E5
     {
         category = Item,
@@ -260,6 +513,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/flute_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_FluteTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flutetail_e5.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -275,6 +539,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_FluteTail_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flutetail_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Flute_D6
     {
         category = Item,
@@ -282,6 +557,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/flute_d6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_FluteTail_D6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flutetail_d6.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -297,6 +583,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_FluteTail_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/flutetail_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Saxophone_D3
     {
         category = Item,
@@ -304,6 +601,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxophone_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxophoneTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophonetail_d3.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -319,6 +627,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxophoneTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophonetail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_Saxophone_C4
     {
         category = Item,
@@ -326,6 +645,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxophone_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxophoneTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophonetail_c4.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -341,6 +671,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxophoneTail_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophonetail_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_Saxophone_Bb4
     {
         category = Item,
@@ -348,6 +689,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxophone_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxophoneTail_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophonetail_bb4.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -363,6 +715,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxophoneTail_Eb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophonetail_eb5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_Saxophone_Ab5
     {
         category = Item,
@@ -370,6 +733,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxophone_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxophoneTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxophonetail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -385,6 +759,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Keytar_E3
     {
         category = Item,
@@ -392,6 +777,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytar_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_e3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -407,6 +803,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarTail_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Keytar_C4
     {
         category = Item,
@@ -414,6 +821,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytar_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_c4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -429,6 +847,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Keytar_Ab4
     {
         category = Item,
@@ -436,6 +865,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytar_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarTail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_ab4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -451,6 +891,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Keytar_E5
     {
         category = Item,
@@ -458,6 +909,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytar_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_e5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -473,6 +935,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Keytar_C6
     {
         category = Item,
@@ -480,6 +953,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytar_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_c6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -495,6 +979,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarTail_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Keytar_Ab6
     {
         category = Item,
@@ -502,6 +997,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytar_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarTail_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytartail_ab6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -517,6 +1023,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_Harmonica_E3
     {
         category = Item,
@@ -524,6 +1041,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonica_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_e3.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -539,6 +1067,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_Harmonica_C4
     {
         category = Item,
@@ -546,6 +1085,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonica_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_c4.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -561,6 +1111,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_Harmonica_G4
     {
         category = Item,
@@ -568,6 +1129,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonica_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_g4.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -583,6 +1155,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_Harmonica_E5
     {
         category = Item,
@@ -590,6 +1173,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonica_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_e5.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -605,6 +1199,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaTail_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_Harmonica_C6
     {
         category = Item,
@@ -612,6 +1217,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonica_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicatail_c6.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -627,6 +1243,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_A3
     {
         category = Item,
@@ -634,6 +1261,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_a3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_A3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_a3.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -649,6 +1287,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_C4
     {
         category = Item,
@@ -656,6 +1305,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_c4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -671,6 +1331,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_D4
     {
         category = Item,
@@ -678,6 +1349,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_d4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -693,6 +1375,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_Eb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_eb4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_E4
     {
         category = Item,
@@ -700,6 +1393,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_e4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -715,6 +1419,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_Gb4
     {
         category = Item,
@@ -722,6 +1437,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_gb4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_Gb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_gb4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -737,6 +1463,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_Ab4
     {
         category = Item,
@@ -744,6 +1481,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_ab4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -759,6 +1507,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_Bb4
     {
         category = Item,
@@ -766,6 +1525,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_bb4.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -781,6 +1551,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_C5
     {
         category = Item,
@@ -788,6 +1569,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_c5.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -803,6 +1595,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_Db5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_db5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_D5
     {
         category = Item,
@@ -810,6 +1613,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_d5.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -825,6 +1639,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_Eb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_eb5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_E5
     {
         category = Item,
@@ -832,6 +1657,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_e5.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -847,6 +1683,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_Gb5
     {
         category = Item,
@@ -854,6 +1701,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_gb5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_Gb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_gb5.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -869,6 +1727,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_Ab5
     {
         category = Item,
@@ -876,6 +1745,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -891,6 +1771,17 @@ module Base
             distanceMax = 25,
         }
     }
+    sound PlayIt_ViolinPizzTail_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_ViolinPizz_A6
     {
         category = Item,
@@ -898,6 +1789,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/violinpizz_a6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizzTail_A6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizztail_a6.ogg,
             distanceMin = 1,
             distanceMax = 25,
         }
@@ -913,6 +1815,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_UprightTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Upright_G2
     {
         category = Item,
@@ -920,6 +1833,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/upright_g2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_UprightTail_G2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_g2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -935,6 +1859,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_UprightTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Upright_G3
     {
         category = Item,
@@ -942,6 +1877,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/upright_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_UprightTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_g3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -957,6 +1903,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_UprightTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Upright_G4
     {
         category = Item,
@@ -964,6 +1921,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/upright_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_UprightTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_g4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -979,6 +1947,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_UprightTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Upright_G5
     {
         category = Item,
@@ -986,6 +1965,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/upright_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_UprightTail_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_g5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1001,6 +1991,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_UprightTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_Upright_G6
     {
         category = Item,
@@ -1008,6 +2009,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/upright_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_UprightTail_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/uprighttail_g6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1023,6 +2035,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_E2
     {
         category = Item,
@@ -1030,6 +2053,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_e2.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1045,6 +2079,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_C3
     {
         category = Item,
@@ -1052,6 +2097,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_c3.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1067,6 +2123,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_Ab3
     {
         category = Item,
@@ -1074,6 +2141,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_ab3.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1089,6 +2167,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_E4
     {
         category = Item,
@@ -1096,6 +2185,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_e4.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1111,6 +2211,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_C5
     {
         category = Item,
@@ -1118,6 +2229,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_c5.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1133,6 +2255,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_Ab5
     {
         category = Item,
@@ -1140,6 +2273,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1155,6 +2299,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_E6
     {
         category = Item,
@@ -1162,6 +2317,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_e6.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1177,6 +2343,17 @@ module Base
             distanceMax = 45,
         }
     }
+    sound PlayIt_GrandTail_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
     sound PlayIt_Grand_C7
     {
         category = Item,
@@ -1184,6 +2361,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/grand_c7.ogg,
+            distanceMin = 1,
+            distanceMax = 45,
+        }
+    }
+    sound PlayIt_GrandTail_C7
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/grandtail_c7.ogg,
             distanceMin = 1,
             distanceMax = 45,
         }
@@ -1199,6 +2387,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_Eb2
     {
         category = Item,
@@ -1206,6 +2405,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_eb2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_Eb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_eb2.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1221,6 +2431,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_Gb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_gb2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_A2
     {
         category = Item,
@@ -1228,6 +2449,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_a2.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1243,6 +2475,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_Eb3
     {
         category = Item,
@@ -1250,6 +2493,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_eb3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_Eb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_eb3.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1265,6 +2519,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_A3
     {
         category = Item,
@@ -1272,6 +2537,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_a3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_A3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_a3.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1287,6 +2563,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_Eb4
     {
         category = Item,
@@ -1294,6 +2581,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_eb4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_Eb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_eb4.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1309,6 +2607,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_Gb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_gb4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_A4
     {
         category = Item,
@@ -1316,6 +2625,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_a4.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1331,6 +2651,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_Eb5
     {
         category = Item,
@@ -1338,6 +2669,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_eb5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_Eb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_eb5.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1353,6 +2695,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_Gb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_gb5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Organ_A5
     {
         category = Item,
@@ -1360,6 +2713,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organ_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganTail_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_a5.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -1375,6 +2739,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organtail_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_ElectricClean_C2
     {
         category = Item,
@@ -1382,6 +2757,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_c2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1397,6 +2783,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_F2
     {
         category = Item,
@@ -1404,6 +2801,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_f2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1419,6 +2827,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_C3
     {
         category = Item,
@@ -1426,6 +2845,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_c3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1441,6 +2871,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_E3
     {
         category = Item,
@@ -1448,6 +2889,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_e3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1463,6 +2915,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_B3
     {
         category = Item,
@@ -1470,6 +2933,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_b3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1485,6 +2959,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_E4
     {
         category = Item,
@@ -1492,6 +2977,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_e4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1507,6 +3003,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_B4
     {
         category = Item,
@@ -1514,6 +3021,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_b4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1529,6 +3047,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_D5
     {
         category = Item,
@@ -1536,6 +3065,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_d5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1551,6 +3091,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_Ab5
     {
         category = Item,
@@ -1558,6 +3109,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1573,6 +3135,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricCleanTail_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricClean_Db6
     {
         category = Item,
@@ -1580,6 +3153,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricclean_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricCleanTail_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electriccleantail_db6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1595,6 +3179,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_E2
     {
         category = Item,
@@ -1602,6 +3197,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_e2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1617,6 +3223,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_A2
     {
         category = Item,
@@ -1624,6 +3241,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_a2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1639,6 +3267,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_D3
     {
         category = Item,
@@ -1646,6 +3285,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_d3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1661,6 +3311,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_G3
     {
         category = Item,
@@ -1668,6 +3329,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_g3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1683,6 +3355,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_Db4
     {
         category = Item,
@@ -1690,6 +3373,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_db4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1705,6 +3399,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_G4
     {
         category = Item,
@@ -1712,6 +3417,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_g4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1727,6 +3443,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_C5
     {
         category = Item,
@@ -1734,6 +3461,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_c5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1749,6 +3487,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_F5
     {
         category = Item,
@@ -1756,6 +3505,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_f5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1771,6 +3531,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricJazz_Bb5
     {
         category = Item,
@@ -1778,6 +3549,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricjazz_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazzTail_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_bb5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1793,6 +3575,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricJazzTail_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazztail_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_C2
     {
         category = Item,
@@ -1800,6 +3593,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_c2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1815,6 +3619,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_F2
     {
         category = Item,
@@ -1822,6 +3637,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_f2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1837,6 +3663,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_C3
     {
         category = Item,
@@ -1844,6 +3681,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_c3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1859,6 +3707,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_E3
     {
         category = Item,
@@ -1866,6 +3725,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_e3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1881,6 +3751,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_B3
     {
         category = Item,
@@ -1888,6 +3769,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_b3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1903,6 +3795,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_E4
     {
         category = Item,
@@ -1910,6 +3813,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_e4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1925,6 +3839,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_B4
     {
         category = Item,
@@ -1932,6 +3857,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_b4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1947,6 +3883,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_D5
     {
         category = Item,
@@ -1954,6 +3901,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_d5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1969,6 +3927,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_Ab5
     {
         category = Item,
@@ -1976,6 +3945,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -1991,6 +3971,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_ElectricDistortedTail_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_ElectricDistorted_Db6
     {
         category = Item,
@@ -1998,6 +3989,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/electricdistorted_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistortedTail_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistortedtail_db6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2013,6 +4015,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassPickTail_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassPick_F1
     {
         category = Item,
@@ -2020,6 +4033,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/basspick_f1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPickTail_F1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_f1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2035,6 +4059,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassPickTail_Gb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_gb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassPick_G1
     {
         category = Item,
@@ -2042,6 +4077,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/basspick_g1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPickTail_G1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_g1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2057,6 +4103,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassPickTail_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassPick_A1
     {
         category = Item,
@@ -2064,6 +4121,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/basspick_a1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPickTail_A1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_a1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2079,6 +4147,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassPickTail_Bb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_bb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassPick_B1
     {
         category = Item,
@@ -2086,6 +4165,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/basspick_b1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPickTail_B1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_b1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2101,6 +4191,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassPickTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassPick_Db2
     {
         category = Item,
@@ -2108,6 +4209,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/basspick_db2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPickTail_Db2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_db2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2123,6 +4235,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassPickTail_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassPick_Eb2
     {
         category = Item,
@@ -2130,6 +4253,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/basspick_eb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPickTail_Eb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_eb2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2145,6 +4279,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassPickTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspicktail_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassFinger_E1
     {
         category = Item,
@@ -2152,6 +4297,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/bassfinger_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFingerTail_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_e1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2167,6 +4323,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassFingerTail_F1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_f1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassFinger_Gb1
     {
         category = Item,
@@ -2174,6 +4341,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/bassfinger_gb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFingerTail_Gb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_gb1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2189,6 +4367,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassFingerTail_G1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_g1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassFinger_Ab1
     {
         category = Item,
@@ -2196,6 +4385,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/bassfinger_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFingerTail_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_ab1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2211,6 +4411,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassFingerTail_A1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_a1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassFinger_Bb1
     {
         category = Item,
@@ -2218,6 +4429,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/bassfinger_bb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFingerTail_Bb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_bb1.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2233,6 +4455,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassFingerTail_B1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_b1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassFinger_C2
     {
         category = Item,
@@ -2240,6 +4473,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/bassfinger_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFingerTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_c2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2255,6 +4499,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassFingerTail_Db2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_db2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_BassFinger_D2
     {
         category = Item,
@@ -2262,6 +4517,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/bassfinger_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFingerTail_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_d2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2277,6 +4543,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_BassFingerTail_Eb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfingertail_eb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo5_D3
     {
         category = Item,
@@ -2284,6 +4561,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo5_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo5Tail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5tail_d3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2299,6 +4587,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo5Tail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5tail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo5_B3
     {
         category = Item,
@@ -2306,6 +4605,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo5_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo5Tail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5tail_b3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2321,6 +4631,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo5Tail_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5tail_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_Gb2
     {
         category = Item,
@@ -2328,6 +4649,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_gb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_Gb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_gb2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2343,6 +4675,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_G2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_g2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_Ab2
     {
         category = Item,
@@ -2350,6 +4693,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_ab2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2365,6 +4719,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_Bb2
     {
         category = Item,
@@ -2372,6 +4737,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_bb2.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2387,6 +4763,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_B2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_b2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_Db3
     {
         category = Item,
@@ -2394,6 +4781,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_db3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_Db3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_db3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2409,6 +4807,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_Eb3
     {
         category = Item,
@@ -2416,6 +4825,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_eb3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_Eb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_eb3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2431,6 +4851,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_F3
     {
         category = Item,
@@ -2438,6 +4869,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_f3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_F3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_f3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2453,6 +4895,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_G3
     {
         category = Item,
@@ -2460,6 +4913,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_g3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2475,6 +4939,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_A3
     {
         category = Item,
@@ -2482,6 +4957,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_a3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_A3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_a3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2497,6 +4983,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_B3
     {
         category = Item,
@@ -2504,6 +5001,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_b3.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2519,6 +5027,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_Eb4
     {
         category = Item,
@@ -2526,6 +5045,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_eb4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_Eb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_eb4.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2541,6 +5071,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_Ab4
     {
         category = Item,
@@ -2548,6 +5089,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_ab4.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2563,6 +5115,17 @@ module Base
             distanceMax = 30,
         }
     }
+    sound PlayIt_Banjo6Tail_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
     sound PlayIt_Banjo6_B4
     {
         category = Item,
@@ -2570,6 +5133,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/banjo6_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6Tail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6tail_b4.ogg,
             distanceMin = 1,
             distanceMax = 30,
         }
@@ -2585,6 +5159,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Db2
     {
         category = Item,
@@ -2592,6 +5177,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_db2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Db2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_db2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2607,6 +5203,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Eb2
     {
         category = Item,
@@ -2614,6 +5221,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_eb2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Eb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_eb2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2629,6 +5247,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_F2
     {
         category = Item,
@@ -2636,6 +5265,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_f2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2651,6 +5291,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_A2
     {
         category = Item,
@@ -2658,6 +5309,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_a2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2673,6 +5335,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_B2
     {
         category = Item,
@@ -2680,6 +5353,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_b2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_B2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_b2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2695,6 +5379,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Db3
     {
         category = Item,
@@ -2702,6 +5397,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_db3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Db3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_db3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2717,6 +5423,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_E3
     {
         category = Item,
@@ -2724,6 +5441,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_e3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2739,6 +5467,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_F3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_f3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Gb3
     {
         category = Item,
@@ -2746,6 +5485,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_gb3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2761,6 +5511,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Ab3
     {
         category = Item,
@@ -2768,6 +5529,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_ab3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2783,6 +5555,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_A3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_a3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Bb3
     {
         category = Item,
@@ -2790,6 +5573,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_bb3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2805,6 +5599,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_C4
     {
         category = Item,
@@ -2812,6 +5617,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_c4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2827,6 +5643,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_D4
     {
         category = Item,
@@ -2834,6 +5661,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_d4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2849,6 +5687,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Eb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_eb4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_E4
     {
         category = Item,
@@ -2856,6 +5705,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_e4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2871,6 +5731,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_G4
     {
         category = Item,
@@ -2878,6 +5749,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_g4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2893,6 +5775,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_A4
     {
         category = Item,
@@ -2900,6 +5793,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_a4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2915,6 +5819,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_C5
     {
         category = Item,
@@ -2922,6 +5837,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_c5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2937,6 +5863,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Db5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_db5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_D5
     {
         category = Item,
@@ -2944,6 +5881,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_d5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2959,6 +5907,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Eb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_eb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_E5
     {
         category = Item,
@@ -2966,6 +5925,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_e5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -2981,6 +5951,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Gb5
     {
         category = Item,
@@ -2988,6 +5969,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_gb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Gb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_gb5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3003,6 +5995,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Ab5
     {
         category = Item,
@@ -3010,6 +6013,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3025,6 +6039,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Bb5
     {
         category = Item,
@@ -3032,6 +6057,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_bb5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3047,6 +6083,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_B5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_b5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_C6
     {
         category = Item,
@@ -3054,6 +6101,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_c6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3069,6 +6127,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_D6
     {
         category = Item,
@@ -3076,6 +6145,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_d6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_D6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_d6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3091,6 +6171,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_Eb6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_eb6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_E6
     {
         category = Item,
@@ -3098,6 +6189,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_e6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3113,6 +6215,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_F6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_f6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Gb6
     {
         category = Item,
@@ -3120,6 +6233,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_gb6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Gb6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_gb6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3135,6 +6259,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Ab6
     {
         category = Item,
@@ -3142,6 +6277,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_ab6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3157,6 +6303,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_A6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_a6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_Bb6
     {
         category = Item,
@@ -3164,6 +6321,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_bb6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_Bb6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_bb6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3179,6 +6347,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_HonkyTonkTail_B6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_b6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_HonkyTonk_C7
     {
         category = Item,
@@ -3186,6 +6365,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/honkytonk_c7.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonkTail_C7
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonktail_c7.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3201,6 +6391,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_C3
     {
         category = Item,
@@ -3208,6 +6409,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_c3.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3223,6 +6435,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_E3
     {
         category = Item,
@@ -3230,6 +6453,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_e3.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3245,6 +6479,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_Bb3
     {
         category = Item,
@@ -3252,6 +6497,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_bb3.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3267,6 +6523,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_D4
     {
         category = Item,
@@ -3274,6 +6541,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_d4.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3289,6 +6567,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_Gb4
     {
         category = Item,
@@ -3296,6 +6585,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_gb4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_Gb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_gb4.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3311,6 +6611,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_C5
     {
         category = Item,
@@ -3318,6 +6629,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_c5.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3333,6 +6655,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_E5
     {
         category = Item,
@@ -3340,6 +6673,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_e5.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3355,6 +6699,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_Ab5
     {
         category = Item,
@@ -3362,6 +6717,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3377,6 +6743,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_SaxTenor_C6
     {
         category = Item,
@@ -3384,6 +6761,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/saxtenor_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenorTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_c6.ogg,
             distanceMin = 1,
             distanceMax = 40,
         }
@@ -3399,6 +6787,17 @@ module Base
             distanceMax = 40,
         }
     }
+    sound PlayIt_SaxTenorTail_D6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenortail_d6.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
     sound PlayIt_HarmonicaBlues_C4
     {
         category = Item,
@@ -3406,6 +6805,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonicablues_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBluesTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicabluestail_c4.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -3421,6 +6831,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaBluesTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicabluestail_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_HarmonicaBlues_C5
     {
         category = Item,
@@ -3428,6 +6849,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonicablues_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBluesTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicabluestail_c5.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -3443,6 +6875,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaBluesTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicabluestail_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_HarmonicaBlues_G5
     {
         category = Item,
@@ -3450,6 +6893,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonicablues_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBluesTail_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicabluestail_g5.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -3465,6 +6919,17 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_HarmonicaBluesTail_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicabluestail_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
     sound PlayIt_HarmonicaBlues_G6
     {
         category = Item,
@@ -3472,6 +6937,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/harmonicablues_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBluesTail_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicabluestail_g6.ogg,
             distanceMin = 1,
             distanceMax = 20,
         }
@@ -3487,6 +6963,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_Ab1
     {
         category = Item,
@@ -3494,6 +6981,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_ab1.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3509,6 +7007,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_E2
     {
         category = Item,
@@ -3516,6 +7025,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_e2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3531,6 +7051,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_C3
     {
         category = Item,
@@ -3538,6 +7069,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_c3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3553,6 +7095,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_Ab3
     {
         category = Item,
@@ -3560,6 +7113,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_ab3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3575,6 +7139,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_E4
     {
         category = Item,
@@ -3582,6 +7157,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_e4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3597,6 +7183,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_C5
     {
         category = Item,
@@ -3604,6 +7201,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_c5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3619,6 +7227,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_Ab5
     {
         category = Item,
@@ -3626,6 +7245,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3641,6 +7271,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarFM_E6
     {
         category = Item,
@@ -3648,6 +7289,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarfm_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFMTail_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_e6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3663,6 +7315,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarFMTail_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfmtail_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarPiano_E2
     {
         category = Item,
@@ -3670,6 +7333,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarpiano_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPianoTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_e2.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3685,6 +7359,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarPianoTail_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarPiano_C3
     {
         category = Item,
@@ -3692,6 +7377,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarpiano_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPianoTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_c3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3707,6 +7403,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarPianoTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarPiano_Ab3
     {
         category = Item,
@@ -3714,6 +7421,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarpiano_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPianoTail_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_ab3.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3729,6 +7447,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarPianoTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarPiano_E4
     {
         category = Item,
@@ -3736,6 +7465,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarpiano_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPianoTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_e4.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3751,6 +7491,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarPianoTail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarPiano_C5
     {
         category = Item,
@@ -3758,6 +7509,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarpiano_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPianoTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_c5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3773,6 +7535,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarPianoTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarPiano_Ab5
     {
         category = Item,
@@ -3780,6 +7553,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarpiano_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPianoTail_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_ab5.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3795,6 +7579,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarPianoTail_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_KeytarPiano_E6
     {
         category = Item,
@@ -3802,6 +7597,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/keytarpiano_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPianoTail_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_e6.ogg,
             distanceMin = 1,
             distanceMax = 35,
         }
@@ -3817,6 +7623,17 @@ module Base
             distanceMax = 35,
         }
     }
+    sound PlayIt_KeytarPianoTail_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpianotail_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
     sound PlayIt_OrganRenaissance_C1
     {
         category = Item,
@@ -3824,6 +7641,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_c1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_C1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_c1.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3839,6 +7667,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_D1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_d1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_E1
     {
         category = Item,
@@ -3846,6 +7685,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_e1.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3861,6 +7711,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Gb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_gb1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_Ab1
     {
         category = Item,
@@ -3868,6 +7729,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_ab1.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3883,6 +7755,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Bb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_bb1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_C2
     {
         category = Item,
@@ -3890,6 +7773,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_c2.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3905,6 +7799,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_E2
     {
         category = Item,
@@ -3912,6 +7817,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_e2.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3927,6 +7843,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Gb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_gb2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_Ab2
     {
         category = Item,
@@ -3934,6 +7861,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_ab2.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3949,6 +7887,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_C3
     {
         category = Item,
@@ -3956,6 +7905,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_c3.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3971,6 +7931,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_E3
     {
         category = Item,
@@ -3978,6 +7949,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_e3.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -3993,6 +7975,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_Ab3
     {
         category = Item,
@@ -4000,6 +7993,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_ab3.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -4015,6 +8019,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_C4
     {
         category = Item,
@@ -4022,6 +8037,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_c4.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -4037,6 +8063,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_E4
     {
         category = Item,
@@ -4044,6 +8081,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_e4.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -4059,6 +8107,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Gb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_gb4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_Ab4
     {
         category = Item,
@@ -4066,6 +8125,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_ab4.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -4081,6 +8151,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_C5
     {
         category = Item,
@@ -4088,6 +8169,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_c5.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }
@@ -4103,6 +8195,17 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_OrganRenaissanceTail_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_OrganRenaissance_E5
     {
         category = Item,
@@ -4110,6 +8213,17 @@ module Base
         clip
         {
             file = media/sound/PlayIt/organrenaissance_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissanceTail_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissancetail_e5.ogg,
             distanceMin = 1,
             distanceMax = 60,
         }

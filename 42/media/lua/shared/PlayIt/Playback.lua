@@ -14,6 +14,7 @@ PlayIt.Playback = PlayIt.Playback or {}
 local Playback = PlayIt.Playback
 
 Playback.TAIL_MS = 1000 -- keep updating voices this long after the last note so releases finish
+Playback.ECHO_TAIL_MS = 6000 -- with echo on: the echo tails' length
 Playback.onEvent = nil -- function(musicianId, event, perf, def), for every chord played audibly
 
 local active = {}
@@ -35,7 +36,7 @@ local function drumContext(def, perf, song)
 end
 
 -- source: { getPos() -> x, y, z, isSilent() -> true while the musician must not be heard (invisible) }
--- perf: { text, bpm, seed, segments, volume (0-1), fromMs (chords before it are skipped; play along) };
+-- perf: { text, bpm, seed, segments, volume (0-1), fromMs (chords before it are skipped; play along), tone, echo };
 -- posMs: where in the song it is now (negative: it starts that much later)
 function Playback.start(id, source, fullType, perf, posMs, nowMs)
     Playback.stop(id)
@@ -61,8 +62,12 @@ local function play(id, p, event, nowMs)
         return
     end
     for _, note in ipairs(event.notes) do
-        local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents, p.drums, p.perf.tone)
-        if sound then p.voices:noteOn(sound, ratio, note.dur or event.dur, nowMs, p.perf.volume) end
+        local sound, ratio, tail = PlayIt.Instruments.resolve(p.def, note.midi, note.cents, p.drums, p.perf.tone)
+        local echo = p.perf.echo
+        if not echo then tail = nil end
+        if sound then
+            p.voices:noteOn(sound, ratio, note.dur or event.dur, nowMs, p.perf.volume, tail, tail and p.perf.volume * echo)
+        end
     end
     if Playback.onEvent then Playback.onEvent(id, event, p.perf, p.def) end
 end
@@ -78,7 +83,7 @@ function Playback.update(nowMs)
             p.nextIndex = p.nextIndex + 1
         end
         p.voices:update(nowMs)
-        if pos >= p.timeline.length + Playback.TAIL_MS then
+        if pos >= p.timeline.length + (p.perf.echo and Playback.ECHO_TAIL_MS or Playback.TAIL_MS) then
             p.voices:stopAll()
             active[id] = nil
         end
