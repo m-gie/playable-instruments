@@ -78,3 +78,27 @@ local lowS, lowR = I.resolve(D, 41, 0, gmCtx)
 local highS, highR = I.resolve(D, 50, 0, gmCtx)
 check(lowS == "PlayIt_Drums_TomLow" and highS == "PlayIt_Drums_TomHigh" and lowR < 1 and highR > 1, "GM toms low to high")
 check(I.resolve(D, 49, 0, { gm = true, kit = { snare = true } }) == nil, "GM crash needs the tom stand")
+
+-- tones (2026-10-28): a def lists sample sets by tone; the first is the default
+PlayIt.Samples.ToneA = { { midi = 60, tune = 0, sound = "A_C4" } }
+PlayIt.Samples.ToneB = { { midi = 60, tune = 0, sound = "B_C4" } }
+local toned = { low = 40, high = 80, release = 400, samples = PlayIt.Samples.ToneA,
+    tones = { { id = "a", key = "ToneA" }, { id = "b", key = "ToneB", release = 300 } } }
+check(I.resolve(toned, 60, 0, nil, "b") == "B_C4", "a tone picks its own samples")
+check(I.resolve(toned, 60, 0, nil, nil) == "A_C4" and I.resolve(toned, 60, 0, nil, "zz") == "A_C4", "no or unknown tone: the first")
+local _, rel = I.samplesFor(toned, "b"); check(rel == 300, "a tone may have its own release")
+_, rel = I.samplesFor(toned, "a"); check(rel == 400, "otherwise the instrument's")
+check(I.resolve(guitar, 40, 0, nil, "b") == "G_E2", "an instrument without tones ignores the tone")
+-- drums: the Lo-fi set has the same pieces
+PlayIt.Samples.DrumsTest = { kick = { sound = "L_kick" }, snare = { sound = "L_snare" }, tomLow = { sound = "L_tomLow" },
+    tomHigh = { sound = "L_tomHigh" }, hihat = { sound = "L_hihat" }, crash = { sound = "L_crash" } }
+local kitAll = { kick = true, snare = true, tom = true }
+local drumsDef = { drums = true, release = 800, samples = PlayIt.Samples.Drums,
+    tones = { { id = "studio", key = "Drums" }, { id = "lofi", key = "DrumsTest" } } }
+local seen = {}
+for _, n in ipairs({ 36, 38, 45, 48, 42, 49 }) do
+    local snd = I.resolve(drumsDef, n, 0, { gm = true, kit = kitAll }, "lofi")
+    seen[#seen + 1] = snd
+end
+check(table.concat(seen, ",") == "L_kick,L_snare,L_tomLow,L_tomHigh,L_hihat,L_crash", "lo-fi drums resolve every GM piece in their own set")
+check(#I.tonesOf("Base.Flute") == 0, "one-tone instruments list no tones")

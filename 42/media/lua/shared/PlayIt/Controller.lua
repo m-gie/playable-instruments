@@ -36,16 +36,16 @@ end
 -- place: where a furniture instrument stands (nil for hand-held ones).
 -- text is one part (PlayIt.Song.parts). The compacted part is what plays and travels; false and "TooLong" if
 -- even that is too big to send or has too many notes.
-function Controller:play(text, bpm, volume, fullType, place)
+function Controller:play(text, bpm, volume, fullType, place, tone)
     text = PlayIt.Song.compact(text)
     if #text > PlayIt.Session.MAX_TEXT then return false, "TooLong" end
     local song = PlayIt.Song.parse(text, bpm)
     if song.events >= PlayIt.Song.MAX_EVENTS then return false, "TooLong" end
     local resume = self.pausedAt ~= nil and text == self.text and bpm == self.bpm and fullType == self.fullType
-        and samePlace(place, self.where)
+        and samePlace(place, self.where) and tone == self.tone
     self.where = place
     if not resume then
-        self.text, self.bpm, self.fullType = text, bpm, fullType
+        self.text, self.bpm, self.fullType, self.tone = text, bpm, fullType, tone
         self.seed = self.deps.newSeed()
         self.lastChance = self:chance()
         self.segments = { { fromChord = 1, chance = self.lastChance } }
@@ -53,7 +53,7 @@ function Controller:play(text, bpm, volume, fullType, place)
     local perf = {
         text = text, bpm = song.bpm, seed = self.seed, segments = self.segments, volume = volume,
         length = PlayIt.Timeline.build(song, self.seed, self.segments).length, level = self.deps.level(),
-        place = place,
+        place = place, tone = tone,
     }
     local pos = resume and self.pausedAt or 0
     self.perf, self.ended, self.startAt = perf, nil, nil

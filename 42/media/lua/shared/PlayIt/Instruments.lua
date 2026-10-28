@@ -107,34 +107,50 @@ end
 local PLAYED_ON = { kick = "kick", tom = "tom", snare = "snare", hihat = "snare", crash = "tom" }
 
 -- ctx: { gm, low, high, kit = { kick = true, ... } }; nil when the note's drum isn't in the kit
-local function resolveDrum(instrument, midi, ctx)
+local function resolveDrum(samples, midi, ctx)
     if ctx.gm then
         local g = GM[midi] or { "snare" }
         if not ctx.kit[PLAYED_ON[g[1]]] then return nil end
-        if g[1] ~= "tom" then return instrument.samples[g[1]].sound, 1 end
-        return instrument.samples[g[2]].sound, 2 ^ (g[3] * Instruments.TOM_SPREAD / 12)
+        if g[1] ~= "tom" then return samples[g[1]].sound, 1 end
+        return samples[g[2]].sound, 2 ^ (g[3] * Instruments.TOM_SPREAD / 12)
     end
     local piece = Instruments.drumPiece(midi, ctx.low, ctx.high)
     if not ctx.kit[PLAYED_ON[piece]] then return nil end
-    if piece ~= "tom" then return instrument.samples[piece].sound, 1 end
+    if piece ~= "tom" then return samples[piece].sound, 1 end
     local quarter = (ctx.high - ctx.low) / 4
     local from = ctx.low + quarter
     local half = quarter / 2 -- > 0: a tom note lies strictly between from and from + quarter
     local mid = from + half
-    local sample = midi < mid and instrument.samples.tomLow or instrument.samples.tomHigh
+    local sample = midi < mid and samples.tomLow or samples.tomHigh
     -- each tom bends across its half of the band: -TOM_SPREAD at the low edge, +TOM_SPREAD at the high edge
     local x = midi < mid and (midi - from) / half or (midi - mid) / half
     return sample.sound, 2 ^ ((x * 2 - 1) * Instruments.TOM_SPREAD / 12)
 end
 
+-- the tones a player can pick for an instrument ({ {id, key, release}, ... }; empty when it has only one sound)
+function Instruments.tonesOf(fullType)
+    local d = Instruments.defs[fullType]
+    return d and d.tones or {}
+end
+
+-- the sample set and release of a tone; no tone, or one the instrument doesn't have, is its first (default) sound
+function Instruments.samplesFor(instrument, toneId)
+    for _, t in ipairs(instrument.tones or {}) do
+        if t.id == toneId then return PlayIt.Samples[t.key], t.release or instrument.release end
+    end
+    return instrument.samples, instrument.release
+end
+
 -- sound name and pitch ratio for a note; notes outside the range move by whole octaves into it,
 -- sample.tune (cents, measured when the sample was made) is corrected. Drums need ctx (see resolveDrum).
-function Instruments.resolve(instrument, midi, cents, ctx)
-    if instrument.drums then return resolveDrum(instrument, midi, ctx) end
+-- toneId: which of the instrument's sounds (nil = the default)
+function Instruments.resolve(instrument, midi, cents, ctx, toneId)
+    local samples = Instruments.samplesFor(instrument, toneId)
+    if instrument.drums then return resolveDrum(samples, midi, ctx) end
     while midi < instrument.low do midi = midi + 12 end
     while midi > instrument.high do midi = midi - 12 end
     local best
-    for _, s in ipairs(instrument.samples) do
+    for _, s in ipairs(samples) do
         if best == nil or math.abs(midi - s.midi) < math.abs(midi - best.midi) then best = s end
     end
     local ratio = 2 ^ ((midi - best.midi) / 12 + ((cents or 0) - (best.tune or 0)) / 1200)

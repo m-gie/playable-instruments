@@ -101,3 +101,11 @@ check(not S.validStart({ along = 1.5, posMs = 0 }), "along must be a whole id")
 check(not S.validStart({ wait = "yes", posMs = 0 }), "wait must be a boolean")
 check(not S.validStart({ resume = 1, posMs = 0 }), "resume must be a boolean")
 check(not S.validStart({ posMs = -5 }), "posMs not negative")
+
+-- tones (2026-10-28): only a tone the instrument has
+PlayIt.Instruments.defs["Test.Toned"] = { low = 40, high = 80, tones = { { id = "a", key = "Guitar" }, { id = "b", key = "Guitar" } } }
+check(S.validate(perf({ tone = "b" }), "Test.Toned"), "a known tone")
+check(S.validate(perf(), "Test.Toned"), "no tone: the default")
+check(not S.validate(perf({ tone = "zz" }), "Test.Toned"), "an unknown tone is rejected")
+check(not S.validate(perf({ tone = "a" }), "Base.Flute"), "a tone on an instrument without tones is rejected")
+check(not S.validate(perf({ tone = 5 }), "Test.Toned"), "tone must be a string")

@@ -43,6 +43,7 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
     if def == nil then return end
     local song = PlayIt.Song.parse(perf.text, perf.bpm)
     local timeline = build(perf, song)
+    local _, release = PlayIt.Instruments.samplesFor(def, perf.tone)
     PlayIt.trace("playback start id=%s pos=%.0f length=%.0f chords=%d next=%s", tostring(id), posMs, timeline.length,
         #timeline.events, tostring(PlayIt.Timeline.firstEventAt(timeline, posMs)))
     active[id] = {
@@ -50,7 +51,7 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
         drums = drumContext(def, perf, song),
         origin = nowMs - posMs, lastChord = 0,
         nextIndex = PlayIt.Timeline.firstEventAt(timeline, math.max(posMs, perf.fromMs or 0)),
-        voices = Playback.newVoices(source.getPos, def.release),
+        voices = Playback.newVoices(source.getPos, release),
     }
 end
 
@@ -60,7 +61,7 @@ local function play(id, p, event, nowMs)
         return
     end
     for _, note in ipairs(event.notes) do
-        local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents, p.drums)
+        local sound, ratio = PlayIt.Instruments.resolve(p.def, note.midi, note.cents, p.drums, p.perf.tone)
         if sound then p.voices:noteOn(sound, ratio, note.dur or event.dur, nowMs, p.perf.volume) end
     end
     if Playback.onEvent then Playback.onEvent(id, event, p.perf, p.def) end

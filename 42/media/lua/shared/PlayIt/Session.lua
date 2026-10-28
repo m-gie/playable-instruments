@@ -1,6 +1,7 @@
 -- Server-side record of who is playing what, where in the song they are, and who already has it.
 
 require "PlayIt/Song"
+require "PlayIt/Instruments"
 
 PlayIt = PlayIt or {}
 PlayIt.Session = PlayIt.Session or {}
@@ -54,8 +55,9 @@ local function validPlace(place)
 end
 
 -- perf as sent by a musician's client: { text, bpm, seed, segments, volume, length, level, place (furniture),
--- fromMs (where in its timeline the part comes in; nil = from its first note) }
-function Session.validate(perf)
+-- fromMs (where in its timeline the part comes in; nil = from its first note), tone (one of the instrument's
+-- PlayIt.Instruments.tonesOf ids; nil = its default sound) }
+function Session.validate(perf, fullType)
     if type(perf) ~= "table" then return false, "perf" end
     if type(perf.text) ~= "string" or #perf.text > Session.MAX_TEXT then return false, "text" end
     if type(perf.bpm) ~= "number" then return false, "bpm" end
@@ -65,6 +67,13 @@ function Session.validate(perf)
     if not (isInt(perf.level) and within(perf.level, 0, 10)) then return false, "level" end
     if perf.place ~= nil and not validPlace(perf.place) then return false, "place" end
     if perf.fromMs ~= nil and not within(perf.fromMs, 0, math.huge) then return false, "fromMs" end
+    if perf.tone ~= nil then
+        local known = false
+        for _, t in ipairs(type(perf.tone) == "string" and PlayIt.Instruments.tonesOf(fullType) or {}) do
+            known = known or t.id == perf.tone
+        end
+        if not known then return false, "tone" end
+    end
     local segs = perf.segments
     if type(segs) ~= "table" or #segs == 0 or #segs > Session.MAX_SEGMENTS then return false, "segments" end
     for _, seg in ipairs(segs) do
