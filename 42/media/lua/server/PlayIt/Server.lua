@@ -193,7 +193,7 @@ function handlers.start(player, args)
         if args.wait then send(player, "alongEnded", { reason = "Refused" }) end
         return
     end
-    local ok, why = PlayIt.Session.validate(args.perf)
+    local ok, why = PlayIt.Session.validate(args.perf, args.fullType)
     if ok and type(args.origin) ~= "number" then ok, why = false, "origin" end
     if ok and not PlayIt.Session.validStart(args) then ok, why = false, "start" end
     if ok and PlayIt.Instruments.isWorld(args.fullType) then
@@ -318,7 +318,7 @@ function handlers.segments(player, args)
     local perf = {}
     for k, v in pairs(s.perf) do perf[k] = v end
     perf.segments = args.segments
-    if not PlayIt.Session.validate(perf) then return end
+    if not PlayIt.Session.validate(perf, s.fullType) then return end
     sessions:setSegments(id, args.segments)
     s.timeline = PlayIt.Timeline.build(s.song, s.perf.seed, args.segments)
     sendToListeners(id, "segments", { id = id, segments = args.segments })

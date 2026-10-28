@@ -78,3 +78,71 @@ local lowS, lowR = I.resolve(D, 41, 0, gmCtx)
 local highS, highR = I.resolve(D, 50, 0, gmCtx)
 check(lowS == "PlayIt_Drums_TomLow" and highS == "PlayIt_Drums_TomHigh" and lowR < 1 and highR > 1, "GM toms low to high")
 check(I.resolve(D, 49, 0, { gm = true, kit = { snare = true } }) == nil, "GM crash needs the tom stand")
+
+-- tones (2026-10-28): a def lists sample sets by tone; the first is the default
+PlayIt.Samples.ToneA = { { midi = 60, tune = 0, sound = "A_C4" } }
+PlayIt.Samples.ToneB = { { midi = 60, tune = 0, sound = "B_C4" } }
+local toned = { low = 40, high = 80, release = 400, samples = PlayIt.Samples.ToneA,
+    tones = { { id = "a", key = "ToneA" }, { id = "b", key = "ToneB", release = 300 } } }
+check(I.resolve(toned, 60, 0, nil, "b") == "B_C4", "a tone picks its own samples")
+check(I.resolve(toned, 60, 0, nil, nil) == "A_C4" and I.resolve(toned, 60, 0, nil, "zz") == "A_C4", "no or unknown tone: the first")
+local _, rel = I.samplesFor(toned, "b"); check(rel == 300, "a tone may have its own release")
+_, rel = I.samplesFor(toned, "a"); check(rel == 400, "otherwise the instrument's")
+check(I.resolve(guitar, 40, 0, nil, "b") == "G_E2", "an instrument without tones ignores the tone")
+-- drums: the Lo-fi set has the same pieces
+PlayIt.Samples.DrumsTest = { kick = { sound = "L_kick" }, snare = { sound = "L_snare" }, tomLow = { sound = "L_tomLow" },
+    tomHigh = { sound = "L_tomHigh" }, hihat = { sound = "L_hihat" }, crash = { sound = "L_crash" } }
+local kitAll = { kick = true, snare = true, tom = true }
+local drumsDef = { drums = true, release = 800, samples = PlayIt.Samples.Drums,
+    tones = { { id = "studio", key = "Drums" }, { id = "lofi", key = "DrumsTest" } } }
+local seen = {}
+for _, n in ipairs({ 36, 38, 45, 48, 42, 49 }) do
+    local snd = I.resolve(drumsDef, n, 0, { gm = true, kit = kitAll }, "lofi")
+    seen[#seen + 1] = snd
+end
+check(table.concat(seen, ",") == "L_kick,L_snare,L_tomLow,L_tomHigh,L_hihat,L_crash", "lo-fi drums resolve every GM piece in their own set")
+check(#I.tonesOf("Base.Flute") == 0, "one-tone instruments list no tones")
+
+-- banjo, electric guitar and bass (2026-10-28)
+local function tones(ft) local ids = {} for _, t in ipairs(I.tonesOf(ft)) do ids[#ids + 1] = t.id end return table.concat(ids, ",") end
+local eg, eb, bj = I.defs["Base.GuitarElectric"], I.defs["Base.GuitarElectricBass"], I.defs["Base.Banjo"]
+check(eg and eg.low == 40 and eg.high == 88 and eg.maxRadius == 35 and eg.release == 400, "electric guitar")
+check(eb and eb.low == 28 and eb.high == 52 and eb.maxRadius == 30 and eb.release == 300, "electric bass (one octave of samples: capped at 52)")
+check(bj and bj.low == 48 and bj.high == 81 and bj.maxRadius == 30 and bj.release == 400, "banjo")
+check(tones("Base.GuitarElectric") == "clean,jazz,distorted", "electric guitar tones")
+check(tones("Base.GuitarElectricBass") == "pick,fingers", "bass tones")
+check(tones("Base.Banjo") == "fivestring,sixstring", "banjo tones")
+check(tones("Base.Violin") == "bowed,plucked" and tones("Base.Saxophone") == "alto,tenor", "violin and sax tones")
+check(tones("Base.Harmonica") == "chromatic,blues" and tones("Base.Keytar") == "clavisynth,fmpiano,piano", "harmonica and keytar tones")
+check(tones("PlayIt.WesternPiano") == "upright,honkytonk" and tones("PlayIt.ChurchOrgan") == "pipe,renaissance", "piano and organ tones")
+check(tones("PlayIt.Drums") == "studio,lofi" and tones("Base.Trumpet") == "" and tones("PlayIt.GrandPiano") == "", "drums; one-sound instruments")
+for ft, d in pairs(I.defs) do
+    for _, t in ipairs(d.tones or {}) do
+        local smp = PlayIt.Samples[t.key]
+        check(smp ~= nil and (d.drums or #smp > 0), ft .. " " .. t.id .. " has samples")
+    end
+    check(d.tones == nil or d.tones[1].key == d.key, ft .. ": the first tone is the old sound")
+end
+check(I.anims["Base.GuitarElectric"].anim == "PlayItGuitar" and I.anims["Base.GuitarElectricBass"].anim == "PlayItGuitar"
+    and I.anims["Base.Banjo"].anim == "PlayItGuitar", "new instruments play with the guitar loops")
+-- the 5-string banjo has four samples (D3-D4): its own top limit keeps notes within an octave of them
+local _, ratio = I.resolve(bj, 81, 0, nil, "fivestring")
+check(ratio < 2 ^ (12.5 / 12), "5-string: a high note folds down instead of stretching a sample beyond an octave")
+
+-- final review: tones whose samples stop short keep notes near them (2026-10-28)
+for _, case in ipairs({ { "Base.Harmonica", "blues", 48 }, { "Base.Banjo", "sixstring", 81 }, { "PlayIt.ChurchOrgan", "renaissance", 84 },
+    { "Base.Banjo", "fivestring", 81 } }) do
+    local d = I.defs[case[1]]
+    local samples = I.samplesFor(d, case[2])
+    local lo, hi = 999, -999
+    for _, s in ipairs(samples) do lo = math.min(lo, s.midi); hi = math.max(hi, s.midi) end
+    local worst = 0
+    for midi = d.low, d.high do
+        local _, ratio = I.resolve(d, midi, 0, nil, case[2])
+        worst = math.max(worst, math.abs(12 * math.log(ratio) / math.log(2)))
+    end
+    check(worst <= 12.5, case[1] .. " " .. case[2] .. ": no note stretched beyond an octave (worst " .. string.format("%.1f", worst) .. ")")
+    check(case[2] == "fivestring" or worst <= 6.5, case[2] .. ": within half an octave of a recording")
+end
+local _, r48 = I.resolve(I.defs["Base.Harmonica"], 48, 0, nil, "blues")
+check(r48 > 0.8, "blues harp: C3 plays an octave up (its real range starts at C4)")

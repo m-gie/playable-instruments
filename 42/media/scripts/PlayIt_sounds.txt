@@ -616,6 +616,292 @@ module Base
             distanceMax = 20,
         }
     }
+    sound PlayIt_ViolinPizz_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_A3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_a3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Eb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_eb4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Gb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_gb4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Db5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_db5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Eb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_eb5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Gb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_gb5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
+    sound PlayIt_ViolinPizz_A6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/violinpizz_a6.ogg,
+            distanceMin = 1,
+            distanceMax = 25,
+        }
+    }
     sound PlayIt_Upright_C2
     {
         category = Item,
@@ -1089,6 +1375,2745 @@ module Base
             distanceMax = 60,
         }
     }
+    sound PlayIt_ElectricClean_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricClean_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricclean_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricJazz_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricjazz_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_ElectricDistorted_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/electricdistorted_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_BassPick_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_F1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_f1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_Gb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_gb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_G1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_g1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_A1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_a1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_Bb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_bb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_B1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_b1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_Db2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_db2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_Eb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_eb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassPick_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/basspick_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_F1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_f1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_Gb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_gb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_G1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_g1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_A1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_a1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_Bb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_bb1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_B1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_b1.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_Db2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_db2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_BassFinger_Eb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/bassfinger_eb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo5_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo5_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo5_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo5_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo5_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Gb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_gb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_G2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_g2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_B2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_b2.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Db3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_db3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Eb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_eb3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_F3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_f3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_A3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_a3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Eb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_eb4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_Banjo6_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/banjo6_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 30,
+        }
+    }
+    sound PlayIt_HonkyTonk_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Db2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_db2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Eb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_eb2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_F2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_f2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_A2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_a2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_B2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_b2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Db3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_db3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_F3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_f3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_G3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_g3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_A3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_a3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_B3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_b3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Db4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_db4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Eb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_eb4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_F4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_f4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_G4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_g4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_A4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_a4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_B4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_b4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Db5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_db5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Eb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_eb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_F5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_f5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Gb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_gb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_A5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_a5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_B5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_b5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Db6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_db6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_D6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_d6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Eb6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_eb6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_F6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_f6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Gb6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_gb6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_A6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_a6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_Bb6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_bb6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_B6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_b6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_HonkyTonk_C7
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/honkytonk_c7.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_SaxTenor_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_Gb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_gb4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_Bb5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_bb5.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_SaxTenor_D6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/saxtenor_d6.ogg,
+            distanceMin = 1,
+            distanceMax = 40,
+        }
+    }
+    sound PlayIt_HarmonicaBlues_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicablues_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBlues_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicablues_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBlues_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicablues_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBlues_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicablues_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBlues_G5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicablues_g5.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBlues_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicablues_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_HarmonicaBlues_G6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/harmonicablues_g6.ogg,
+            distanceMin = 1,
+            distanceMax = 20,
+        }
+    }
+    sound PlayIt_KeytarFM_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarFM_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarfm_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_Ab5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_ab5.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_C6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_c6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_E6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_e6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_KeytarPiano_Ab6
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/keytarpiano_ab6.ogg,
+            distanceMin = 1,
+            distanceMax = 35,
+        }
+    }
+    sound PlayIt_OrganRenaissance_C1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_c1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_D1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_d1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_E1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_e1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Gb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_gb1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Ab1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_ab1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Bb1
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_bb1.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_C2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_c2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_D2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_d2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_E2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_e2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Gb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_gb2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Ab2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_ab2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Bb2
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_bb2.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_C3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_c3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_D3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_d3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_E3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_e3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Gb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_gb3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Ab3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_ab3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Bb3
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_bb3.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_C4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_c4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_D4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_d4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_E4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_e4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Gb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_gb4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Ab4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_ab4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_Bb4
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_bb4.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_C5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_c5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_D5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_d5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
+    sound PlayIt_OrganRenaissance_E5
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/organrenaissance_e5.ogg,
+            distanceMin = 1,
+            distanceMax = 60,
+        }
+    }
     sound PlayIt_Drums_Kick
     {
         category = Item,
@@ -1151,6 +4176,72 @@ module Base
         clip
         {
             file = media/sound/PlayIt/drums_crash.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
+    sound PlayIt_DrumsLofi_Kick
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drumslofi_kick.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
+    sound PlayIt_DrumsLofi_Snare
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drumslofi_snare.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
+    sound PlayIt_DrumsLofi_TomHigh
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drumslofi_tomhigh.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
+    sound PlayIt_DrumsLofi_TomLow
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drumslofi_tomlow.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
+    sound PlayIt_DrumsLofi_Hihat
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drumslofi_hihat.ogg,
+            distanceMin = 1,
+            distanceMax = 50,
+        }
+    }
+    sound PlayIt_DrumsLofi_Crash
+    {
+        category = Item,
+        is3D = true,
+        clip
+        {
+            file = media/sound/PlayIt/drumslofi_crash.ogg,
             distanceMin = 1,
             distanceMax = 50,
         }

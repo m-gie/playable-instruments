@@ -7,23 +7,46 @@ PlayIt = PlayIt or {}
 PlayIt.Instruments = PlayIt.Instruments or {}
 local Instruments = PlayIt.Instruments
 
--- release: fade-out (ms) after a note's length; strings ring on, bowed and blown notes stop when the player stops
-local function def(key, low, high, maxRadius, release)
-    return { key = key, low = low, high = high, maxRadius = maxRadius, release = release, samples = PlayIt.Samples[key] }
+-- release: fade-out (ms) after a note's length; strings ring on, bowed and blown notes stop when the player stops.
+-- tones: the sounds a player picks from ({ id, key = PlayIt.Samples key, release, high }); the first is the
+-- instrument's own (key). A tone's low/high narrow the range when its samples cover less (notes fold by octaves).
+local function def(key, low, high, maxRadius, release, tones)
+    return { key = key, low = low, high = high, maxRadius = maxRadius, release = release, samples = PlayIt.Samples[key],
+        tones = tones }
+end
+
+local function tone(id, key, extra)
+    local t = { id = id, key = key }
+    for k, v in pairs(extra or {}) do t[k] = v end
+    return t
 end
 
 Instruments.defs = {
     ["Base.GuitarAcoustic"] = def("Guitar", 40, 76, 30, 400),
-    ["Base.Violin"] = def("Violin", 55, 93, 25, 100),
+    ["Base.Violin"] = def("Violin", 55, 93, 25, 100,
+        { tone("bowed", "Violin"), tone("plucked", "ViolinPizz", { release = 300 }) }),
     ["Base.Trumpet"] = def("Trumpet", 54, 82, 45, 100),
-    ["Base.Harmonica"] = def("Harmonica", 48, 84, 20, 100),
+    ["Base.Harmonica"] = def("Harmonica", 48, 84, 20, 100,
+        { tone("chromatic", "Harmonica"), tone("blues", "HarmonicaBlues", { low = 60 }) }),
     ["Base.Flute"] = def("Flute", 60, 93, 25, 100),
-    ["Base.Saxophone"] = def("Saxophone", 49, 80, 40, 100),
-    ["Base.Keytar"] = def("Keytar", 48, 91, 35, 80),
-    ["PlayIt.WesternPiano"] = def("Upright", 36, 96, 35, 400),
+    ["Base.Saxophone"] = def("Saxophone", 49, 80, 40, 100, { tone("alto", "Saxophone"), tone("tenor", "SaxTenor") }),
+    ["Base.Keytar"] = def("Keytar", 48, 91, 35, 80,
+        { tone("clavisynth", "Keytar"), tone("fmpiano", "KeytarFM"), tone("piano", "KeytarPiano") }),
+    -- played as if through a small amp: the mod has no amps
+    ["Base.GuitarElectric"] = def("ElectricClean", 40, 88, 35, 400,
+        { tone("clean", "ElectricClean"), tone("jazz", "ElectricJazz"), tone("distorted", "ElectricDistorted") }),
+    -- FreePats recorded one octave of bass (E1-E2): above E3 notes fold down rather than stretch a sample further
+    ["Base.GuitarElectricBass"] = def("BassPick", 28, 52, 30, 300,
+        { tone("pick", "BassPick"), tone("fingers", "BassFinger") }),
+    -- the Windsor 5-string has four samples (D3-D4)
+    ["Base.Banjo"] = def("Banjo5", 48, 81, 30, 400,
+        { tone("fivestring", "Banjo5", { high = 74 }), tone("sixstring", "Banjo6", { high = 77 }) }),
+    ["PlayIt.WesternPiano"] = def("Upright", 36, 96, 35, 400, { tone("upright", "Upright"), tone("honkytonk", "HonkyTonk") }),
     ["PlayIt.GrandPiano"] = def("Grand", 36, 96, 45, 400),
-    ["PlayIt.ChurchOrgan"] = def("Organ", 36, 84, 60, 100),
-    ["PlayIt.Drums"] = { key = "Drums", maxRadius = 50, release = 800, drums = true, samples = PlayIt.Samples.Drums },
+    ["PlayIt.ChurchOrgan"] = def("Organ", 36, 84, 60, 100,
+        { tone("pipe", "Organ"), tone("renaissance", "OrganRenaissance", { high = 82 }) }),
+    ["PlayIt.Drums"] = { key = "Drums", maxRadius = 50, release = 800, drums = true, samples = PlayIt.Samples.Drums,
+        tones = { tone("studio", "Drums"), tone("lofi", "DrumsLofi") } },
 }
 for fullType, d in pairs(Instruments.defs) do
     d.world = fullType:sub(1, 7) == "PlayIt."
@@ -39,6 +62,9 @@ Instruments.anims = {
     ["Base.Flute"] = { anim = "PlayItFlute" },
     ["Base.Saxophone"] = { anim = "PlayItSaxophone" },
     ["Base.Keytar"] = { anim = "PlayItKeytar" },
+    ["Base.GuitarElectric"] = { anim = "PlayItGuitar" },
+    ["Base.GuitarElectricBass"] = { anim = "PlayItGuitar" },
+    ["Base.Banjo"] = { anim = "PlayItGuitar" },
     ["PlayIt.WesternPiano"] = { anim = "PlayItPiano" },
     ["PlayIt.GrandPiano"] = { anim = "PlayItPiano" },
     ["PlayIt.ChurchOrgan"] = { anim = "PlayItPiano" },
@@ -107,34 +133,53 @@ end
 local PLAYED_ON = { kick = "kick", tom = "tom", snare = "snare", hihat = "snare", crash = "tom" }
 
 -- ctx: { gm, low, high, kit = { kick = true, ... } }; nil when the note's drum isn't in the kit
-local function resolveDrum(instrument, midi, ctx)
+local function resolveDrum(samples, midi, ctx)
     if ctx.gm then
         local g = GM[midi] or { "snare" }
         if not ctx.kit[PLAYED_ON[g[1]]] then return nil end
-        if g[1] ~= "tom" then return instrument.samples[g[1]].sound, 1 end
-        return instrument.samples[g[2]].sound, 2 ^ (g[3] * Instruments.TOM_SPREAD / 12)
+        if g[1] ~= "tom" then return samples[g[1]].sound, 1 end
+        return samples[g[2]].sound, 2 ^ (g[3] * Instruments.TOM_SPREAD / 12)
     end
     local piece = Instruments.drumPiece(midi, ctx.low, ctx.high)
     if not ctx.kit[PLAYED_ON[piece]] then return nil end
-    if piece ~= "tom" then return instrument.samples[piece].sound, 1 end
+    if piece ~= "tom" then return samples[piece].sound, 1 end
     local quarter = (ctx.high - ctx.low) / 4
     local from = ctx.low + quarter
     local half = quarter / 2 -- > 0: a tom note lies strictly between from and from + quarter
     local mid = from + half
-    local sample = midi < mid and instrument.samples.tomLow or instrument.samples.tomHigh
+    local sample = midi < mid and samples.tomLow or samples.tomHigh
     -- each tom bends across its half of the band: -TOM_SPREAD at the low edge, +TOM_SPREAD at the high edge
     local x = midi < mid and (midi - from) / half or (midi - mid) / half
     return sample.sound, 2 ^ ((x * 2 - 1) * Instruments.TOM_SPREAD / 12)
 end
 
+-- the tones a player can pick for an instrument ({ {id, key, release}, ... }; empty when it has only one sound)
+function Instruments.tonesOf(fullType)
+    local d = Instruments.defs[fullType]
+    return d and d.tones or {}
+end
+
+-- the sample set, release and lowest/highest note of a tone; no tone, or one the instrument doesn't have, is its
+-- first (default) sound
+function Instruments.samplesFor(instrument, toneId)
+    for _, t in ipairs(instrument.tones or {}) do
+        if t.id == toneId then
+            return PlayIt.Samples[t.key], t.release or instrument.release, t.low or instrument.low, t.high or instrument.high
+        end
+    end
+    return instrument.samples, instrument.release, instrument.low, instrument.high
+end
+
 -- sound name and pitch ratio for a note; notes outside the range move by whole octaves into it,
 -- sample.tune (cents, measured when the sample was made) is corrected. Drums need ctx (see resolveDrum).
-function Instruments.resolve(instrument, midi, cents, ctx)
-    if instrument.drums then return resolveDrum(instrument, midi, ctx) end
-    while midi < instrument.low do midi = midi + 12 end
-    while midi > instrument.high do midi = midi - 12 end
+-- toneId: which of the instrument's sounds (nil = the default)
+function Instruments.resolve(instrument, midi, cents, ctx, toneId)
+    local samples, _, low, high = Instruments.samplesFor(instrument, toneId)
+    if instrument.drums then return resolveDrum(samples, midi, ctx) end
+    while midi < low do midi = midi + 12 end
+    while midi > high do midi = midi - 12 end
     local best
-    for _, s in ipairs(instrument.samples) do
+    for _, s in ipairs(samples) do
         if best == nil or math.abs(midi - s.midi) < math.abs(midi - best.midi) then best = s end
     end
     local ratio = 2 ^ ((midi - best.midi) / 12 + ((cents or 0) - (best.tune or 0)) / 1200)
