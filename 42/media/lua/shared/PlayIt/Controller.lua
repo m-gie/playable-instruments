@@ -12,6 +12,7 @@ Controller.__index = Controller
 
 Controller.CHANCE_STEP = 0.01 -- smaller changes in the blunder chance are not worth a network message
 Controller.LOOKAHEAD_CHORDS = 4 -- a new chance applies this many chords ahead, so listeners get it in time
+Controller.PENDING_TIMEOUT_MS = 5000 -- a start the server neither placed nor acknowledged as a wait by then is lost
 
 -- deps: net {start, startLocal, stopLocal, unalong, pause, stop, segments}, newSeed(), position() -> ms|nil,
 -- currentChord(), level(), config() -> {skillOn, p0, p10}, mood() -> intoxication, panic (0-100),
@@ -59,7 +60,7 @@ function Controller:play(text, bpm, volume, fullType, place)
     -- playing along, back into a band, or with someone waiting to start with us: the server says when
     local wait = self.along ~= nil or #self.waiters > 0 or (resume and self.inBand)
     if wait then
-        self.pending = true
+        self.pending, self.acked, self.pendingSince = true, false, self.deps.serverNow()
         self.deps.net.start(self.player, fullType, perf, pos, {
             wait = true, along = self.along and self.along.id, resume = (resume and self.inBand) or nil,
         })
@@ -94,6 +95,9 @@ function Controller:onBand(members, bpm)
 end
 
 function Controller:onWaiters(names) self.waiters = names or {} end
+
+-- the server keeps our start until the player we play along with starts
+function Controller:onWaiting() self.acked = true end
 
 -- the server took us out (too far, the other player left): reason is an IGUI_PlayIt_Along_* key suffix
 function Controller:onAlongEnded(reason)
@@ -135,6 +139,7 @@ function Controller:pause()
         return
     end
     self.pausedAt = self.deps.net.pause(self.player) -- nil when the song had already ended
+    if self.pausedAt and self.pausedAt < 0 then self.pausedAt = 0 end -- paused during the count-in
     self.playing = false
     self.inBand, self.members = #self.members > 1, {}
 end
@@ -178,7 +183,14 @@ end
 
 -- call every tick: notices the song ending by itself
 function Controller:tick()
+    if self.pending and not self.acked
+        and self.deps.serverNow() - self.pendingSince >= Controller.PENDING_TIMEOUT_MS then
+        self.deps.net.unalong(self.player) -- refused or lost on the way: give up
+        self:onAlongEnded("NoAnswer")
+        return
+    end
     if self.playing and not self.pending and self.deps.position() == nil then
+        self.members, self.startAt, self.goBpm = {}, nil, nil -- the song is over: nothing to keep in time with
         self.playing = false
     end
 end

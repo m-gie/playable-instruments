@@ -119,3 +119,28 @@ st:onWaiters({ "Cid" })
 key, arg = st:alongStatus(); check(key == "Waiters" and arg == "Cid", "someone waits for us")
 st:play(abc("C D"), 120, 0.5, "Base.Violin")
 check(last().opts.wait == true and last().opts.along == nil, "with someone waiting, Play waits for the count-in")
+
+-- final review (2026-10-28)
+-- #1 pausing during the count-in resumes from the start, never from a negative spot
+local ci = C.new("player6", deps)
+ci:playAlong(9, "Dee"); ci:play(abc("C D"), 120, 0.5, "Base.Violin")
+serverNow = 0; ci:onGo(3000, nil, 120, 3000)
+pausePos = -1200; livePos = -1200
+ci:pause(); check(ci:positionMs() == 0, "paused before the first beat: resume from 0")
+ci:play(abc("C D"), 120, 0.5, "Base.Violin"); check(last().pos == 0, "resume sends a valid position")
+-- #2 a start the server never answers doesn't wait forever; an acknowledged wait does
+local na = C.new("player7", deps)
+serverNow = 10000
+na:playAlong(9, "Dee"); na:play(abc("C D"), 120, 0.5, "Base.Violin")
+serverNow = 10000 + C.PENDING_TIMEOUT_MS - 1; na:tick(); check(na:isPlaying(), "still waiting for an answer")
+serverNow = 10000 + C.PENDING_TIMEOUT_MS; na:tick()
+check(not na:isPlaying() and na:alongStatus() == "NoAnswer", "no answer: gives up")
+local ack = C.new("player8", deps)
+ack:playAlong(9, "Dee"); ack:play(abc("C D"), 120, 0.5, "Base.Violin"); ack:onWaiting()
+serverNow = serverNow + C.PENDING_TIMEOUT_MS * 10; ack:tick(); check(ack:isPlaying(), "an acknowledged wait lasts")
+-- #6 a band song ending by itself unlocks the tempo and clears the member list
+local en = C.new("player9", deps)
+en:play(abc("C D"), 120, 0.5, "Base.Violin"); en:onBand({ "Ann", "Me" }, 90)
+check(en:bandBpm() == 90, "locked while in the band")
+livePos = nil; en:tick()
+check(en:bandBpm() == nil and en:alongStatus() == nil, "song over: unlocked, no stale member list")

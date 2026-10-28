@@ -100,10 +100,31 @@ local function startPart(player, perf, fullType, song, timeline, origin)
     sendPlay(id, player, perf, fullType, origin)
 end
 
+local joinWaiter, sendWaiters -- defined below; go and joinWaiter call each other for waits on waiters
+
+-- players who wait for a musician who just started come in at the next bar; the musician's list empties
+local function releaseWaiters(id, now)
+    local band = bands:of(id)
+    if band then
+        for _, waiterId in ipairs(bands:waitersOf(id)) do joinWaiter(waiterId, band, now) end
+    end
+    sendWaiters(id)
+end
+
 -- the part starts for its musician, who waited for the server: at origin, from fromMs, at the band's bpm
 local function go(player, perf, fullType, song, timeline, origin, startAt)
     startPart(player, perf, fullType, song, timeline, origin)
     send(player, "go", { origin = origin, fromMs = perf.fromMs, bpm = perf.bpm, startAt = startAt })
+    releaseWaiters(player:getOnlineID(), getTimestampMs())
+end
+
+-- nothing to join or start with: alone, a moment from now, from posMs in the part
+local function goSolo(player, perf, fullType, posMs, now)
+    local copy, song, timeline = atBpm(perf, perf.bpm)
+    copy.fromMs = posMs > 0 and posMs or nil
+    local origin = now + PlayIt.Band.JOIN_MARGIN_MS - posMs
+    bands:startSolo(player:getOnlineID(), timeline, copy.bpm, origin)
+    go(player, copy, fullType, song, timeline, origin)
 end
 
 local function nameOf(player) return player:getDisplayName() end
@@ -123,7 +144,7 @@ local function sendRoster(band)
 end
 
 -- the musician learns who waits for them to start (their client then waits for the count-in)
-local function sendWaiters(targetId)
+sendWaiters = function(targetId)
     local names = {}
     for _, id in ipairs(bands:waitersOf(targetId)) do
         local p = musicianOf(id)
@@ -140,14 +161,17 @@ local function endWait(id, reason)
     if target then sendWaiters(target) end
 end
 
--- a waiter whose musician started without waiting for them (a race) comes in at the next bar
-local function joinWaiter(waiterId, band, now)
+-- a waiter whose musician started without them comes in at the next bar; alone if their part is over there
+joinWaiter = function(waiterId, band, now)
     local w, player = ready[waiterId], musicianOf(waiterId)
     if w == nil or player == nil then return end
+    endWait(waiterId)
     local perf, song, timeline = atBpm(w.perf, band.bpm)
     local origin, fromMs = bands:join(waiterId, band, timeline, now)
-    ready[waiterId] = nil
-    if origin == nil then return end
+    if origin == nil then
+        goSolo(player, w.perf, w.fullType, 0, now)
+        return
+    end
     perf.fromMs = fromMs
     go(player, perf, w.fullType, song, timeline, origin)
 end
@@ -159,7 +183,10 @@ local function leaveBand(id, now)
 end
 
 function handlers.start(player, args)
-    if not sessions:allow(player:getOnlineID(), getTimestampMs()) then return end -- flooding: drop quietly
+    if not sessions:allow(player:getOnlineID(), getTimestampMs()) then -- flooding: drop
+        if args.wait then send(player, "alongEnded", { reason = "Refused" }) end
+        return
+    end
     local ok, why = PlayIt.Session.validate(args.perf)
     if ok and type(args.origin) ~= "number" then ok, why = false, "origin" end
     if ok and not PlayIt.Session.validStart(args) then ok, why = false, "start" end
@@ -173,13 +200,11 @@ function handlers.start(player, args)
     elseif ok and not holds(player, args.fullType) then
         ok, why = false, "instrument"
     end
+    local song = ok and PlayIt.Song.parse(args.perf.text, args.perf.bpm)
+    if ok and song.events >= PlayIt.Song.MAX_EVENTS then ok, why = false, "too many notes" end
     if not ok then
         print("[PlayIt] rejected start from " .. player:getUsername() .. ": " .. tostring(why))
-        return
-    end
-    local song = PlayIt.Song.parse(args.perf.text, args.perf.bpm)
-    if song.events >= PlayIt.Song.MAX_EVENTS then
-        print("[PlayIt] rejected start from " .. player:getUsername() .. ": too many notes")
+        if args.wait then send(player, "alongEnded", { reason = "Refused" }) end -- its client waits for an answer
         return
     end
     local id = player:getOnlineID()
@@ -193,10 +218,8 @@ function handlers.start(player, args)
         local timeline = PlayIt.Timeline.build(song, args.perf.seed, args.perf.segments)
         bands:startSolo(id, timeline, args.perf.bpm, origin)
         startPart(player, args.perf, args.fullType, song, timeline, origin)
-        local band = bands:of(id)
-        for _, waiterId in ipairs(bands:waitersOf(id)) do joinWaiter(waiterId, band, now) end
-        sendWaiters(id)
-        sendRoster(band)
+        releaseWaiters(id, now)
+        sendRoster(bands:of(id))
         return
     end
 
@@ -249,11 +272,7 @@ function handlers.start(player, args)
         return
     end
 
-    -- nothing to join or start with: alone, a moment from now, from where the musician meant to start
-    if args.posMs > 0 then perf.fromMs = args.posMs end
-    local origin = now + PlayIt.Band.JOIN_MARGIN_MS - args.posMs
-    bands:startSolo(id, timeline, perf.bpm, origin)
-    go(player, perf, args.fullType, partSong, timeline, origin)
+    goSolo(player, args.perf, args.fullType, args.posMs, now)
     sendRoster(bands:of(id))
 end
 
@@ -280,9 +299,9 @@ function handlers.stop(player)
     endWait(id)
 end
 
--- a waiting player gave up
+-- a waiting player gave up; if the go crossed on the way, its session ends too
 function handlers.unalong(player)
-    endWait(player:getOnlineID())
+    handlers.stop(player)
 end
 
 function handlers.segments(player, args)

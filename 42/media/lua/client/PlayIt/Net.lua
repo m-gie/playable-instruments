@@ -117,7 +117,10 @@ function handlers.waiters(args)
     if c then c:onWaiters(args.names) end
 end
 
-function handlers.waiting() end -- the window already says who we wait for
+function handlers.waiting()
+    local c = controller()
+    if c then c:onWaiting() end
+end
 
 function handlers.alongEnded(args)
     local c = controller()

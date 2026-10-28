@@ -36,5 +36,7 @@
   "IGUI_PlayIt_Along_Waiters": "Waiting for you to start: %1",
   "IGUI_PlayIt_Along_TooFar": "Too far away to play along.",
   "IGUI_PlayIt_Along_TargetLeft": "The player you wanted to play along with left.",
-  "IGUI_PlayIt_Along_TooFarFromBand": "Too far from the band."
+  "IGUI_PlayIt_Along_TooFarFromBand": "Too far from the band.",
+  "IGUI_PlayIt_Along_NoAnswer": "No answer from the server. Try again.",
+  "IGUI_PlayIt_Along_Refused": "Couldn't start playing along. Try again."
 }
