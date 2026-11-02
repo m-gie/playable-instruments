@@ -1,5 +1,5 @@
 -- The music window: paste an ABC song, pick a part (and a tone where the instrument has several), set BPM and
--- volume and echo, Play/Pause, Stop, Save, Load.
+-- volume and echo, Play/Pause, Stop, Save, Load, and Folder (opens the songs folder).
 -- Closing it while a song plays or is paused leaves the small widget instead.
 
 require "ISUI/ISCollapsableWindow"
@@ -117,6 +117,8 @@ function MusicWindow:createChildren()
     self.stopButton = button("IGUI_PlayIt_Stop", MusicWindow.onStop)
     self.saveButton = button("IGUI_PlayIt_Save", MusicWindow.onSave)
     self.loadButton = button("IGUI_PlayIt_Load", MusicWindow.onLoad)
+    self.folderButton = button("IGUI_PlayIt_Folder", MusicWindow.onFolder)
+    self.folderButton.tooltip = getText("IGUI_PlayIt_FolderTip")
 
     self.status = ISLabel:new(PAD, 0, FONT_HGT, "", 1, 0.8, 0.4, 1, UIFont.Small, true)
     self:addChild(self.status)
@@ -171,11 +173,15 @@ function MusicWindow:layout()
         self.echo:setWidth(math.max(60, self.width - PAD - self.echo:getX()))
     end
 
+    -- the buttons share the row, so all five fit at the minimum width
+    local buttons = { self.playButton, self.stopButton, self.saveButton, self.loadButton, self.folderButton }
+    local buttonW = math.min(80, math.floor((self.width - PAD * (#buttons + 1)) / #buttons))
     x = PAD
-    for _, b in ipairs({ self.playButton, self.stopButton, self.saveButton, self.loadButton }) do
+    for _, b in ipairs(buttons) do
         b:setX(x)
         b:setY(buttonsY)
-        x = x + b:getWidth() + PAD
+        b:setWidth(buttonW)
+        x = x + buttonW + PAD
     end
     self.laidOutW, self.laidOutH = self.width, self.height
 end
@@ -370,6 +376,15 @@ function MusicWindow:onLoad()
     for _, name in ipairs(names) do
         menu:addOption(name, self, MusicWindow.loadSong, name)
     end
+end
+
+-- opens the songs folder in the system file manager, so songs can be deleted or added by hand
+function MusicWindow:onFolder()
+    if #PlayIt.SongFiles.list() == 0 then
+        self:setStatus(getText("IGUI_PlayIt_NoSongsYet")) -- the folder may not exist yet; the game would do nothing
+        return
+    end
+    showFolderInDesktop(PlayIt.SongFiles.folderPath())
 end
 
 function MusicWindow:loadSong(name)

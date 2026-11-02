@@ -51,8 +51,27 @@ local function writeAll(path, content)
     return true
 end
 
+local function exists(name)
+    return readAll(SongFiles.DIR .. name .. ".txt") ~= nil or readAll(SongFiles.DIR .. name .. ".abc") ~= nil
+end
+
+-- saved names; songs whose file was deleted by hand (Lua can't delete files) are dropped, and the index with them
 function SongFiles.list()
-    return readAll(SongFiles.INDEX) or {}
+    local names, kept = readAll(SongFiles.INDEX) or {}, {}
+    for _, name in ipairs(names) do
+        if exists(name) then kept[#kept + 1] = name end
+    end
+    if #kept < #names then
+        writeAll(SongFiles.INDEX, #kept > 0 and table.concat(kept, "\n") .. "\n" or "")
+    end
+    return kept
+end
+
+-- absolute path of the songs folder, for showFolderInDesktop
+function SongFiles.folderPath()
+    local sep = getFileSeparator()
+    local dir = SongFiles.DIR:gsub("/$", ""):gsub("/", sep)
+    return Core.getMyDocumentFolder() .. sep .. "Lua" .. sep .. dir
 end
 
 -- returns the saved name, or nil plus "name" (unusable name) or "write" (file could not be written);

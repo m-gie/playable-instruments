@@ -41,3 +41,26 @@ check(saved == nil and why == "name", "bad name reported as such")
 getFileWriter = function() return nil end
 saved, why = F.save("Another", "x")
 check(saved == nil and why == "write", "failed write reported instead of crashing")
+
+-- songs deleted by hand drop out of the list (and the index) the next time it is read
+getFileWriter = function(path)
+    return { write = function(_, s) files[path] = s end, close = function() end }
+end
+files = {}
+F.save("Keep", "a")
+F.save("Gone", "b")
+files["PlayIt/abc/Old.abc"] = "c"
+F.save("Old", "c") -- index entry; the .txt copy is removed below so only the .abc remains
+files["PlayIt/abc/Old.txt"] = nil
+files["PlayIt/abc/Gone.txt"] = nil
+local names = F.list()
+check(#names == 2 and names[1] == "Keep" and names[2] == "Old", "missing files are dropped from the list")
+check(files[F.INDEX] == "Keep\nOld\n", "index rewritten without the missing song")
+
+-- the songs folder for the system file manager
+Core = { getMyDocumentFolder = function() return "C:\\Users\\me\\Zomboid" end }
+getFileSeparator = function() return "\\" end
+check(F.folderPath() == "C:\\Users\\me\\Zomboid\\Lua\\PlayIt\\abc", "folder path built from the Zomboid folder")
+getFileSeparator = function() return "/" end
+Core = { getMyDocumentFolder = function() return "/home/me/Zomboid" end }
+check(F.folderPath() == "/home/me/Zomboid/Lua/PlayIt/abc", "folder path on Linux and Mac")
