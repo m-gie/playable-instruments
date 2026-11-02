@@ -352,8 +352,12 @@ end
 
 function MusicWindow:onSaveName(button)
     if button.internal ~= "OK" then return end
-    local name = PlayIt.SongFiles.save(button.parent.entry:getText(), self.songBox:getInternalText())
-    self:setStatus(name and getText("IGUI_PlayIt_Saved", name) or getText("IGUI_PlayIt_BadName"))
+    local name, why = PlayIt.SongFiles.save(button.parent.entry:getText(), self.songBox:getInternalText())
+    if name then
+        self:setStatus(getText("IGUI_PlayIt_Saved", name))
+    else
+        self:setStatus(getText(why == "write" and "IGUI_PlayIt_SaveFailed" or "IGUI_PlayIt_BadName"))
+    end
 end
 
 function MusicWindow:onLoad()

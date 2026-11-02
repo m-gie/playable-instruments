@@ -15,6 +15,7 @@
   "IGUI_PlayIt_SaveAs": "Nazwa utworu:",
   "IGUI_PlayIt_Saved": "Zapisano jako „%1”.",
   "IGUI_PlayIt_BadName": "W nazwie użyj liter, cyfr, spacji, - lub _.",
+  "IGUI_PlayIt_SaveFailed": "Nie udało się zapisać pliku utworu.",
   "IGUI_PlayIt_NoSongs": "Brak zapisanych utworów",
   "IGUI_PlayIt_NotHolding": "Weź instrument do głównej ręki, żeby zagrać.",
   "IGUI_PlayIt_Warn_NotAbc": "To nie jest utwór ABC: potrzebuje linii X: i linii K: przed nutami.",

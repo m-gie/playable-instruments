@@ -15,6 +15,7 @@
   "IGUI_PlayIt_SaveAs": "Song name:",
   "IGUI_PlayIt_Saved": "Saved as \"%1\".",
   "IGUI_PlayIt_BadName": "Use letters, digits, spaces, - or _ in the name.",
+  "IGUI_PlayIt_SaveFailed": "Could not save the song file.",
   "IGUI_PlayIt_NoSongs": "No saved songs",
   "IGUI_PlayIt_NotHolding": "Hold the instrument in your main hand to play.",
   "IGUI_PlayIt_Warn_NotAbc": "This isn't an ABC song: it needs an X: line and a K: line before the notes.",

@@ -1,4 +1,5 @@
 -- Saved songs: one ABC file per song under Zomboid/Lua/PlayIt/abc/, plus an index (Lua can't list folders).
+-- Files are saved as .txt: since B42.21 getFileWriter only writes ini/cfg/txt/log/json. Older .abc files still load.
 -- They live on the player's own computer, so they follow them across characters and servers. (Songs saved in the
 -- old SS13 format, under PlayIt/songs/, are left alone.)
 
@@ -41,28 +42,34 @@ local function readAll(path)
     return lines
 end
 
+-- false if the game refused to open the file
 local function writeAll(path, content)
     local writer = getFileWriter(path, true, false)
+    if writer == nil then return false end
     writer:write(content)
     writer:close()
+    return true
 end
 
 function SongFiles.list()
     return readAll(SongFiles.INDEX) or {}
 end
 
--- returns the saved name, or nil if the name is unusable; the text is kept as pasted
+-- returns the saved name, or nil plus "name" (unusable name) or "write" (file could not be written);
+-- the text is kept as pasted
 function SongFiles.save(name, text)
     name = SongFiles.sanitizeName(name)
-    if name == nil then return nil end
-    writeAll(SongFiles.DIR .. name .. ".abc", text)
-    writeAll(SongFiles.INDEX, table.concat(SongFiles.addToIndex(SongFiles.list(), name), "\n") .. "\n")
+    if name == nil then return nil, "name" end
+    if not writeAll(SongFiles.DIR .. name .. ".txt", text) then return nil, "write" end
+    if not writeAll(SongFiles.INDEX, table.concat(SongFiles.addToIndex(SongFiles.list(), name), "\n") .. "\n") then
+        return nil, "write"
+    end
     return name
 end
 
 -- the song's text; nil if missing
 function SongFiles.load(name)
-    local lines = readAll(SongFiles.DIR .. name .. ".abc")
+    local lines = readAll(SongFiles.DIR .. name .. ".txt") or readAll(SongFiles.DIR .. name .. ".abc")
     if lines == nil then return nil end
     return table.concat(lines, "\n")
 end
