@@ -50,7 +50,7 @@ function Playback.start(id, source, fullType, perf, posMs, nowMs)
     active[id] = {
         source = source, def = def, perf = perf, song = song, timeline = timeline, fullType = fullType,
         drums = drumContext(def, perf, song),
-        origin = nowMs - posMs, lastChord = 0,
+        origin = nowMs - posMs, lastChord = 0, echoed = perf.echo ~= nil,
         nextIndex = PlayIt.Timeline.firstEventAt(timeline, math.max(posMs, perf.fromMs or 0)),
         voices = Playback.newVoices(source.getPos, release),
     }
@@ -83,7 +83,7 @@ function Playback.update(nowMs)
             p.nextIndex = p.nextIndex + 1
         end
         p.voices:update(nowMs)
-        if pos >= p.timeline.length + (p.perf.echo and Playback.ECHO_TAIL_MS or Playback.TAIL_MS) then
+        if pos >= p.timeline.length + (p.echoed and Playback.ECHO_TAIL_MS or Playback.TAIL_MS) then
             p.voices:stopAll()
             active[id] = nil
         end
@@ -124,6 +124,23 @@ function Playback.stop(id)
     if p == nil then return end
     p.voices:stopAll()
     active[id] = nil
+end
+
+-- live settings { volume, tone, echo } from the musician: ringing notes follow volume and echo at once, the next
+-- notes take the tone too
+function Playback.setSettings(id, settings, nowMs)
+    local p = active[id]
+    if p == nil then return end
+    local perf = {}
+    for k, v in pairs(p.perf) do perf[k] = v end
+    perf.volume, perf.tone, perf.echo = settings.volume, settings.tone, settings.echo
+    if perf.tone ~= p.perf.tone then
+        local _, release = PlayIt.Instruments.samplesFor(p.def, perf.tone)
+        p.voices:setRelease(release)
+    end
+    p.perf = perf
+    p.echoed = p.echoed or perf.echo ~= nil
+    p.voices:setGains(perf.volume, perf.echo and perf.volume * perf.echo or 0, nowMs)
 end
 
 -- new blunder chances from some chord on; keeps the place and never replays a chord

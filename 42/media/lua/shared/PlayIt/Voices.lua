@@ -12,6 +12,12 @@ Voices.MAX_VOICES = 20 -- echo tails double the count
 Voices.RELEASE_MS = 300
 Voices.CUT_MS = 120 -- a ringing tail or finished note fades this long when the next note starts (echo on)
 
+-- the player's Sound volume option (0-1). The options set FMOD faders that only reach the game's sound banks;
+-- our notes are plain files, so the voices apply it themselves.
+function Voices.userVolume()
+    return getSoundManager():getSoundVolume()
+end
+
 local function worldEmitter(x, y, z)
     return getWorld():getFreeEmitter(x, y, z)
 end
@@ -37,7 +43,7 @@ function Voices:start(sound, ratio, durMs, nowMs, gain, isTail)
         return
     end
     emitter:setPitch(ref, ratio)
-    emitter:setVolume(ref, gain)
+    emitter:setVolume(ref, gain * Voices.userVolume())
     if #self.list >= self.max then stop(table.remove(self.list, 1)) end
     table.insert(self.list, { emitter = emitter, ref = ref, start = nowMs, dur = durMs, gain = gain, tail = isTail })
 end
@@ -63,10 +69,31 @@ function Voices:noteOn(sound, ratio, durMs, nowMs, gain, tail, tailGain)
     if tail then self:start(tail, ratio, durMs, nowMs, tailGain, true) end
 end
 
+-- live volume and echo: ringing notes take noteGain, tails tailGain (0: they fade out over CUT_MS from nowMs)
+function Voices:setGains(noteGain, tailGain, nowMs)
+    for _, v in ipairs(self.list) do
+        if v.cutAt == nil then
+            if not v.tail then
+                v.gain = noteGain
+            elseif tailGain > 0 then
+                v.gain = tailGain
+            else
+                v.cutFrom, v.cutAt = v.gain, nowMs
+            end
+        end
+    end
+end
+
+-- a new tone: its release, for the notes still to come
+function Voices:setRelease(releaseMs)
+    self.release = releaseMs or Voices.RELEASE_MS
+end
+
 -- follow the musician; full gain for the note's length, then a linear fade over the release (tails ring to their
 -- end); a cut voice fades from where it was over CUT_MS
 function Voices:update(nowMs)
     local x, y, z = self.getPos()
+    local user = Voices.userVolume()
     for i = #self.list, 1, -1 do
         local v = self.list[i]
         local past = nowMs - v.start - v.dur
@@ -79,7 +106,7 @@ function Voices:update(nowMs)
             table.remove(self.list, i)
         else
             v.emitter:setPos(x, y, z)
-            v.emitter:setVolume(v.ref, cut and v.cutFrom * (1 - cut) or level(self, v, nowMs))
+            v.emitter:setVolume(v.ref, (cut and v.cutFrom * (1 - cut) or level(self, v, nowMs)) * user)
         end
     end
 end

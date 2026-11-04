@@ -154,7 +154,7 @@ tc:play(abc("C D E F"), 120, 0.5, "Base.GuitarElectric", nil, "jazz")
 check(last().pos == 500, "same tone resumes")
 tc:pause()
 tc:play(abc("C D E F"), 120, 0.5, "Base.GuitarElectric", nil, "clean")
-check(last().pos == 0 and last().perf.tone == "clean", "a changed tone starts over")
+check(last().pos == 500 and last().perf.tone == "clean", "a changed tone resumes with the new tone (2026-11-04)")
 
 -- echo (2026-10-28)
 local ec = C.new("player11", deps)
@@ -165,6 +165,51 @@ ec:play(abc("C D E F"), 120, 0.5, "Base.Harmonica", nil, nil, 0.4)
 check(last().pos == 500, "same echo resumes")
 ec:pause()
 ec:play(abc("C D E F"), 120, 0.5, "Base.Harmonica", nil, nil, 0.7)
-check(last().pos == 0 and last().perf.echo == 0.7, "a changed echo starts over")
+check(last().pos == 500 and last().perf.echo == 0.7, "a changed echo resumes with the new echo (2026-11-04)")
 ec:play(abc("C D E F"), 120, 0.5, "Base.Harmonica", nil, nil, 0)
 check(last().perf.echo == nil, "echo 0 is off")
+
+-- live volume, echo and tone (2026-11-04): heard at once here, sent to listeners at most every SETTINGS_EVERY_MS
+net.applySettings = function(_, st) table.insert(calls, { "apply", st = st }) end
+net.sendSettings = function(_, st) table.insert(calls, { "send", st = st }) end
+local function count(kind) local n = 0; for _, c in ipairs(calls) do if c[1] == kind then n = n + 1 end end; return n end
+livePos, pausePos, serverNow = 0, 750, 100000
+local lv = C.new("player12", deps)
+lv:play(abc("C D E F"), 120, 0.5, "Base.GuitarElectric", nil, "jazz", 0.4)
+calls = {}
+lv:setSettings(0.5, "jazz", 0.4)
+check(#calls == 0, "unchanged settings: nothing")
+lv:setSettings(0.8, "jazz", 0.4)
+check(last()[1] == "apply" and last().st.volume == 0.8 and last().st.tone == "jazz" and last().st.echo == 0.4,
+    "a change is heard at once")
+check(lv:volume() == 0.8, "the controller keeps the new volume")
+lv:tick()
+check(last()[1] == "send" and last().st.volume == 0.8, "the next tick sends it")
+lv:setSettings(0.6, "clean", 0)
+check(last()[1] == "apply" and last().st.tone == "clean" and last().st.echo == nil, "echo 0 is off")
+lv:tick()
+check(count("send") == 1, "not sent again within SETTINGS_EVERY_MS")
+serverNow = serverNow + C.SETTINGS_EVERY_MS
+lv:tick()
+check(count("send") == 2 and last().st.volume == 0.6 and last().st.echo == nil, "sent once the interval is over")
+lv:tick(); check(count("send") == 2, "nothing left to send")
+pausePos = 900; lv:pause()
+calls = {}
+lv:setSettings(0.3, "jazz", 0.5)
+lv:tick()
+check(#calls == 0, "paused: nothing applied or sent")
+lv:play(abc("C D E F"), 120, 0.9, "Base.GuitarElectric", nil, "jazz", 0.5)
+check(last()[1] == "start" and last().pos == 900 and last().perf.volume == 0.9 and last().perf.echo == 0.5,
+    "resume takes the window's settings")
+-- waiting for the server's go: the change waits too, then goes out after the go
+local pw = C.new("player13", deps)
+pw:onWaiters({ "Ann" })
+pw:play(abc("C D"), 120, 0.5, "Base.Violin")
+calls = {}
+pw:setSettings(0.7, nil, 0.2)
+pw:tick()
+check(count("apply") == 0 and count("send") == 0, "nothing while waiting for the go")
+pw:onGo(serverNow, 0, 120, nil)
+check(calls[#calls].perf.volume == 0.7 and calls[#calls].perf.echo == 0.2, "the go plays with the new settings")
+pw:tick()
+check(last()[1] == "send" and last().st.volume == 0.7, "and listeners get them after the go")

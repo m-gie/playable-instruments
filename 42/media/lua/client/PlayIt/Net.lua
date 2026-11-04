@@ -71,6 +71,17 @@ function Net.segments(player, segments)
     if multiplayer() then sendClientCommand(player, "PlayIt", "segments", { segments = segments }) end
 end
 
+-- live volume, tone and echo: heard here at once (applySettings), sent on by the controller (sendSettings)
+function Net.applySettings(player, settings)
+    PlayIt.Playback.setSettings(Net.idOf(player), settings, getTimestampMs())
+end
+
+function Net.sendSettings(player, settings)
+    if multiplayer() then
+        sendClientCommand(player, "PlayIt", "settings", { volume = settings.volume, tone = settings.tone, echo = settings.echo })
+    end
+end
+
 local handlers = {}
 local waiting = {} -- songs whose musician isn't loaded on this client yet, by musician id
 
@@ -134,6 +145,14 @@ end
 
 function handlers.segments(args)
     PlayIt.Playback.setSegments(args.id, args.segments)
+end
+
+function handlers.settings(args)
+    local w = waiting[args.id]
+    if w then -- the musician isn't loaded here yet: their song starts with the new settings
+        w.perf.volume, w.perf.tone, w.perf.echo = args.volume, args.tone, args.echo
+    end
+    PlayIt.Playback.setSettings(args.id, args, getTimestampMs())
 end
 
 -- the server turned down our song on a piano, organ or drums: stop it here too and say why

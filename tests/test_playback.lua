@@ -130,3 +130,42 @@ P.update(20400); check(#vb.notes == 0, "nothing before the origin")
 P.update(21000); check(#vb.notes == 0, "chords before fromMs are skipped")
 P.update(21500); check(#vb.notes == 1, "comes in at fromMs (chord 3)")
 P.stop("B")
+
+-- live volume, echo and tone (2026-11-04)
+local oldNew = P.newVoices
+P.newVoices = function(getPos, release)
+    local v = oldNew(getPos, release)
+    v.notes = {}
+    function v:noteOn(sound, ratio, dur, now, gain, tail, tailGain)
+        table.insert(self.notes, { sound = sound, gain = gain, tail = tail, tailGain = tailGain })
+    end
+    function v:setGains(g, tg, now) self.gains = { g, tg, now } end
+    function v:setRelease(ms) self.release = ms end
+    return v
+end
+local live = perf("C D E F")
+P.start("L", source(false), "Base.GuitarElectric", live, 0, 90000)
+local vl = log[#log]
+P.update(90000)
+check(vl.notes[1].gain == 0.5 and vl.notes[1].tail == nil, "starts dry at 0.5")
+P.setSettings("L", { volume = 0.8, tone = "jazz", echo = 0.5 }, 90100)
+check(vl.gains[1] == 0.8 and vl.gains[2] == 0.4 and vl.gains[3] == 90100, "ringing voices get volume and volume * echo")
+check(vl.release == select(2, PlayIt.Instruments.samplesFor(PlayIt.Instruments.defs["Base.GuitarElectric"], "jazz")),
+    "the new tone's release")
+P.update(90500)
+local n2 = vl.notes[2]
+check(n2.gain == 0.8 and n2.tail ~= nil and n2.tailGain == 0.4, "the next note: new volume, with an echo tail")
+local jazz = PlayIt.Instruments.resolve(PlayIt.Instruments.defs["Base.GuitarElectric"], 62, 0, nil, "jazz")
+check(n2.sound == jazz, "the next note in the new tone")
+check(live.volume == 0.5, "the performance passed in is not changed")
+P.setSettings("L", { volume = 0.8 }, 90600)
+check(vl.gains[2] == 0, "echo off: tails go silent")
+P.update(92000)
+check(P.position("L", 92100) == nil, "song over")
+P.update(92000 + P.TAIL_MS + 100)
+check(P.position("L", 93200) == nil and vl.stopped == 0, "echo was on in this song: its tails still ring out")
+P.update(92000 + P.ECHO_TAIL_MS)
+check(vl.stopped == 1, "then it ends")
+P.setSettings("nobody", { volume = 1 }, 0)
+check(true, "settings for an unknown musician are ignored")
+P.newVoices = oldNew

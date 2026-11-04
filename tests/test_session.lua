@@ -117,3 +117,14 @@ check(not S.validate(perf({ echo = 1.5 }), "Base.Flute"), "echo above 1 rejected
 check(not S.validate(perf({ echo = 0 }), "Base.Flute"), "echo 0 travels as nil")
 check(not S.validate(perf({ echo = "x" }), "Base.Flute"), "echo must be a number")
 local okD, whyD = S.validate(perf({ echo = 0.5 }), "PlayIt.Drums"); check(not okD and whyD == "echo", "no echo on the drums")
+
+-- live settings (2026-11-04): their own, looser limit
+local ls = S.new()
+local sent = 0
+for i = 1, 50 do if ls:allowSettings(9, 0) then sent = sent + 1 end end
+check(sent == S.SETTINGS_BURST, "settings: a burst")
+check(not ls:allowSettings(9, S.SETTINGS_RATE_MS - 1) and ls:allowSettings(9, S.SETTINGS_RATE_MS), "then one per SETTINGS_RATE_MS")
+check(ls:allow(9, 0), "settings don't use up starts")
+local spamS = 0
+for t = 0, 60000, 10 do if ls:allowSettings(10, t) then spamS = spamS + 1 end end
+check(spamS <= S.SETTINGS_BURST + 60000 / S.SETTINGS_RATE_MS + 1, "spam capped")

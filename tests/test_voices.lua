@@ -1,5 +1,6 @@
 require "PlayIt/Voices"
 local V = PlayIt.Voices
+V.userVolume = function() return 1 end -- the Sound volume option; tested at the end
 
 -- fake pooled emitters: each records its calls
 local made = {}
@@ -93,3 +94,39 @@ echo:update(2120)
 check(next(made[2].stopped) ~= nil, "the tail stops after the cut")
 check(next(made[3].stopped) == nil and next(made[4].stopped) ~= nil, "held note kept, its tail cut")
 check(V.MAX_VOICES == 20 and V.CUT_MS == 120, "cap 20, cut 120 ms")
+
+-- live volume and echo (2026-11-04): ringing voices follow at once
+made = {}
+local lg = V.new(function() return 0, 0, 0 end, 20, newEmitter)
+lg:noteOn("N", 1, 1000, 0, 0.8, "T", 0.4)
+local nRef, tRef = next(made[1].playing), next(made[2].playing)
+lg:setGains(0.5, 0.1, 100)
+lg:update(100)
+check(made[1].vol[nRef] == 0.5 and made[2].vol[tRef] == 0.1, "a ringing note and its tail take the new gains")
+lg:update(1200)
+check(math.abs(made[1].vol[nRef] - 0.5 * (1 - 200 / V.RELEASE_MS)) < 1e-9, "the release fades from the new gain")
+lg:setGains(0.5, 0, 1200)
+lg:update(1260)
+check(math.abs(made[2].vol[tRef] - 0.05) < 1e-9, "echo off: a ringing tail fades over CUT_MS")
+lg:update(1320)
+check(made[2].stopped[tRef], "and stops")
+lg:setRelease(50)
+lg:noteOn("M", 1, 100, 2000, 0.5)
+lg:update(2125)
+check(math.abs(made[3].vol[next(made[3].playing)] - 0.25) < 1e-9, "a new tone's release applies to new notes")
+
+-- the player's Sound volume option (2026-11-04): file sounds skip the game's volume faders, so voices apply it
+made = {}
+local option = 0.5
+V.userVolume = function() return option end
+local uv = V.new(function() return 0, 0, 0 end, 20, newEmitter)
+uv:noteOn("N", 1, 1000, 0, 0.8, "T", 0.4)
+local un, ut = next(made[1].playing), next(made[2].playing)
+check(made[1].vol[un] == 0.4 and made[2].vol[ut] == 0.2, "notes start at gain x Sound volume")
+option = 0
+uv:update(100)
+check(made[1].vol[un] == 0 and made[2].vol[ut] == 0, "Sound volume 0 mutes ringing notes at once")
+option = 1
+uv:update(200)
+check(made[1].vol[un] == 0.8 and made[2].vol[ut] == 0.4, "and they come back with it")
+V.userVolume = function() return 1 end

@@ -13,8 +13,9 @@ Controller.__index = Controller
 Controller.CHANCE_STEP = 0.01 -- smaller changes in the blunder chance are not worth a network message
 Controller.LOOKAHEAD_CHORDS = 4 -- a new chance applies this many chords ahead, so listeners get it in time
 Controller.PENDING_TIMEOUT_MS = 5000 -- a start the server neither placed nor acknowledged as a wait by then is lost
+Controller.SETTINGS_EVERY_MS = 250 -- live volume/echo/tone changes reach listeners at most this often
 
--- deps: net {start, startLocal, stopLocal, unalong, pause, stop, segments}, newSeed(), position() -> ms|nil,
+-- deps: net {start, startLocal, stopLocal, unalong, pause, stop, segments, applySettings, sendSettings}, newSeed(), position() -> ms|nil,
 -- currentChord(), level(), config() -> {skillOn, p0, p10}, mood() -> intoxication, panic (0-100),
 -- serverNow() -> the server's clock in ms
 function Controller.new(player, deps)
@@ -32,7 +33,8 @@ local function samePlace(a, b)
     return a.x == b.x and a.y == b.y and a.z == b.z
 end
 
--- starts the song, or resumes it where it was paused if text, tempo, instrument and place are unchanged.
+-- starts the song, or resumes it where it was paused if text, tempo, instrument and place are unchanged
+-- (volume, tone and echo may change: they are live settings).
 -- place: where a furniture instrument stands (nil for hand-held ones).
 -- text is one part (PlayIt.Song.parts). The compacted part is what plays and travels; false and "TooLong" if
 -- even that is too big to send or has too many notes.
@@ -44,10 +46,10 @@ function Controller:play(text, bpm, volume, fullType, place, tone, echo)
     if song.events >= PlayIt.Song.MAX_EVENTS then return false, "TooLong" end
     if echo ~= nil and echo <= 0 then echo = nil end
     local resume = self.pausedAt ~= nil and text == self.text and bpm == self.bpm and fullType == self.fullType
-        and samePlace(place, self.where) and tone == self.tone and echo == self.echo
-    self.where = place
+        and samePlace(place, self.where)
+    self.where, self.tone, self.echo, self.unsent = place, tone, echo, false
     if not resume then
-        self.text, self.bpm, self.fullType, self.tone, self.echo = text, bpm, fullType, tone, echo
+        self.text, self.bpm, self.fullType = text, bpm, fullType
         self.seed = self.deps.newSeed()
         self.lastChance = self:chance()
         self.segments = { { fromChord = 1, chance = self.lastChance } }
@@ -162,6 +164,29 @@ function Controller:instrument() return self.fullType end
 function Controller:place() return self.where end
 function Controller:volume() return self.vol end
 
+-- the window's volume (0-1), tone and echo (0-1, 0 = off), called as they change: while playing the musician hears
+-- them at once and tick sends them to listeners; while paused the next play takes them from the window anyway
+function Controller:setSettings(volume, tone, echo)
+    if echo ~= nil and echo <= 0 then echo = nil end
+    if not self.playing or (volume == self.vol and tone == self.tone and echo == self.echo) then return end
+    self.vol, self.tone, self.echo = volume, tone, echo
+    local perf = {}
+    for k, v in pairs(self.perf) do perf[k] = v end
+    perf.volume, perf.tone, perf.echo = volume, tone, echo
+    self.perf, self.unsent = perf, true
+    if not self.pending then self.deps.net.applySettings(self.player, self:settings()) end
+end
+
+function Controller:settings() return { volume = self.vol, tone = self.tone, echo = self.echo } end
+
+local function sendSettings(self)
+    if not self.unsent or self.pending or not self.playing then return end
+    local now = self.deps.serverNow()
+    if self.settingsSentAt and now - self.settingsSentAt < Controller.SETTINGS_EVERY_MS then return end
+    self.settingsSentAt, self.unsent = now, false
+    self.deps.net.sendSettings(self.player, self:settings())
+end
+
 function Controller:positionMs()
     if self.playing then return self.deps.position() end
     return self.pausedAt
@@ -195,4 +220,5 @@ function Controller:tick()
         self.members, self.startAt, self.goBpm = {}, nil, nil -- the song is over: nothing to keep in time with
         self.playing = false
     end
+    sendSettings(self)
 end
