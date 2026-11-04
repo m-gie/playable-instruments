@@ -324,6 +324,25 @@ function handlers.segments(player, args)
     sendToListeners(id, "segments", { id = id, segments = args.segments })
 end
 
+-- live volume, tone and echo while playing: checked like a start's, kept for players who come into range later
+-- (and for the zombie noise and mood earshot), sent on to the listeners
+function handlers.settings(player, args)
+    local id = player:getOnlineID()
+    local s = sessions:get(id)
+    if s == nil or s.paused then return end
+    if not sessions:allowSettings(id, getTimestampMs()) then return end
+    local perf = {}
+    for k, v in pairs(s.perf) do perf[k] = v end
+    perf.volume, perf.tone, perf.echo = args.volume, args.tone, args.echo
+    local ok, why = PlayIt.Session.validate(perf, s.fullType)
+    if not ok then
+        print("[PlayIt] rejected settings from " .. player:getUsername() .. ": " .. tostring(why))
+        return
+    end
+    s.perf = perf
+    sendToListeners(id, "settings", { id = id, volume = perf.volume, tone = perf.tone, echo = perf.echo })
+end
+
 Events.OnClientCommand.Add(function(module, command, player, args)
     if module ~= "PlayIt" or handlers[command] == nil then return end
     handlers[command](player, args or {})

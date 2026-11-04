@@ -192,6 +192,10 @@ function MusicWindow:prerender()
     local bandBpm = c:bandBpm()
     self.bpmBox:setEditable(bandBpm == nil)
     if bandBpm and self.bpmBox:getInternalText() ~= tostring(bandBpm) then self.bpmBox:setText(tostring(bandBpm)) end
+    -- volume, tone and echo are live: a playing song follows them
+    if c:isPlaying() and c:instrument() == self.fullType then
+        c:setSettings(self.volume:getCurrentValue() / 100, self:selectedTone(), self:selectedEcho())
+    end
 end
 
 function MusicWindow:onSongChanged()

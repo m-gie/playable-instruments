@@ -63,6 +63,26 @@ function Voices:noteOn(sound, ratio, durMs, nowMs, gain, tail, tailGain)
     if tail then self:start(tail, ratio, durMs, nowMs, tailGain, true) end
 end
 
+-- live volume and echo: ringing notes take noteGain, tails tailGain (0: they fade out over CUT_MS from nowMs)
+function Voices:setGains(noteGain, tailGain, nowMs)
+    for _, v in ipairs(self.list) do
+        if v.cutAt == nil then
+            if not v.tail then
+                v.gain = noteGain
+            elseif tailGain > 0 then
+                v.gain = tailGain
+            else
+                v.cutFrom, v.cutAt = v.gain, nowMs
+            end
+        end
+    end
+end
+
+-- a new tone: its release, for the notes still to come
+function Voices:setRelease(releaseMs)
+    self.release = releaseMs or Voices.RELEASE_MS
+end
+
 -- follow the musician; full gain for the note's length, then a linear fade over the release (tails ring to their
 -- end); a cut voice fades from where it was over CUT_MS
 function Voices:update(nowMs)

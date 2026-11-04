@@ -17,20 +17,33 @@ Session.MAX_SEGMENTS = 64
 -- per RATE_MS. Play, pause and play again stays well inside; a hacked client can't flood the players in range.
 Session.RATE_BURST = 4
 Session.RATE_MS = 2000 -- the client sends segments at most every 2 s (ISPlayItAction CHANCE_EVERY_MS)
+-- live volume/echo/tone messages are small and need no parsing: a looser limit of their own
+-- (the client sends at most one per PlayIt.Controller.SETTINGS_EVERY_MS)
+Session.SETTINGS_BURST = 8
+Session.SETTINGS_RATE_MS = 200
 
 function Session.new()
-    return setmetatable({ list = {}, rate = {} }, Session)
+    return setmetatable({ list = {}, rate = {}, settingsRate = {} }, Session)
 end
 
--- true when player id may send another start or segments message now (and counts it)
-function Session:allow(id, nowMs)
-    local r = self.rate[id] or { tokens = Session.RATE_BURST, at = nowMs }
-    self.rate[id] = r
-    r.tokens = math.min(Session.RATE_BURST, r.tokens + (nowMs - r.at) / Session.RATE_MS)
+local function take(buckets, id, nowMs, burst, everyMs)
+    local r = buckets[id] or { tokens = burst, at = nowMs }
+    buckets[id] = r
+    r.tokens = math.min(burst, r.tokens + (nowMs - r.at) / everyMs)
     r.at = nowMs
     if r.tokens < 1 then return false end
     r.tokens = r.tokens - 1
     return true
+end
+
+-- true when player id may send another start or segments message now (and counts it)
+function Session:allow(id, nowMs)
+    return take(self.rate, id, nowMs, Session.RATE_BURST, Session.RATE_MS)
+end
+
+-- true when player id may send another live settings message now (and counts it)
+function Session:allowSettings(id, nowMs)
+    return take(self.settingsRate, id, nowMs, Session.SETTINGS_BURST, Session.SETTINGS_RATE_MS)
 end
 
 local function isInt(v) return type(v) == "number" and v == math.floor(v) end
