@@ -8,6 +8,8 @@
   "Sandbox_PlayIt_BlunderLevel10_tooltip": "Szansa, że mistrz zagra nutę źle. Na poziomach pośrednich szansa spada najpierw powoli, a pod koniec szybciej (ok. 6%% na poziomie 5 przy domyślnych wartościach).",
   "Sandbox_PlayIt_BlundersAnnoy": "Pomyłki irytują słuchaczy",
   "Sandbox_PlayIt_BlundersAnnoy_tooltip": "Fałszywe nuty podnoszą stres i przygnębienie wszystkich w zasięgu słuchu (poza samym muzykiem), ale najwyżej do lekkiego przygnębienia i niepokoju.",
+  "Sandbox_PlayIt_MusicXP": "Mnożnik doświadczenia muzyki",
+  "Sandbox_PlayIt_MusicXP_tooltip": "Używany zamiast globalnego mnożnika doświadczenia, gdy jest on wyłączony (mnożniki dla poszczególnych umiejętności).",
   "Sandbox_PlayIt_NoiseMultiplier": "Zasięg hałasu muzyki",
   "Sandbox_PlayIt_NoiseMultiplier_tooltip": "Mnoży odległość, z jakiej zombie i zwierzęta słyszą muzykę. 0 = nigdy jej nie słyszą."
 }

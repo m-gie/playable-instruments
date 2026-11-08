@@ -45,3 +45,14 @@ option PlayIt.NoiseMultiplier
 	page = PlayIt,
 	translation = PlayIt_NoiseMultiplier,
 }
+
+/* the engine looks up "MultiplierConfig.<perk>" when the global XP multiplier is off (e.g. the Outbreak preset) */
+option MultiplierConfig.PlayItMusic
+{
+	type = double,
+	min = 0,
+	max = 1000,
+	default = 1.0,
+	page = PlayIt,
+	translation = PlayIt_MusicXP,
+}

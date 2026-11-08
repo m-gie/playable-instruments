@@ -8,6 +8,8 @@
   "Sandbox_PlayIt_BlunderLevel10_tooltip": "Chance that a note goes wrong for a master. Levels in between fall slowly at first and faster near the top (about 6%% at level 5 with the default values).",
   "Sandbox_PlayIt_BlundersAnnoy": "Blunders annoy listeners",
   "Sandbox_PlayIt_BlundersAnnoy_tooltip": "Wrong notes raise the stress and unhappiness of everyone in earshot (not the musician), but no further than mildly Unhappy and Anxious.",
+  "Sandbox_PlayIt_MusicXP": "Music XP multiplier",
+  "Sandbox_PlayIt_MusicXP_tooltip": "Used instead of the global XP multiplier when that one is turned off (per-skill multipliers).",
   "Sandbox_PlayIt_NoiseMultiplier": "Music noise radius",
   "Sandbox_PlayIt_NoiseMultiplier_tooltip": "Multiplies how far zombies and animals notice the music. 0 = they never do."
 }
