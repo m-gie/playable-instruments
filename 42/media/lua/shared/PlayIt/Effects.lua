@@ -6,8 +6,8 @@ local Effects = PlayIt.Effects
 
 Effects.NOISE_INTERVAL_MS = 2000
 -- the engine x1.5s perks.txt and gives skills without a profession/trait boost (Music always) only x0.25 XP:
--- 0.8 -> 0.2 XP/s in practice, level 1 after ~6 min of playing, level 5 after ~3.9 h, level 10 after ~45.5 h
-Effects.XP_PER_SECOND = 0.8
+-- 1.0 -> 0.25 XP/s in practice, level 1 after 5 min of playing, level 5 after ~3.1 h, level 10 after ~36.4 h
+Effects.XP_PER_SECOND = 1.0
 Effects.BOREDOM_BASE = 0.1 -- boredom (0-100) per real second at Music 0; a TV has no fixed rate to copy
 -- Bad music is only slightly bad: it can push a listener just past the first Unhappy and Anxious moodles and
 -- no further, and a whole botched song at Music 0 (half the notes wrong, 90 s of blunders in 3 min) gets there.

@@ -10,7 +10,7 @@ check(E.noiseRadius(guitar, 1, 0) == 0, "noise multiplier 0: no noise")
 check(E.noiseRadius(trumpet, 1, 2) == 90, "noise multiplier scales")
 check(E.earshot(guitar, 0.5) == 15, "earshot = max radius x volume")
 check(near(E.boredomPerSecond(10), 3 * E.boredomPerSecond(0)), "level 10 cheers up 3x faster than level 0")
-check(E.XP_PER_SECOND == 0.8, "0.8 XP per second of playing (x0.25 no-boost penalty -> level 10 in ~45 h; user, 2026-11-08)")
+check(E.XP_PER_SECOND == 1.0, "1 XP per second of playing (x0.25 no-boost penalty -> level 10 in ~36 h; user, 2026-11-08)")
 
 -- what one played chord does to a listener
 local chord = { dur = 2000 }
