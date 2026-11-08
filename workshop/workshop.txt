@@ -59,6 +59,8 @@ description=[*]Sandbox options for the skill, blunders, annoyance and noise.
 description=[*]Your fellow survivors may grow to hate you.
 description=[/list]
 description=
+description=[url=https://ko-fi.com/F4C528AH14][img]https://i.imgur.com/jbr0S2h.png[/img][/url]
+description=
 description=[h2]Credits[/h2]
 description=[b]Instrument recordings[/b]
 description=[list]
@@ -72,5 +74,8 @@ description=[*][b]6-string banjo:[/b] "ganjo" by itsclipping, CC0. [url=https://
 description=[*][b]Other tones:[/b] plucked violin from the University of Iowa MIS (same violin and player); tenor sax, blues harp (Hohner Special 20), keytar FM Piano and Piano 1, and renaissance organ from VCSL.
 description=[/list]
 description=Inspired by Space Station 13's instruments (/tg/station).
+description=
+description=Workshop ID: 3827828271
+description=Mod ID: PlayItInstruments
 tags=Build 42;Multiplayer
 visibility=unlisted
